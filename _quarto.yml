@@ -1,0 +1,63 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  page-navigation: true
+  title: "class2301"
+  description: "describe..."
+
+  # site-url:
+  # repo-url:
+  repo-actions: [edit, issue]
+
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2023, Sungkyun Cho"
+    # background: 
+
+  sidebar:
+    # background: "#F6F6FF"
+    # logo: 
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/skcho13
+        text: "GitHub organization"
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Introduction"
+        contents:
+          - href: ch1-setup.ipynb
+            text: Setup
+          - href: ch2-dataframe.ipynb
+            text: NumPy & pandas
+          - href: ch3-vis.ipynb
+            text: Data Visualization
+          - href: temp.ipynb
+            text: Temp
+  # navbar:
+  #   left:
+  #     - href: index.qmd
+  #       text: Home
+  #     - about.qmd
+
+format:
+  html:
+        toc: true
+        toc-depth: 3
+        toc-location: right
+        code-fold: false
+        code-overflow: wrap
+        theme: [sandstone, theme-light.scss]
+        fontsize: .9em
+        linestretch: 1.7
+        code-copy: true
+        highlight-style: Ayu-light
+        #css: styles.css
+
+
+
