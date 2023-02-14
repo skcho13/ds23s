@@ -27,21 +27,21 @@ website:
         text: "GitHub organization"
     style: "docked"
     search: true
-    collapse-level: 1
+    # collapse-level: 1
     contents:
       - section: "Introduction"
         contents:
-          - href: ch1-setup.ipynb
+          - href: contents/setup.ipynb
             text: Setup
-          - href: ch2-dataframe.ipynb
+          - href: contents/pandas.ipynb
             text: NumPy & pandas
-          - href: ch3-vis.ipynb
+          - href: contents/vis.ipynb
             text: Data Visualization
-          - href: temp.ipynb
+          - href: contents/temp.ipynb
             text: Temp
           - section: "Subsection"
             contents:
-              - href: others.ipynb
+              - href: contents/others.ipynb
                 text: Others
       - text: "---"
       - section: Wrangle
