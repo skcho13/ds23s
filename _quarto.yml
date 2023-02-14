@@ -44,6 +44,11 @@ website:
               - href: contents/others.ipynb
                 text: Others
       - text: "---"
+      - section: Visualize
+        contents:
+          - href: contents/seaborn.ipynb
+            text: seaborn.objects
+      - text: "---"
       - section: Wrangle
   # navbar:
   #   left:
