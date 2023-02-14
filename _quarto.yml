@@ -39,6 +39,12 @@ website:
             text: Data Visualization
           - href: temp.ipynb
             text: Temp
+          - section: "Subsection"
+            contents:
+              - href: others.ipynb
+                text: Others
+      - text: "---"
+      - section: Wrangle
   # navbar:
   #   left:
   #     - href: index.qmd
@@ -52,6 +58,7 @@ format:
         toc-location: right
         code-fold: false
         code-overflow: wrap
+        code-summary: "Show the code"
         theme: [sandstone, theme-light.scss]
         fontsize: .9em
         linestretch: 1.7
