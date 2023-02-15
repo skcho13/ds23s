@@ -1,7 +1,6 @@
 ---
-title: "class2301 new"
+title: Welcome
+subtitle: Class 2023 overview
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Class 2023 강의 노트
