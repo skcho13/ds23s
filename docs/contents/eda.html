@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../contents/customizing.html" rel="next">
+<link href="../contents/alt_plots.html" rel="next">
 <link href="../contents/seaborn.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -257,11 +257,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../contents/seaborn.html" class="sidebar-item-text sidebar-link">seaborn.objects</a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../contents/eda.html" class="sidebar-item-text sidebar-link active">Exploratory data analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contents/eda.html" class="sidebar-item-text sidebar-link active">Exploratory data analysis</a>
+  <a href="../contents/alt_plots.html" class="sidebar-item-text sidebar-link">Alternative plots</a>
   </div>
 </li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../contents/customizing.html" class="sidebar-item-text sidebar-link">Customizing plots</a>
@@ -295,8 +305,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#pairing" id="toc-pairing" class="nav-link" data-scroll-target="#pairing">Pairing</a></li>
   <li><a href="#multiple-plots" id="toc-multiple-plots" class="nav-link" data-scroll-target="#multiple-plots">Multiple plots</a></li>
   </ul></li>
-  <li><a href="#geometric-objects" id="toc-geometric-objects" class="nav-link" data-scroll-target="#geometric-objects">Geometric objects</a>
+  <li><a href="#geometric-objects" id="toc-geometric-objects" class="nav-link" data-scroll-target="#geometric-objects">Geometric objects</a></li>
+  <li><a href="#statistical-transformations" id="toc-statistical-transformations" class="nav-link" data-scroll-target="#statistical-transformations">Statistical transformations</a>
   <ul class="collapse">
+  <li><a href="#fitted-lines" id="toc-fitted-lines" class="nav-link" data-scroll-target="#fitted-lines">Fitted lines</a></li>
   <li><a href="#overploting" id="toc-overploting" class="nav-link" data-scroll-target="#overploting">Overploting</a></li>
   <li><a href="#adding-multiple-layers" id="toc-adding-multiple-layers" class="nav-link" data-scroll-target="#adding-multiple-layers">Adding multiple layers</a></li>
   </ul></li>
@@ -361,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="first-steps" class="level2">
 <h2 class="anchored" data-anchor-id="first-steps">First steps</h2>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Load packages</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numerical calculation &amp; data frames</span></span>
@@ -380,18 +392,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Data: <em>Fuel economy data from 1999 to 2008 for 38 popular models of cars</em><br>
 </p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mpg_data <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mpg"</span>, <span class="st">"ggplot2"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> mpg_data.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Description</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mpg_data.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
 
@@ -574,12 +586,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Q: 엔진의 크기(displ)와 연비(hwy)는 어떤 관계에 있는가?</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>) <span class="co"># empty plot을 생성하고, x, y축에 mapping할 mpg 데이터의 변수를 지정</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot()) <span class="co"># layer를 추가하여, points들을 Dot이라는 mark object를 써서 표현</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot: 산포도</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>) <span class="co"># empty plot을 생성하고, x, y축에 mapping할 mpg 데이터의 변수를 지정</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot()) <span class="co"># layer를 추가하여, points들을 Dot이라는 mark object를 써서 표현</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <p><img src="eda_files/figure-html/cell-7-output-1.png" width="599" height="445"></p>
 </div>
 </div>
@@ -621,8 +634,8 @@ Tip
 <li>cyl (실린더 개수), hwy (고속도로 연비)의 관계를 scatterplot으로 살펴볼 수 있는가? (left)</li>
 <li>class (차량 타입), drv (전륜 구동, 후륜 구동, 4륜 구동 타입)의 관계는 어떠한가? (right)</li>
 </ul>
-<div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <p><img src="eda_files/figure-html/cell-8-output-1.png" width="945" height="369"></p>
 </div>
 </div>
@@ -631,8 +644,8 @@ Tip
 <section id="aesthetic-mappings" class="level2">
 <h2 class="anchored" data-anchor-id="aesthetic-mappings">Aesthetic mappings</h2>
 <p>Q: 엔진의 크기와 연비와의 관계에서 보이는 트렌드 라인에서 심하게 벗어난 것이 있는가?</p>
-<div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <p><img src="eda_files/figure-html/cell-9-output-1.png" width="599" height="445"></p>
 </div>
 </div>
@@ -641,60 +654,60 @@ Tip
 <p><img src="images/aesthetics.png" class="img-fluid" width="400"></p>
 <section id="color" class="level3">
 <h3 class="anchored" data-anchor-id="color">Color</h3>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"class"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <p><img src="eda_files/figure-html/cell-10-output-1.png" width="743" height="445"></p>
 </div>
 </div>
 </section>
 <section id="pointsize" class="level3">
 <h3 class="anchored" data-anchor-id="pointsize">Pointsize</h3>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, pointsize<span class="op">=</span><span class="st">"class"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <p><img src="eda_files/figure-html/cell-11-output-1.png" width="743" height="445"></p>
 </div>
 </div>
 </section>
 <section id="marker" class="level3">
 <h3 class="anchored" data-anchor-id="marker">Marker</h3>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, marker<span class="op">=</span><span class="st">"class"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <p><img src="eda_files/figure-html/cell-12-output-1.png" width="743" height="445"></p>
 </div>
 </div>
 </section>
 <section id="alpha" class="level3">
 <h3 class="anchored" data-anchor-id="alpha">Alpha</h3>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, alpha<span class="op">=</span><span class="st">"class"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <p><img src="eda_files/figure-html/cell-13-output-1.png" width="743" height="445"></p>
 </div>
 </div>
 </section>
 <section id="linestyle" class="level3">
 <h3 class="anchored" data-anchor-id="linestyle">Linestyle</h3>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>healthexp <span class="op">=</span> sns.load_dataset(<span class="st">"healthexp"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> so.Plot(healthexp, x<span class="op">=</span><span class="st">"Spending_USD"</span>, y<span class="op">=</span><span class="st">"Life_Expectancy"</span>, linestyle<span class="op">=</span><span class="st">"Country"</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p.add(so.Line())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <p><img src="eda_files/figure-html/cell-14-output-1.png" width="747" height="445"></p>
 </div>
 </div>
@@ -702,22 +715,22 @@ Tip
 <section id="두-가지-이상의-속성" class="level3">
 <h3 class="anchored" data-anchor-id="두-가지-이상의-속성">두 가지 이상의 속성</h3>
 <p>ex. color &amp; marker</p>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"class"</span>, marker<span class="op">=</span><span class="st">"drv"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <p><img src="eda_files/figure-html/cell-15-output-1.png" width="743" height="445"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"class"</span>, pointsize<span class="op">=</span><span class="st">"drv"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .scale(pointsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">15</span>)) <span class="co"># pointsize의 range설정</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <p><img src="eda_files/figure-html/cell-16-output-1.png" width="743" height="445"></p>
 </div>
 </div>
@@ -735,23 +748,23 @@ Important
 예를 들어, 아래 두 플랏은 동일한 정보를 품고 있으나, 시각적 인식에 큰 차이를 만듦</p>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <p><img src="eda_files/figure-html/cell-17-output-1.png" width="801" height="369"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="17">
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <p><img src="eda_files/figure-html/cell-18-output-1.png" width="801" height="369"></p>
 </div>
 </div>
 <p>연속 vs.&nbsp;카테고리 변수 여부에 따라 다르게 작동</p>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"class"</span>).add(so.Dot()).layout(engine<span class="op">=</span><span class="st">"constrained"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"cty"</span>).add(so.Dot()).layout(engine<span class="op">=</span><span class="st">"constrained"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fig-charts" class="cell quarto-layout-panel" data-execution_count="19">
+<div id="fig-charts" class="cell quarto-layout-panel" data-execution_count="21">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
@@ -774,13 +787,13 @@ Important
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Categorical vs.&nbsp;Continuous</figcaption><p></p>
 </figure>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"cty"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .scale(color<span class="op">=</span>so.Continuous(<span class="st">"crest"</span>, norm<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">50</span>), trans<span class="op">=</span><span class="st">"sqrt"</span>))</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <p><img src="eda_files/figure-html/cell-21-output-1.png" width="681" height="445"></p>
 </div>
 </div>
@@ -799,30 +812,30 @@ Important
 <em>class seaborn.objects.Dots(artist_kws=<factory>, marker=&lt;rc:scatter.marker&gt;, pointsize=&lt;4&gt;, stroke=&lt;0.75&gt;, color=&lt;‘C0’&gt;, alpha=&lt;1&gt;, fill=<true>, fillcolor=<depend:color>, fillalpha=&lt;0.2&gt;)</depend:color></true></factory></em></p>
 <p><a href="https://seaborn.pydata.org/api.html">seaborn reference</a></p>
 </blockquote>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>)) <span class="co"># Mark object 안에 지정!</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <p><img src="eda_files/figure-html/cell-22-output-1.png" width="599" height="445"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>, edgewidth<span class="op">=</span><span class="dv">1</span>)) <span class="co"># Mark object 안에 지정!</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <p><img src="eda_files/figure-html/cell-23-output-1.png" width="599" height="445"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"orange"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, marker<span class="op">=</span><span class="st">"&gt;"</span>, alpha<span class="op">=</span><span class="fl">.4</span>)) <span class="co"># Mark object 안에 지정!</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <p><img src="eda_files/figure-html/cell-24-output-1.png" width="599" height="445"></p>
 </div>
 </div>
@@ -855,10 +868,10 @@ Tip
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>) <span class="co"># load a dataset: penguins</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -931,23 +944,23 @@ Tip
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"sex"</span>) <span class="co"># 기본적으로 columns으로 나누어져 그림</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <p><img src="eda_files/figure-html/cell-26-output-1.png" width="599" height="445"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>, row<span class="op">=</span><span class="st">"sex"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <p><img src="eda_files/figure-html/cell-27-output-1.png" width="599" height="445"></p>
 </div>
 </div>
@@ -964,7 +977,7 @@ Important
 <p>Facet과 Color 중 어떤 방식으로 표현하는 것이 유리한가? 밸런스를 잘 선택!</p>
 </div>
 </div>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>)</span>
@@ -975,7 +988,7 @@ Important
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fig-charts2" class="cell quarto-layout-panel" data-execution_count="28">
+<div id="fig-charts2" class="cell quarto-layout-panel" data-execution_count="30">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
@@ -1002,25 +1015,25 @@ Important
 <h3 class="anchored" data-anchor-id="pairing">Pairing</h3>
 <p>Faceting이 변수 내에 <strong>다른 레벨</strong>에 따라 그려지는데 반해,<br>
 paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>) <span class="co"># y축은 공유</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>]) <span class="co"># x축에 다른 변수를 mapping</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots()) <span class="co"># .Dots()! overploting에 유리. .Dot(alpha=.)로도 비슷</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <p><img src="eda_files/figure-html/cell-30-output-1.png" width="727" height="445"></p>
 </div>
 </div>
 <p>Facet &amp; pair 동시</p>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>])</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    .facet(row<span class="op">=</span><span class="st">"species"</span>)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <p><img src="eda_files/figure-html/cell-31-output-1.png" width="713" height="445"></p>
 </div>
 </div>
@@ -1028,7 +1041,7 @@ paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
 <section id="multiple-plots" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-plots">Multiple plots</h3>
 <p>개발 중…? Matplotlib을 이용</p>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> mpl.figure.Figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
@@ -1046,7 +1059,7 @@ paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    .on(sf2)</span>
 <span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    .plot()</span>
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <p><img src="eda_files/figure-html/cell-32-output-1.png" width="758" height="381"></p>
 </div>
 </div>
@@ -1057,101 +1070,170 @@ paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
 <section id="geometric-objects" class="level2">
 <h2 class="anchored" data-anchor-id="geometric-objects">Geometric objects</h2>
 <ul>
-<li>Dot marks: <code>Dot</code>, <code>Dots</code></li>
-<li>Line marks: <code>Line</code>, <code>Lines</code>, <code>Path</code>, <code>Paths</code>, <code>Dash</code>, <code>Range</code></li>
-<li>Bar marks: <code>Bar</code>, <code>Bars</code></li>
+<li>Dot marks: <strong><code>Dot</code></strong>, <code>Dots</code></li>
+<li>Line marks: <strong><code>Line</code></strong>, <code>Lines</code>, <code>Path</code>, <code>Paths</code>, <code>Dash</code>, <code>Range</code></li>
+<li>Bar marks: <strong><code>Bar</code></strong>, <code>Bars</code></li>
 <li>Fill marks: <code>Area</code>, <code>Band</code></li>
-<li>Text marks: <code>Text</code></li>
+<li>Text marks: <strong><code>Text</code></strong></li>
 </ul>
-<div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.box(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"bill_length_mm"</span>, color<span class="op">=</span><span class="st">"island"</span>,  facet_col<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-
-<div>                            <div id="31e86c95-be1e-492b-9d32-4ae717d16e25" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("31e86c95-be1e-492b-9d32-4ae717d16e25")) {                    Plotly.newPlot(                        "31e86c95-be1e-492b-9d32-4ae717d16e25",                        [{"alignmentgroup":"True","hovertemplate":"island=Torgersen<br>sex=Male<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Torgersen","marker":{"color":"#636efa"},"name":"Torgersen","notched":false,"offsetgroup":"Torgersen","orientation":"v","showlegend":true,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie"],"x0":" ","xaxis":"x","y":[39.1,39.3,39.2,38.6,34.6,42.5,46.0,41.8,39.7,45.8,42.8,37.2,42.1,42.9,35.1,37.3,41.1,37.7,41.4,40.6,41.5,44.1,43.1],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"island=Torgersen<br>sex=Female<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Torgersen","marker":{"color":"#636efa"},"name":"Torgersen","notched":false,"offsetgroup":"Torgersen","orientation":"v","showlegend":false,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie"],"x0":" ","xaxis":"x2","y":[39.5,40.3,36.7,38.9,41.1,36.6,38.7,34.4,35.9,33.5,39.6,35.5,40.9,36.2,34.6,36.7,38.6,35.7,36.2,40.2,35.2,38.8,39.0,38.5],"y0":" ","yaxis":"y2","type":"box"},{"alignmentgroup":"True","hovertemplate":"island=Biscoe<br>sex=Male<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Biscoe","marker":{"color":"#EF553B"},"name":"Biscoe","notched":false,"offsetgroup":"Biscoe","orientation":"v","showlegend":true,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo"],"x0":" ","xaxis":"x","y":[37.7,38.2,38.8,40.6,40.5,40.1,42.0,41.4,40.6,37.6,41.3,41.1,41.6,41.1,41.0,37.8,39.7,38.2,43.2,45.6,42.2,42.7,50.0,50.0,47.6,46.7,46.8,49.0,48.4,49.3,49.2,48.7,50.2,46.3,46.1,47.8,50.0,47.3,59.6,48.4,44.4,48.7,49.6,49.6,50.5,50.5,45.2,48.5,50.1,45.0,45.5,50.4,46.2,54.3,49.8,49.5,50.7,46.4,48.2,48.6,51.1,45.2,52.5,50.0,50.8,51.3,52.1,52.2,49.5,50.8,49.4,51.1,55.9,49.1,46.8,53.4,48.1,49.8,51.5,55.1,48.8,50.4,49.9],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"island=Biscoe<br>sex=Female<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Biscoe","marker":{"color":"#EF553B"},"name":"Biscoe","notched":false,"offsetgroup":"Biscoe","orientation":"v","showlegend":false,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo","Gentoo"],"x0":" ","xaxis":"x2","y":[37.8,35.9,35.3,40.5,37.9,39.6,35.0,34.5,39.0,36.5,35.7,37.6,36.4,35.5,35.0,37.7,37.9,38.6,38.1,38.1,39.7,39.6,46.1,48.7,46.5,45.4,43.3,40.9,45.5,45.8,42.0,46.2,45.1,46.5,42.9,48.2,42.8,45.1,49.1,42.6,44.0,42.7,45.3,43.6,45.5,44.9,46.6,45.1,46.5,43.8,43.2,45.3,45.7,45.8,43.5,47.7,46.5,46.4,47.5,45.2,49.1,47.4,44.9,43.4,47.5,47.5,45.5,44.5,46.9,48.4,48.5,47.2,41.7,43.3,50.5,43.5,46.2,47.2,46.8,45.2],"y0":" ","yaxis":"y2","type":"box"},{"alignmentgroup":"True","hovertemplate":"island=Dream<br>sex=Male<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Dream","marker":{"color":"#00cc96"},"name":"Dream","notched":false,"offsetgroup":"Dream","orientation":"v","showlegend":true,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap"],"x0":" ","xaxis":"x","y":[37.2,40.9,39.2,38.8,39.8,40.8,44.1,39.6,41.1,42.3,41.3,36.3,38.3,41.1,39.6,40.8,40.3,43.2,37.5,41.1,40.2,39.7,40.6,40.7,39.0,39.2,37.8,41.5,50.0,51.3,52.7,51.3,51.3,51.7,52.0,50.5,50.3,49.2,48.5,50.6,52.0,49.5,52.8,54.2,51.0,49.7,52.0,53.5,49.0,50.9,50.8,49.0,51.5,51.4,50.7,52.2,49.3,50.2,51.9,55.8,49.6,50.8],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"island=Dream<br>sex=Female<br>species=%{x}<br>bill_length_mm=%{y}<extra></extra>","legendgroup":"Dream","marker":{"color":"#00cc96"},"name":"Dream","notched":false,"offsetgroup":"Dream","orientation":"v","showlegend":false,"x":["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Adelie","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap","Chinstrap"],"x0":" ","xaxis":"x2","y":[39.5,39.5,36.4,42.2,37.6,36.5,36.0,37.0,36.0,37.3,36.9,38.9,35.7,34.0,36.2,38.1,33.1,36.8,38.1,35.6,37.0,40.2,32.1,37.3,36.6,36.0,36.0,46.5,45.4,45.2,46.1,46.0,46.6,47.0,45.9,58.0,46.4,42.4,43.2,46.7,50.5,46.4,40.9,42.5,47.5,47.6,46.9,46.2,45.5,50.9,50.1,49.8,48.1,45.7,42.5,45.2,45.6,46.8,45.7,43.5,50.2],"y0":" ","yaxis":"y2","type":"box"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.31999999999999995],"title":{"text":"species"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"bill_length_mm"}},"xaxis2":{"anchor":"y2","domain":[0.33999999999999997,0.6599999999999999],"matches":"x","title":{"text":"species"}},"yaxis2":{"anchor":"x2","domain":[0.0,1.0],"matches":"y","showticklabels":false},"xaxis3":{"anchor":"y3","domain":[0.6799999999999999,0.9999999999999999],"matches":"x","title":{"text":"species"}},"yaxis3":{"anchor":"x3","domain":[0.0,1.0],"matches":"y","showticklabels":false},"annotations":[{"font":{},"showarrow":false,"text":"sex=Male","x":0.15999999999999998,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{},"showarrow":false,"text":"sex=Female","x":0.49999999999999994,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{},"showarrow":false,"text":"sex=nan","x":0.8399999999999999,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"legend":{"title":{"text":"island"},"tracegroupgap":0},"margin":{"t":60},"boxmode":"group"},                        {"responsive": true}                    ).then(function(){
-                            
-var gd = document.getElementById('31e86c95-be1e-492b-9d32-4ae717d16e25');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })                };                });            </script>        </div>
+</section>
+<section id="statistical-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-transformations">Statistical transformations</h2>
+<p><strong><code>Agg</code></strong>, <code>Est</code>, <code>Count</code>, <strong><code>Hist</code></strong>, <code>KDE</code>, <code>Perc</code>, <strong><code>PolyFit</code></strong></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"bill_length_mm"</span>, hue<span class="op">=</span><span class="st">"island"</span>, col<span class="op">=</span><span class="st">"sex"</span>,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">"box"</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="fl">.6</span>,</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x13e35c850&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="eda_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
+<div class="callout-body-container callout-body">
+<p>현재 seaborn.objects에서 다음 두 가지 중요한 statistical transformations이 제공되지 않고 있음</p>
+<ul>
+<li>Fitted line을 보여주는 loess line</li>
+<li>분포의 간략한 summary인 boxplot</li>
+</ul>
+<p>이 부분에 대해서는 다음 몇 가지 대안이 있음</p>
 </div>
 </div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data에 fitted curve를 구하는 방식에는 여러 방법이 있음</p>
+<ul>
+<li>Linear fit: 1차 함수형태로 fit</li>
+<li>Smoothing fit
+<ul>
+<li>Polynominal fit: n차 다항함수형태로 fit</li>
+<li>Loess/lowess: locally estimated/weighted scatterplot smoothing</li>
+<li>GAM: generalized additive model</li>
+<li>Spine: piece-wise polynominal regression</li>
+</ul></li>
+</ul>
+<p>나중에 좀 더 자세히 알아봄</p>
+<p>현재 seaborn.objects에서는 polynomial fit만 제공</p>
+</div>
+</div>
+<section id="fitted-lines" class="level3">
+<h3 class="anchored" data-anchor-id="fitted-lines">Fitted lines</h3>
+<section id="seaborn.objects" class="level4">
+<h4 class="anchored" data-anchor-id="seaborn.objects">seaborn.objects</h4>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> px.data.tips()</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, color<span class="op">=</span><span class="st">"smoker"</span>, facet_col<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-
-<div>                            <div id="dde74155-b050-489e-a712-4ca70013fee1" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("dde74155-b050-489e-a712-4ca70013fee1")) {                    Plotly.newPlot(                        "dde74155-b050-489e-a712-4ca70013fee1",                        [{"hovertemplate":"smoker=No<br>sex=Female<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"No","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"No","orientation":"v","showlegend":true,"x":[16.99,24.59,35.26,14.83,10.33,16.97,20.29,15.77,19.65,15.06,20.69,16.93,10.29,34.81,26.41,16.45,17.07,14.73,10.07,34.83,22.75,20.92,7.25,25.71,17.31,10.65,12.43,24.08,13.42,12.48,29.8,14.52,11.38,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,27.05,16.43,8.35,18.64,11.87,29.85,25.0,13.39,16.21,15.98,35.83,18.78],"xaxis":"x","y":[1.01,3.61,5.0,3.02,1.67,3.5,2.75,2.23,3.0,3.0,2.45,3.07,2.6,5.2,1.5,2.47,3.0,2.2,1.83,5.17,3.25,4.08,1.0,4.0,3.5,1.5,1.8,2.92,1.68,2.52,4.2,2.0,2.0,2.83,1.5,2.0,3.25,1.25,2.0,2.0,2.75,3.5,5.0,2.3,1.5,1.36,1.63,5.14,3.75,2.61,2.0,3.0,4.67,3.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"smoker=No<br>sex=Male<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"No","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"No","orientation":"v","showlegend":false,"x":[10.34,21.01,23.68,25.29,8.77,26.88,15.04,14.78,10.27,15.42,18.43,21.58,16.29,20.65,17.92,39.42,19.82,17.81,13.37,12.69,21.7,9.55,18.35,17.78,24.06,16.31,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,9.94,25.56,19.49,48.27,17.59,20.08,20.23,12.02,10.51,27.2,22.76,17.29,16.66,15.98,13.03,18.28,24.71,21.16,22.49,12.46,18.24,14.0,38.07,23.95,29.93,11.69,14.26,15.95,8.52,22.82,19.08,34.3,41.19,9.78,7.51,14.07,13.13,17.26,24.55,19.77,48.17,16.49,21.5,12.66,13.81,24.52,20.76,31.71,20.69,7.56,48.33,20.45,13.28,11.61,10.77,10.07,29.03,17.82],"xaxis":"x2","y":[1.66,3.5,3.31,4.71,2.0,3.12,1.96,3.23,1.71,1.57,3.0,3.92,3.71,3.35,4.08,7.58,3.18,2.34,2.0,2.0,4.3,1.45,2.5,3.27,3.6,2.0,2.31,5.0,2.24,2.54,3.06,1.32,5.6,3.0,5.0,6.0,2.05,3.0,2.5,1.56,4.34,3.51,6.73,2.64,3.15,2.01,1.97,1.25,4.0,3.0,2.71,3.4,2.03,2.0,4.0,5.85,3.0,3.5,1.5,3.76,3.0,4.0,2.55,5.07,2.31,2.5,2.0,1.48,2.18,1.5,6.7,5.0,1.73,2.0,2.5,2.0,2.74,2.0,2.0,5.0,2.0,3.5,2.5,2.0,3.48,2.24,4.5,5.0,1.44,9.0,3.0,2.72,3.39,1.47,1.25,5.92,1.75],"yaxis":"y2","type":"scatter"},{"hovertemplate":"smoker=Yes<br>sex=Female<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"Yes","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"Yes","orientation":"v","showlegend":true,"x":[3.07,26.86,25.28,5.75,16.32,11.35,15.38,44.3,22.42,14.31,17.51,10.59,10.63,9.6,20.9,18.15,19.81,43.11,13.0,12.74,13.0,16.4,16.47,12.76,13.27,28.17,12.9,30.14,13.42,16.27,10.09,22.12,27.18],"xaxis":"x","y":[1.0,3.14,5.0,1.0,4.3,2.5,3.0,2.5,3.48,4.0,3.0,1.61,2.0,4.0,3.5,3.5,4.19,5.0,2.0,2.01,2.0,2.5,3.23,2.23,2.5,6.5,1.1,3.09,3.48,2.5,2.0,2.88,2.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"smoker=Yes<br>sex=Male<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"Yes","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"Yes","orientation":"v","showlegend":false,"x":[38.01,11.24,20.29,13.81,11.02,18.29,15.01,17.92,19.44,32.68,28.97,40.17,27.28,12.03,21.01,15.36,20.49,25.21,16.0,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,34.63,34.65,23.33,45.35,23.17,40.55,30.46,23.1,15.69,28.44,15.48,16.58,10.34,13.51,18.71,20.53,26.59,38.73,24.27,30.06,25.89,28.15,11.59,7.74,12.16,8.58,13.42,24.01,15.69,15.53,12.6,32.83,22.67],"xaxis":"x2","y":[3.0,1.76,3.21,2.0,1.98,3.76,2.09,3.08,3.0,5.0,3.0,4.73,4.0,1.5,3.0,1.64,4.06,4.29,2.0,10.0,3.16,5.15,3.18,4.0,3.11,2.0,2.0,3.55,3.68,5.65,3.5,6.5,3.0,2.0,4.0,1.5,2.56,2.02,4.0,2.0,2.0,4.0,4.0,3.41,3.0,2.03,2.0,5.16,3.0,1.5,1.44,2.2,1.92,1.58,2.0,3.0,3.0,1.0,1.17,2.0],"yaxis":"y2","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.49],"title":{"text":"total_bill"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"tip"}},"xaxis2":{"anchor":"y2","domain":[0.51,1.0],"matches":"x","title":{"text":"total_bill"}},"yaxis2":{"anchor":"x2","domain":[0.0,1.0],"matches":"y","showticklabels":false},"annotations":[{"font":{},"showarrow":false,"text":"sex=Female","x":0.245,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{},"showarrow":false,"text":"sex=Male","x":0.755,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"legend":{"title":{"text":"smoker"},"tracegroupgap":0},"margin":{"t":60}},                        {"responsive": true}                    ).then(function(){
-                            
-var gd = document.getElementById('dde74155-b050-489e-a712-4ca70013fee1');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })                };                });            </script>        </div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-charts3" class="cell quarto-layout-panel" data-execution_count="35">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts3-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-charts3-output-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts3"></p>
+<p></p><figcaption class="figure-caption">(a) Scatterplot + trendline</figcaption><p></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
+<div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts3-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-charts3-output-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts3"></p>
+<p></p><figcaption class="figure-caption">(b) Trendline only</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: 데이터로부터 계산을 한 후 플랏이 그려짐</figcaption><p></p>
+</figure>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이후 모든 layer에 적용</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이 layer에만 적용</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-charts4" class="cell quarto-layout-panel" data-execution_count="37">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts4-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-charts4-output-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts4"></p>
+<p></p><figcaption class="figure-caption">(a) color가 모든 layers에 적용: global mapping</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts4-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-charts4-output-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts4"></p>
+<p></p><figcaption class="figure-caption">(b) color가 두번째 layer에만 적용: local mapping</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Inherited mapping</figcaption><p></p>
+</figure>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>), group<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color가 아닌 group으로 grouping</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<p><img src="eda_files/figure-html/cell-37-output-1.png" width="672" height="445"></p>
+</div>
+</div>
+<p>Linear fit vs.&nbsp;smoothing fit:<br>
+선형적인 트렌드에서 얼마나 벗어나는가?</p>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">".6"</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">1</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<p><img src="eda_files/figure-html/cell-38-output-1.png" width="599" height="445"></p>
+</div>
+</div>
+<p>Alternatives: <code>plotly</code>, <code>seaborn</code></p>
+<ul>
+<li>Plotly express</li>
+</ul>
+<div class="cell" data-tags="[]" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> px.data.tips()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, color<span class="op">=</span><span class="st">"smoker"</span>)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>px.scatter(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"drv"</span>, trendline<span class="op">=</span><span class="st">"lowess"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
-<div>                            <div id="3c56dcc1-da92-4c6d-948f-ac3683f98578" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("3c56dcc1-da92-4c6d-948f-ac3683f98578")) {                    Plotly.newPlot(                        "3c56dcc1-da92-4c6d-948f-ac3683f98578",                        [{"hovertemplate":"smoker=No<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"No","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"No","orientation":"v","showlegend":true,"x":[16.99,10.34,21.01,23.68,24.59,25.29,8.77,26.88,15.04,14.78,10.27,35.26,15.42,18.43,14.83,21.58,10.33,16.29,16.97,20.65,17.92,20.29,15.77,39.42,19.82,17.81,13.37,12.69,21.7,19.65,9.55,18.35,15.06,20.69,17.78,24.06,16.31,16.93,18.69,31.27,16.04,17.46,13.94,9.68,30.4,18.29,22.23,32.4,28.55,18.04,12.54,10.29,34.81,9.94,25.56,19.49,26.41,48.27,17.59,20.08,16.45,20.23,12.02,17.07,14.73,10.51,27.2,22.76,17.29,16.66,10.07,15.98,34.83,13.03,18.28,24.71,21.16,22.49,22.75,12.46,20.92,18.24,14.0,7.25,38.07,23.95,25.71,17.31,29.93,10.65,12.43,24.08,11.69,13.42,14.26,15.95,12.48,29.8,8.52,14.52,11.38,22.82,19.08,20.27,11.17,12.26,18.26,8.51,10.33,14.15,13.16,17.47,34.3,41.19,27.05,16.43,8.35,18.64,11.87,9.78,7.51,14.07,13.13,17.26,24.55,19.77,29.85,48.17,25.0,13.39,16.49,21.5,12.66,16.21,13.81,24.52,20.76,31.71,20.69,7.56,48.33,15.98,20.45,13.28,11.61,10.77,10.07,35.83,29.03,17.82,18.78],"xaxis":"x","y":[1.01,1.66,3.5,3.31,3.61,4.71,2.0,3.12,1.96,3.23,1.71,5.0,1.57,3.0,3.02,3.92,1.67,3.71,3.5,3.35,4.08,2.75,2.23,7.58,3.18,2.34,2.0,2.0,4.3,3.0,1.45,2.5,3.0,2.45,3.27,3.6,2.0,3.07,2.31,5.0,2.24,2.54,3.06,1.32,5.6,3.0,5.0,6.0,2.05,3.0,2.5,2.6,5.2,1.56,4.34,3.51,1.5,6.73,2.64,3.15,2.47,2.01,1.97,3.0,2.2,1.25,4.0,3.0,2.71,3.4,1.83,2.03,5.17,2.0,4.0,5.85,3.0,3.5,3.25,1.5,4.08,3.76,3.0,1.0,4.0,2.55,4.0,3.5,5.07,1.5,1.8,2.92,2.31,1.68,2.5,2.0,2.52,4.2,1.48,2.0,2.0,2.18,1.5,2.83,1.5,2.0,3.25,1.25,2.0,2.0,2.75,3.5,6.7,5.0,5.0,2.3,1.5,1.36,1.63,1.73,2.0,2.5,2.0,2.74,2.0,2.0,5.14,5.0,3.75,2.61,2.0,3.5,2.5,2.0,2.0,3.48,2.24,4.5,5.0,1.44,9.0,3.0,3.0,2.72,3.39,1.47,1.25,4.67,5.92,1.75,3.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"smoker=Yes<br>total_bill=%{x}<br>tip=%{y}<extra></extra>","legendgroup":"Yes","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"Yes","orientation":"v","showlegend":true,"x":[38.01,11.24,20.29,13.81,11.02,18.29,3.07,15.01,26.86,25.28,17.92,19.44,32.68,28.97,5.75,16.32,40.17,27.28,12.03,21.01,11.35,15.38,44.3,22.42,15.36,20.49,25.21,14.31,16.0,17.51,10.59,10.63,50.81,15.81,7.25,31.85,16.82,32.9,17.89,14.48,9.6,34.63,34.65,23.33,45.35,23.17,40.55,20.9,30.46,18.15,23.1,15.69,19.81,28.44,15.48,16.58,10.34,43.11,13.0,13.51,18.71,12.74,13.0,16.4,20.53,16.47,26.59,38.73,24.27,12.76,30.06,25.89,13.27,28.17,12.9,28.15,11.59,7.74,30.14,12.16,13.42,8.58,13.42,16.27,10.09,22.12,24.01,15.69,15.53,12.6,32.83,27.18,22.67],"xaxis":"x","y":[3.0,1.76,3.21,2.0,1.98,3.76,1.0,2.09,3.14,5.0,3.08,3.0,5.0,3.0,1.0,4.3,4.73,4.0,1.5,3.0,2.5,3.0,2.5,3.48,1.64,4.06,4.29,4.0,2.0,3.0,1.61,2.0,10.0,3.16,5.15,3.18,4.0,3.11,2.0,2.0,4.0,3.55,3.68,5.65,3.5,6.5,3.0,3.5,2.0,3.5,4.0,1.5,4.19,2.56,2.02,4.0,2.0,5.0,2.0,2.0,4.0,2.01,2.0,2.5,4.0,3.23,3.41,3.0,2.03,2.23,2.0,5.16,2.5,6.5,1.1,3.0,1.5,1.44,3.09,2.2,3.48,1.92,1.58,2.5,2.0,2.88,2.0,3.0,3.0,1.0,1.17,2.0,2.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"total_bill"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"tip"}},"legend":{"title":{"text":"smoker"},"tracegroupgap":0},"margin":{"t":60}},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="3b585978-bb62-4c08-bede-dba5f01e5860" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("3b585978-bb62-4c08-bede-dba5f01e5860")) {                    Plotly.newPlot(                        "3b585978-bb62-4c08-bede-dba5f01e5860",                        [{"hovertemplate":"drv=f<br>displ=%{x}<br>hwy=%{y}<extra></extra>","legendgroup":"f","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"f","orientation":"v","showlegend":true,"x":[1.8,1.8,2.0,2.0,2.8,2.8,3.1,2.4,2.4,3.1,3.5,3.6,2.4,3.0,3.3,3.3,3.3,3.3,3.3,3.8,3.8,3.8,4.0,1.6,1.6,1.6,1.6,1.6,1.8,1.8,1.8,2.0,2.4,2.4,2.4,2.4,2.5,2.5,3.3,2.0,2.0,2.0,2.0,2.7,2.7,2.7,2.4,2.4,2.5,2.5,3.5,3.5,3.0,3.0,3.5,3.1,3.8,3.8,3.8,5.3,2.2,2.2,2.4,2.4,3.0,3.0,3.5,2.2,2.2,2.4,2.4,3.0,3.0,3.3,1.8,1.8,1.8,1.8,1.8,2.0,2.0,2.0,2.0,2.8,1.9,2.0,2.0,2.0,2.0,2.5,2.5,2.8,2.8,1.9,1.9,2.0,2.0,2.5,2.5,1.8,1.8,2.0,2.0,2.8,2.8,3.6],"xaxis":"x","y":[29,29,31,30,26,26,27,27,30,26,29,26,24,24,22,22,24,24,17,22,21,23,23,33,32,32,29,32,34,36,36,29,26,27,30,31,26,26,28,26,29,28,27,24,24,24,29,27,31,32,27,26,26,25,25,26,26,27,28,25,29,27,31,31,26,26,28,27,29,31,31,26,26,27,30,33,35,37,35,29,26,29,29,24,44,29,26,29,29,29,29,23,24,44,41,29,26,28,29,29,29,28,29,26,26,26],"yaxis":"y","type":"scatter"},{"hovertemplate":"<b>LOWESS trendline</b><br><br>drv=f<br>displ=%{x}<br>hwy=%{y} <b>(trend)</b><extra></extra>","legendgroup":"f","marker":{"color":"#636efa","symbol":"circle"},"mode":"lines","name":"f","showlegend":false,"x":[1.6,1.6,1.6,1.6,1.6,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.9,1.9,1.9,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.2,2.2,2.2,2.2,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.4,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.7,2.7,2.7,2.8,2.8,2.8,2.8,2.8,2.8,2.8,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.1,3.1,3.1,3.3,3.3,3.3,3.3,3.3,3.3,3.3,3.5,3.5,3.5,3.5,3.5,3.6,3.6,3.8,3.8,3.8,3.8,3.8,3.8,4.0,5.3],"xaxis":"x","y":[31.479758725199996,31.479758725199996,31.479758725199996,31.479758725199996,31.479758725199996,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,30.45305352131082,29.998858080815356,29.998858080815356,29.998858080815356,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,29.571080686079647,28.730872631471463,28.730872631471463,28.730872631471463,28.730872631471463,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.974291151225994,27.448302748819906,27.448302748819906,27.448302748819906,27.448302748819906,27.448302748819906,27.448302748819906,27.448302748819906,27.448302748819906,26.701993648381528,26.701993648381528,26.701993648381528,26.345679684296318,26.345679684296318,26.345679684296318,26.345679684296318,26.345679684296318,26.345679684296318,26.345679684296318,26.03645220687797,26.03645220687797,26.03645220687797,26.03645220687797,26.03645220687797,26.03645220687797,26.03645220687797,25.88218148558317,25.88218148558317,25.88218148558317,25.511377231056326,25.511377231056326,25.511377231056326,25.511377231056326,25.511377231056326,25.511377231056326,25.511377231056326,25.156963638551247,25.156963638551247,25.156963638551247,25.156963638551247,25.156963638551247,24.996914184685306,24.996914184685306,24.7453885415279,24.7453885415279,24.7453885415279,24.7453885415279,24.7453885415279,24.7453885415279,24.65661217028818,23.97386706910993],"yaxis":"y","type":"scatter"},{"hovertemplate":"drv=4<br>displ=%{x}<br>hwy=%{y}<extra></extra>","legendgroup":"4","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"4","orientation":"v","showlegend":true,"x":[1.8,1.8,2.0,2.0,2.8,2.8,3.1,3.1,2.8,3.1,4.2,5.3,5.3,5.7,6.5,3.7,3.7,3.9,3.9,4.7,4.7,4.7,5.2,5.2,3.9,4.7,4.7,4.7,5.2,5.7,5.9,4.7,4.7,4.7,4.7,4.7,4.7,5.2,5.2,5.7,5.9,4.0,4.0,4.0,4.0,4.6,5.0,4.2,4.2,4.6,4.6,4.6,5.4,5.4,3.0,3.7,4.0,4.7,4.7,4.7,5.7,6.1,4.0,4.2,4.4,4.6,4.0,4.0,4.6,5.0,3.3,3.3,4.0,5.6,2.5,2.5,2.5,2.5,2.5,2.5,2.2,2.2,2.5,2.5,2.5,2.5,2.5,2.5,2.7,2.7,3.4,3.4,4.0,4.7,4.7,5.7,2.7,2.7,2.7,3.4,3.4,4.0,4.0],"xaxis":"x","y":[26,25,28,27,25,25,25,25,24,25,23,19,14,15,17,19,18,17,17,19,19,12,17,15,17,17,12,17,16,18,15,16,12,17,17,16,12,15,16,17,15,17,19,17,19,19,17,17,17,16,16,17,15,17,22,19,20,17,12,19,18,14,15,18,18,15,17,19,19,17,17,17,20,18,25,24,27,25,26,23,26,26,26,26,25,27,25,27,20,20,19,17,20,17,15,18,20,20,22,17,19,18,20],"yaxis":"y","type":"scatter"},{"hovertemplate":"<b>LOWESS trendline</b><br><br>drv=4<br>displ=%{x}<br>hwy=%{y} <b>(trend)</b><extra></extra>","legendgroup":"4","marker":{"color":"#EF553B","symbol":"circle"},"mode":"lines","name":"4","showlegend":false,"x":[1.8,1.8,2.0,2.0,2.2,2.2,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.5,2.7,2.7,2.7,2.7,2.7,2.8,2.8,2.8,3.0,3.1,3.1,3.1,3.3,3.3,3.4,3.4,3.4,3.4,3.7,3.7,3.7,3.9,3.9,3.9,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.2,4.2,4.2,4.2,4.4,4.6,4.6,4.6,4.6,4.6,4.6,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,5.0,5.0,5.2,5.2,5.2,5.2,5.2,5.3,5.3,5.4,5.4,5.6,5.7,5.7,5.7,5.7,5.7,5.9,5.9,6.1,6.5],"xaxis":"x","y":[27.795255499363687,27.795255499363687,26.86461793492099,26.86461793492099,25.931483688710866,25.931483688710866,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,24.539944941237046,23.625000568676192,23.625000568676192,23.625000568676192,23.625000568676192,23.625000568676192,23.17022351776454,23.17022351776454,23.17022351776454,22.260670240255617,21.800472823883396,21.800472823883396,21.800472823883396,20.847841604450068,20.847841604450068,20.354515641022452,20.354515641022452,20.354515641022452,20.354515641022452,19.001221307403537,19.001221307403537,19.001221307403537,18.3722541684799,18.3722541684799,18.3722541684799,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,18.066170097873556,17.623219677205384,17.623219677205384,17.623219677205384,17.623219677205384,17.26381936811442,16.958832808730246,16.958832808730246,16.958832808730246,16.958832808730246,16.958832808730246,16.958832808730246,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.83571635487088,16.603782870086285,16.603782870086285,16.435298338869536,16.435298338869536,16.435298338869536,16.435298338869536,16.435298338869536,16.361106440590763,16.361106440590763,16.29203047840602,16.29203047840602,16.16606140342793,16.108378237911563,16.108378237911563,16.108378237911563,16.108378237911563,16.108378237911563,16.00093650606411,16.00093650606411,15.898826346186002,15.703427193256472],"yaxis":"y","type":"scatter"},{"hovertemplate":"drv=r<br>displ=%{x}<br>hwy=%{y}<extra></extra>","legendgroup":"r","marker":{"color":"#00cc96","symbol":"circle"},"mode":"markers","name":"r","orientation":"v","showlegend":true,"x":[5.3,5.3,5.3,5.7,6.0,5.7,5.7,6.2,6.2,7.0,4.6,5.4,5.4,3.8,3.8,4.0,4.0,4.6,4.6,4.6,4.6,5.4,5.4,5.4,5.4],"xaxis":"x","y":[20,15,20,17,17,26,23,26,25,24,17,17,18,26,25,26,24,21,22,23,22,20,17,16,18],"yaxis":"y","type":"scatter"},{"hovertemplate":"<b>LOWESS trendline</b><br><br>drv=r<br>displ=%{x}<br>hwy=%{y} <b>(trend)</b><extra></extra>","legendgroup":"r","marker":{"color":"#00cc96","symbol":"circle"},"mode":"lines","name":"r","showlegend":false,"x":[3.8,3.8,4.0,4.0,4.6,4.6,4.6,4.6,4.6,5.3,5.3,5.3,5.4,5.4,5.4,5.4,5.4,5.4,5.7,5.7,5.7,6.0,6.2,6.2,7.0],"xaxis":"x","y":[25.71543989137515,25.71543989137515,24.679684035459974,24.679684035459974,21.54439651873803,21.54439651873803,21.54439651873803,21.54439651873803,21.54439651873803,17.38342862700846,17.38342862700846,17.38342862700846,18.21097674275691,18.21097674275691,18.21097674275691,18.21097674275691,18.21097674275691,18.21097674275691,20.88872070741641,20.88872070741641,20.88872070741641,23.634679913912393,25.194198873368453,25.194198873368453,24.66081829160371],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"displ"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"hwy"}},"legend":{"title":{"text":"drv"},"tracegroupgap":0},"margin":{"t":60}},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('3c56dcc1-da92-4c6d-948f-ac3683f98578');
+var gd = document.getElementById('3b585978-bb62-4c08-bede-dba5f01e5860');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1176,6 +1258,88 @@ if (outputEl) {{
                         })                };                });            </script>        </div>
 </div>
 </div>
+<p>다음과 같이 smoothing parameter를 지정할 수 있음<br>
+자세한 옵션은 여기 참조: <a href="https://plotly.com/python/linear-fits/">plotly linear-fits</a></p>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    px.scatter(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"drv"</span>, </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>               trendline<span class="op">=</span><span class="st">"lowess"</span>, trendline_options<span class="op">=</span><span class="bu">dict</span>(frac<span class="op">=</span><span class="fl">0.3</span>)) <span class="co"># smoothing parameter </span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    .update_layout(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<ul>
+<li>Seaborn: <code>lmplot()</code></li>
+</ul>
+<div class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sns.lmplot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, hue<span class="op">=</span><span class="st">"drv"</span>, <span class="co"># color대신 hue</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>           lowess<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>           scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>:<span class="fl">.5</span>, <span class="st">"s"</span>:<span class="dv">20</span>}, <span class="co"># s: point size</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>           height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">5</span><span class="op">/</span><span class="dv">3</span>) </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># 생략해도 무방</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="op">=</span> sns.load_dataset(<span class="st">"diamonds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(diamonds_small, x<span class="op">=</span><span class="st">"carat"</span>, y<span class="op">=</span><span class="st">"price"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.01</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(color<span class="op">=</span><span class="st">"red"</span>), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<p><img src="eda_files/figure-html/cell-43-output-1.png" width="599" height="445"></p>
+</div>
+</div>
+</section>
+<section id="seaborn" class="level4">
+<h4 class="anchored" data-anchor-id="seaborn">Seaborn</h4>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>px.scatter(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, trendline<span class="op">=</span><span class="st">"lowess"</span>, trendline_options<span class="op">=</span><span class="bu">dict</span>(frac<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>px.box(penguins.dropna(subset<span class="op">=</span>[<span class="st">"sex"</span>]), x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"bill_length_mm"</span>, color<span class="op">=</span><span class="st">"island"</span>,  facet_col<span class="op">=</span><span class="st">"sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"bill_length_mm"</span>, hue<span class="op">=</span><span class="st">"island"</span>, col<span class="op">=</span><span class="st">"sex"</span>,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">"box"</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="fl">.6</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> px.data.tips()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, color<span class="op">=</span><span class="st">"smoker"</span>, facet_col<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-49-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> px.data.tips()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, color<span class="op">=</span><span class="st">"smoker"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="eda_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
 <section id="overploting" class="level3">
 <h3 class="anchored" data-anchor-id="overploting">Overploting</h3>
 </section>
@@ -1186,29 +1350,108 @@ if (outputEl) {{
 </section>
 <section id="layer-specific-mappings" class="level2">
 <h2 class="anchored" data-anchor-id="layer-specific-mappings">Layer-specific mappings</h2>
-<div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"species"</span>, color<span class="op">=</span><span class="st">"island"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), so.Jitter(<span class="fl">.5</span>))</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    .share(x<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    .limit(y<span class="op">=</span>(<span class="fl">2.5</span>, <span class="op">-</span><span class="fl">.5</span>))</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    .label(</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"Body mass (g)"</span>, y<span class="op">=</span><span class="st">""</span>,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="bu">str</span>.capitalize,</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"</span><span class="sc">{}</span><span class="st"> penguins"</span>.<span class="bu">format</span>,</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
-<p><img src="eda_files/figure-html/cell-40-output-1.png" width="729" height="445"></p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"species"</span>, color<span class="op">=</span><span class="st">"island"</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), so.Jitter(<span class="fl">.5</span>))</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    .share(x<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    .limit(y<span class="op">=</span>(<span class="fl">2.5</span>, <span class="op">-</span><span class="fl">.5</span>))</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    .label(</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"Body mass (g)"</span>, y<span class="op">=</span><span class="st">""</span>,</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="bu">str</span>.capitalize,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"</span><span class="sc">{}</span><span class="st"> penguins"</span>.<span class="bu">format</span>,</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<p><img src="eda_files/figure-html/cell-54-output-1.png" width="729" height="445"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p.save(<span class="st">"filename.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
-<p><img src="eda_files/figure-html/cell-41-output-1.png" width="599" height="445"></p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>healthexp <span class="op">=</span> sns.load_dataset(<span class="st">"healthexp"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Spending_USD"</span>, color<span class="op">=</span><span class="st">"Country"</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Lines())</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<p><img src="eda_files/figure-html/cell-55-output-1.png" width="747" height="445"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Spending_USD"</span>, color<span class="op">=</span><span class="st">"Country"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Lines(), so.Norm(where<span class="op">=</span><span class="st">"x == x.min()"</span>, percent<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    .label(y<span class="op">=</span><span class="st">"Percent change in spending from 1970 baseline"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<p><img src="eda_files/figure-html/cell-56-output-1.png" width="747" height="445"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>healthexp.tail(<span class="dv">6</span>).sort_values(<span class="st">"Spending_USD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Year</th>
+      <th>Country</th>
+      <th>Spending_USD</th>
+      <th>Life_Expectancy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>272</th>
+      <td>2020</td>
+      <td>Japan</td>
+      <td>4665.641</td>
+      <td>84.7</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>2020</td>
+      <td>Great Britain</td>
+      <td>5018.700</td>
+      <td>80.4</td>
+    </tr>
+    <tr>
+      <th>270</th>
+      <td>2020</td>
+      <td>France</td>
+      <td>5468.418</td>
+      <td>82.3</td>
+    </tr>
+    <tr>
+      <th>268</th>
+      <td>2020</td>
+      <td>Canada</td>
+      <td>5828.324</td>
+      <td>81.7</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>2020</td>
+      <td>Germany</td>
+      <td>6938.983</td>
+      <td>81.1</td>
+    </tr>
+    <tr>
+      <th>273</th>
+      <td>2020</td>
+      <td>USA</td>
+      <td>11859.179</td>
+      <td>77.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 </div>
 
@@ -1370,8 +1613,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../contents/customizing.html" class="pagination-link">
-        <span class="nav-page-text">Customizing plots</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../contents/alt_plots.html" class="pagination-link">
+        <span class="nav-page-text">Alternative plots</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

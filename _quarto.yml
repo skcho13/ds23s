@@ -51,7 +51,9 @@ website:
         contents:
           - href: contents/seaborn.ipynb
             text: seaborn.objects
-          - href: contents/eda.ipynb
+          - section: contents/eda.ipynb
+            contents: 
+              - href: contents/alt_plots.ipynb
           - href: contents/customizing.ipynb
 
   # navbar:
