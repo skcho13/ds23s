@@ -30,8 +30,8 @@ website:
     # collapse-level: 1
     
     contents:
-      - section: index.qmd
-      - section: "Introduction"
+      - href: index.qmd
+      - section: Introduction
         contents:
           - href: contents/setup.ipynb
             text: Setup
@@ -40,21 +40,23 @@ website:
             - href: contents/inspection.ipynb
           - href: contents/vis.ipynb
             text: Data visualization
-          - href: contents/temp.ipynb
-            text: Temp
-          - section: "Subsection"
-            contents:
-              - href: contents/others.ipynb
-                text: Others
-      - text: "---"
+      - text: ---
       - section: Visualize
         contents:
           - href: contents/seaborn.ipynb
-            text: seaborn.objects
-          - section: contents/eda.ipynb
+            text: Seaborn.objects
+          - section: contents/plots.ipynb
             contents: 
               - href: contents/alt_plots.ipynb
           - href: contents/customizing.ipynb
+      - text: ---
+      - section: Transform
+        contents:
+          - href: contents/subsetting.ipynb
+          - href: contents/transform.ipynb
+          - href: contents/rtest.ipynb
+      - text: ---
+      - section: Exploratory Data Analysis
 
   # navbar:
   #   left:
@@ -65,7 +67,7 @@ website:
 format:
   html:
         toc: true
-        toc-depth: 3
+        toc-depth: 4
         toc-location: right
         code-fold: false
         code-overflow: scroll

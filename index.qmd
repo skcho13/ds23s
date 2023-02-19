@@ -3,4 +3,16 @@ title: Welcome
 subtitle: Class 2023 overview
 ---
 
-## Class 2023 강의 노트
+## 강의 노트
+
+### 교재
+
+- *Hands-On Data Analysis with Pandas (2e)* by Stefanie Molin: 
+    [code in GitHub](https://github.com/stefmolin/Hands-On-Data-Analysis-with-Pandas-2nd-edition)  
+    번역서: *Pandas를 이용한 데이터 분석 실습 2/e*  
+- [*Python for Data Analysis (3e)*](https://wesmckinney.com/book/) by Wes McKinney: 
+    [code in GitHub](https://github.com/wesm/pydata-book/tree/3rd-edition)  
+    2판 번역서: *파이썬 라이브러리를 활용한 데이터 분석* 
+
+- [*R for Data Science*](https://r4ds.had.co.nz/index.html) by Wickham & Grolemund: 
+    [2nd edition in progress](https://r4ds.hadley.nz/ )

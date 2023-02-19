@@ -94,17 +94,19 @@ ul.task-list li input[type="checkbox"] {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Welcome</span>
-  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">Welcome</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Introduction</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Introduction</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./contents/setup.html" class="sidebar-item-text sidebar-link">Setup</a>
@@ -113,11 +115,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./contents/pandas.html" class="sidebar-item-text sidebar-link">NumPy and pandas</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./contents/inspection.html" class="sidebar-item-text sidebar-link">Inspecting data</a>
@@ -130,14 +132,25 @@ ul.task-list li input[type="checkbox"] {
   <a href="./contents/vis.html" class="sidebar-item-text sidebar-link">Data visualization</a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Visualize</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contents/temp.html" class="sidebar-item-text sidebar-link">Temp</a>
+  <a href="./contents/seaborn.html" class="sidebar-item-text sidebar-link">Seaborn.objects</a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Subsection</a>
+            <a href="./contents/plots.html" class="sidebar-item-text sidebar-link">Plots</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -145,17 +158,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contents/others.html" class="sidebar-item-text sidebar-link">Others</a>
+  <a href="./contents/alt_plots.html" class="sidebar-item-text sidebar-link">Alternative plots</a>
   </div>
 </li>
       </ul>
   </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contents/customizing.html" class="sidebar-item-text sidebar-link">Customizing</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Visualize</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Transform</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -163,20 +181,24 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contents/seaborn.html" class="sidebar-item-text sidebar-link">seaborn.objects</a>
+  <a href="./contents/subsetting.html" class="sidebar-item-text sidebar-link">Subsetting</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contents/eda.html" class="sidebar-item-text sidebar-link">Exploratory data analysis</a>
+  <a href="./contents/transform.html" class="sidebar-item-text sidebar-link">Transforming</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contents/customizing.html" class="sidebar-item-text sidebar-link">Customizing plots</a>
+  <a href="./contents/rtest.html" class="sidebar-item-text sidebar-link">R Test</a>
   </div>
 </li>
       </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Exploratory Data Analysis</span>
   </li>
     </ul>
     </div>
@@ -187,7 +209,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#class-2023-강의-노트" id="toc-class-2023-강의-노트" class="nav-link active" data-scroll-target="#class-2023-강의-노트">Class 2023 강의 노트</a></li>
+  <li><a href="#강의-노트" id="toc-강의-노트" class="nav-link active" data-scroll-target="#강의-노트">강의 노트</a>
+  <ul>
+  <li><a href="#교재" id="toc-교재" class="nav-link" data-scroll-target="#교재">교재</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -212,10 +237,21 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="class-2023-강의-노트" class="level2">
-<h2 class="anchored" data-anchor-id="class-2023-강의-노트">Class 2023 강의 노트</h2>
+<section id="강의-노트" class="level2">
+<h2 class="anchored" data-anchor-id="강의-노트">강의 노트</h2>
+<section id="교재" class="level3">
+<h3 class="anchored" data-anchor-id="교재">교재</h3>
+<ul>
+<li><p><em>Hands-On Data Analysis with Pandas (2e)</em> by Stefanie Molin: <a href="https://github.com/stefmolin/Hands-On-Data-Analysis-with-Pandas-2nd-edition">code in GitHub</a><br>
+번역서: <em>Pandas를 이용한 데이터 분석 실습 2/e</em><br>
+</p></li>
+<li><p><a href="https://wesmckinney.com/book/"><em>Python for Data Analysis (3e)</em></a> by Wes McKinney: <a href="https://github.com/wesm/pydata-book/tree/3rd-edition">code in GitHub</a><br>
+2판 번역서: <em>파이썬 라이브러리를 활용한 데이터 분석</em></p></li>
+<li><p><a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a> by Wickham &amp; Grolemund: <a href="https://r4ds.hadley.nz/">2nd edition in progress</a></p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
