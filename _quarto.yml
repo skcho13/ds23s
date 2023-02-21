@@ -53,7 +53,9 @@ website:
       - section: Transform
         contents:
           - href: contents/subsetting.ipynb
-          - href: contents/transform.ipynb
+          - section: contents/transform.ipynb
+            contents: 
+              - href: contents/case1.ipynb
           - href: contents/rtest.ipynb
       - text: ---
       - section: Exploratory Data Analysis
@@ -78,7 +80,7 @@ format:
         code-copy: true
         highlight-style: Ayu-light
         link-external-newwindow: true
-        #css: styles.css
+        # css: styles.css
 
 
 

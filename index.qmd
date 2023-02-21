@@ -16,3 +16,14 @@ subtitle: Class 2023 overview
 
 - [*R for Data Science*](https://r4ds.had.co.nz/index.html) by Wickham & Grolemund: 
     [2nd edition in progress](https://r4ds.hadley.nz/ )
+
+___
+### Overview
+
+수업은 크게 3부분을 나뉨
+
+1. 데이터 시각화와 탐색적 분석 (exploratory data analysis)
+
+2. 통계적 모델링 (statistical modelling)
+
+3. 기술적 분석 (descriptive analysis)

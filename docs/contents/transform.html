@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../contents/rtest.html" rel="next">
+<link href="../contents/case1.html" rel="next">
 <link href="../contents/subsetting.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -253,11 +253,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../contents/subsetting.html" class="sidebar-item-text sidebar-link">Subsetting</a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../contents/transform.html" class="sidebar-item-text sidebar-link active">Transforming</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contents/transform.html" class="sidebar-item-text sidebar-link active">Transforming</a>
+  <a href="../contents/case1.html" class="sidebar-item-text sidebar-link">Case Study 1</a>
   </div>
 </li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../contents/rtest.html" class="sidebar-item-text sidebar-link">R Test</a>
@@ -286,12 +296,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#columns" id="toc-columns" class="nav-link" data-scroll-target="#columns">Columns</a>
   <ul>
-  <li><a href="#assign" id="toc-assign" class="nav-link" data-scroll-target="#assign"><code>assign</code></a></li>
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select">select</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select">Select</a></li>
   <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"><code>rename()</code></a></li>
+  <li><a href="#assign" id="toc-assign" class="nav-link" data-scroll-target="#assign"><code>assign()</code></a></li>
   </ul></li>
-  <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups">Groups</a></li>
+  <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups">Groups</a>
+  <ul>
+  <li><a href="#groupby" id="toc-groupby" class="nav-link" data-scroll-target="#groupby"><code>groupby()</code></a></li>
+  <li><a href="#agg" id="toc-agg" class="nav-link" data-scroll-target="#agg"><code>agg()</code></a></li>
+  <li><a href="#transform" id="toc-transform" class="nav-link" data-scroll-target="#transform"><code>transform()</code></a></li>
+  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply">apply()</a>
+  <ul class="collapse">
+  <li><a href="#cut-qcut" id="toc-cut-qcut" class="nav-link" data-scroll-target="#cut-qcut"><code>cut()</code>, <code>qcut()</code></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#missing" id="toc-missing" class="nav-link" data-scroll-target="#missing">Missing</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -346,11 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<style>.output {flex-direction: row;}</style>
+<div class="cell-output cell-output-display">
+<style>.container { width: 30% !important; }</style>
 </div>
 </div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Options</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas options</span></span>
@@ -364,21 +384,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>이번 장에서는 시각화를 하기 전, 중요한 데이터 패턴을 보기 위해서 새로운 변수를 만들거나 요약한 통계치를 만들 필요가 있는데 이를 다루는 핵심적인 함수들에 대해 익힙니다.<br>
 좀 더 자세한 데이터 가공에 대해서는 추후에 다룰 예정입니다.</p>
+<p>대략 다음과 같은 transform들을 조합하여 분석에 필요한 상태로 바꿉니다.</p>
+<ul>
+<li>변수들의 선택: <code>subsetging</code></li>
+<li>조건에 맞는 부분(관측치, rows)만 필터링: <code>query()</code></li>
+<li>조건에 맞도록 columns을 재정렬: <code>sort_values()</code></li>
+<li>변수들과 함수들을 이용하여 새로운 변수를 생성: <code>assign()</code></li>
+<li>카테고리별로 나뉘어진 데이터에 대한 통계치를 생성: <code>groupby()</code>, <code>agg()</code></li>
+</ul>
 <hr>
-<p>Data: <em>On-time data for all flights that departed NYC (i.e.&nbsp;JFK, LGA or EWR) in 2013</em></p>
-<div class="cell" data-execution_count="5">
+<p><em>On-time data for all flights that departed NYC (i.e.&nbsp;JFK, LGA or EWR) in 2013</em></p>
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>flights_data <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"flights"</span>, <span class="st">"nycflights13"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>flights <span class="op">=</span> flights_data.data</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>flights <span class="op">=</span> flights.drop(columns<span class="op">=</span><span class="st">"time_hour"</span>) <span class="co"># drop the "time_hour" column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Description</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flights_data.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
 
@@ -560,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -601,194 +629,10 @@ memory usage: 46.2+ MB</code></pre>
 <code>~</code> (not)<br>
 <code>in</code> (includes)</p>
 </blockquote>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that arrived more than 120 minutes (two hours) late</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'arr_delay &gt; 120'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>day</th>
-      <th>dep_time</th>
-      <th>sched_dep_time</th>
-      <th>dep_delay</th>
-      <th>arr_time</th>
-      <th>sched_arr_time</th>
-      <th>arr_delay</th>
-      <th>carrier</th>
-      <th>flight</th>
-      <th>tailnum</th>
-      <th>origin</th>
-      <th>dest</th>
-      <th>air_time</th>
-      <th>distance</th>
-      <th>hour</th>
-      <th>minute</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>119</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>811.00</td>
-      <td>630</td>
-      <td>101.00</td>
-      <td>1047.00</td>
-      <td>830</td>
-      <td>137.00</td>
-      <td>MQ</td>
-      <td>4576</td>
-      <td>N531MQ</td>
-      <td>LGA</td>
-      <td>CLT</td>
-      <td>118.00</td>
-      <td>544</td>
-      <td>6</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <th>151</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>848.00</td>
-      <td>1835</td>
-      <td>853.00</td>
-      <td>1001.00</td>
-      <td>1950</td>
-      <td>851.00</td>
-      <td>MQ</td>
-      <td>3944</td>
-      <td>N942MQ</td>
-      <td>JFK</td>
-      <td>BWI</td>
-      <td>41.00</td>
-      <td>184</td>
-      <td>18</td>
-      <td>35</td>
-    </tr>
-    <tr>
-      <th>218</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>957.00</td>
-      <td>733</td>
-      <td>144.00</td>
-      <td>1056.00</td>
-      <td>853</td>
-      <td>123.00</td>
-      <td>UA</td>
-      <td>856</td>
-      <td>N534UA</td>
-      <td>EWR</td>
-      <td>BOS</td>
-      <td>37.00</td>
-      <td>200</td>
-      <td>7</td>
-      <td>33</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>336724</th>
-      <td>2013</td>
-      <td>9</td>
-      <td>30</td>
-      <td>2053.00</td>
-      <td>1815</td>
-      <td>158.00</td>
-      <td>2310.00</td>
-      <td>2054</td>
-      <td>136.00</td>
-      <td>EV</td>
-      <td>5292</td>
-      <td>N600QX</td>
-      <td>EWR</td>
-      <td>ATL</td>
-      <td>91.00</td>
-      <td>746</td>
-      <td>18</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>336757</th>
-      <td>2013</td>
-      <td>9</td>
-      <td>30</td>
-      <td>2159.00</td>
-      <td>1845</td>
-      <td>194.00</td>
-      <td>2344.00</td>
-      <td>2030</td>
-      <td>194.00</td>
-      <td>9E</td>
-      <td>3320</td>
-      <td>N906XJ</td>
-      <td>JFK</td>
-      <td>BUF</td>
-      <td>50.00</td>
-      <td>301</td>
-      <td>18</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <th>336763</th>
-      <td>2013</td>
-      <td>9</td>
-      <td>30</td>
-      <td>2235.00</td>
-      <td>2001</td>
-      <td>154.00</td>
-      <td>59.00</td>
-      <td>2249</td>
-      <td>130.00</td>
-      <td>B6</td>
-      <td>1083</td>
-      <td>N804JB</td>
-      <td>JFK</td>
-      <td>MCO</td>
-      <td>123.00</td>
-      <td>944</td>
-      <td>20</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-<p>10034 rows × 18 columns</p>
-</div>
-</div>
-</div>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flights[flights.arr_delay <span class="op">&gt;</span> <span class="dv">120</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -984,10 +828,10 @@ Note
 <code>flights[flights["arr_delay"] &gt; 120]</code></p>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed on January 1</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month == 1 &amp; day == 1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed on January 1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month == 1 &amp; day == 1'</span>)  <span class="co"># == 과 = 을 혼동하지 말것!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -1169,9 +1013,194 @@ Note
 </div>
 </div>
 </div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed in January or February</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month == 1 | month == 2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>dep_time</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_time</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>517.00</td>
+      <td>515</td>
+      <td>2.00</td>
+      <td>830.00</td>
+      <td>819</td>
+      <td>11.00</td>
+      <td>UA</td>
+      <td>1545</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1400</td>
+      <td>5</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>533.00</td>
+      <td>529</td>
+      <td>4.00</td>
+      <td>850.00</td>
+      <td>830</td>
+      <td>20.00</td>
+      <td>UA</td>
+      <td>1714</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1416</td>
+      <td>5</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>542.00</td>
+      <td>540</td>
+      <td>2.00</td>
+      <td>923.00</td>
+      <td>850</td>
+      <td>33.00</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.00</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>136244</th>
+      <td>2013</td>
+      <td>2</td>
+      <td>28</td>
+      <td>NaN</td>
+      <td>1115</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1310</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>4485</td>
+      <td>N725MQ</td>
+      <td>LGA</td>
+      <td>CMH</td>
+      <td>NaN</td>
+      <td>479</td>
+      <td>11</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>136245</th>
+      <td>2013</td>
+      <td>2</td>
+      <td>28</td>
+      <td>NaN</td>
+      <td>830</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1205</td>
+      <td>NaN</td>
+      <td>UA</td>
+      <td>1480</td>
+      <td>NaN</td>
+      <td>EWR</td>
+      <td>SFO</td>
+      <td>NaN</td>
+      <td>2565</td>
+      <td>8</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>136246</th>
+      <td>2013</td>
+      <td>2</td>
+      <td>28</td>
+      <td>NaN</td>
+      <td>840</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1147</td>
+      <td>NaN</td>
+      <td>UA</td>
+      <td>443</td>
+      <td>NaN</td>
+      <td>JFK</td>
+      <td>LAX</td>
+      <td>NaN</td>
+      <td>2475</td>
+      <td>8</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+<p>51955 rows × 18 columns</p>
+</div>
+</div>
+</div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed in January or February</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month == 1 | month == 2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A shorter way to select flights that departed in January or February</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month in [1, 2]'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
@@ -1355,193 +1384,8 @@ Note
 </div>
 </div>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A shorter way to select flights that departed in January or February</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'month in [1, 2]'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'arr_delay &gt; 120 &amp; ~(origin == "JFK")'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>day</th>
-      <th>dep_time</th>
-      <th>sched_dep_time</th>
-      <th>dep_delay</th>
-      <th>arr_time</th>
-      <th>sched_arr_time</th>
-      <th>arr_delay</th>
-      <th>carrier</th>
-      <th>flight</th>
-      <th>tailnum</th>
-      <th>origin</th>
-      <th>dest</th>
-      <th>air_time</th>
-      <th>distance</th>
-      <th>hour</th>
-      <th>minute</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>517.00</td>
-      <td>515</td>
-      <td>2.00</td>
-      <td>830.00</td>
-      <td>819</td>
-      <td>11.00</td>
-      <td>UA</td>
-      <td>1545</td>
-      <td>N14228</td>
-      <td>EWR</td>
-      <td>IAH</td>
-      <td>227.00</td>
-      <td>1400</td>
-      <td>5</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>533.00</td>
-      <td>529</td>
-      <td>4.00</td>
-      <td>850.00</td>
-      <td>830</td>
-      <td>20.00</td>
-      <td>UA</td>
-      <td>1714</td>
-      <td>N24211</td>
-      <td>LGA</td>
-      <td>IAH</td>
-      <td>227.00</td>
-      <td>1416</td>
-      <td>5</td>
-      <td>29</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2013</td>
-      <td>1</td>
-      <td>1</td>
-      <td>542.00</td>
-      <td>540</td>
-      <td>2.00</td>
-      <td>923.00</td>
-      <td>850</td>
-      <td>33.00</td>
-      <td>AA</td>
-      <td>1141</td>
-      <td>N619AA</td>
-      <td>JFK</td>
-      <td>MIA</td>
-      <td>160.00</td>
-      <td>1089</td>
-      <td>5</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>136244</th>
-      <td>2013</td>
-      <td>2</td>
-      <td>28</td>
-      <td>NaN</td>
-      <td>1115</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1310</td>
-      <td>NaN</td>
-      <td>MQ</td>
-      <td>4485</td>
-      <td>N725MQ</td>
-      <td>LGA</td>
-      <td>CMH</td>
-      <td>NaN</td>
-      <td>479</td>
-      <td>11</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>136245</th>
-      <td>2013</td>
-      <td>2</td>
-      <td>28</td>
-      <td>NaN</td>
-      <td>830</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1205</td>
-      <td>NaN</td>
-      <td>UA</td>
-      <td>1480</td>
-      <td>NaN</td>
-      <td>EWR</td>
-      <td>SFO</td>
-      <td>NaN</td>
-      <td>2565</td>
-      <td>8</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <th>136246</th>
-      <td>2013</td>
-      <td>2</td>
-      <td>28</td>
-      <td>NaN</td>
-      <td>840</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1147</td>
-      <td>NaN</td>
-      <td>UA</td>
-      <td>443</td>
-      <td>NaN</td>
-      <td>JFK</td>
-      <td>LAX</td>
-      <td>NaN</td>
-      <td>2475</td>
-      <td>8</td>
-      <td>40</td>
-    </tr>
-  </tbody>
-</table>
-<p>51955 rows × 18 columns</p>
-</div>
-</div>
-</div>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>flights.query(<span class="st">'arr_delay &gt; 120 &amp; ~(origin == "JFK")'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -1723,13 +1567,47 @@ Note
 </div>
 </div>
 </div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>query()</code> 조건의 참거짓에 상관없이 NA값은 모두 제외함
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df가 다음과 같을 때,</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      A     B</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 1.00  2.00</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  NaN  5.00</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 3.00  3.00</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 4.00   NaN</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">'A &gt; 1'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#      A     B</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 3.00  3.00</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 4.00   NaN</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># NA를 포함하고자 할 때,</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">'A &gt; 1 | A.isna()'</span>) <span class="co"># .isna() : NA인지 여부</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#      A     B</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  NaN  5.00</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 3.00  3.00</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 4.00   NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>NA</code>(missing)에 대해서는 뒤에서 자세히</p>
+</div>
+</div>
+</div>
 </section>
 <section id="sort_values" class="level3">
 <h3 class="anchored" data-anchor-id="sort_values"><code>sort_values()</code></h3>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "year", "month", "day", "dep_time" 순서대로 내림차순으로 정렬</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>flights.sort_values(by<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"dep_time"</span>], ascending<span class="op">=</span><span class="va">False</span>) <span class="co"># default: ascending=True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
 
@@ -1911,10 +1789,10 @@ Note
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "dep_time"은 내림차순으로, "arr_delay"는 오름차순으로</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>flights.sort_values(by<span class="op">=</span>[<span class="st">"dep_time"</span>, <span class="st">"arr_delay"</span>], ascending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -2098,13 +1976,13 @@ Note
 </div>
 <p><br> <code>query()</code>와 <code>sort_values()</code>을 함께 이용하여 좀 더 복잡한 문제를 해결할 수 있음<br>
 예를 들어, 다음과 같이 거의 제시간에 출발한(+- 10분) 항공편들 중 가장 도착 지연이 큰 항공편을 찾을 수 있음</p>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    flights</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .query(<span class="st">'dep_delay &lt;= 10 &amp; dep_delay &gt;= -10'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"arr_delay"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="16">
 
 <div>
 
@@ -2296,8 +2174,13 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Row가 재정렬되는 operation을 한 후에는 index 순서가 바뀌는데, 이를 reset하려면,<br>
-<code>.sort_values(ignore_index=True)</code></p>
+<ul>
+<li>Row가 재정렬되는 operation을 한 후에는 index 순서가 바뀌는데, 이를 reset하려면,<br>
+<code>.sort_values(ignore_index=True)</code></li>
+<li>DataFrame updated: <code>inplace=True</code></li>
+<li><code>NA</code>는 sort 후 맨 뒤로<br>
+맨 앞으로 오게하려면 <code>na_position='first'</code></li>
+</ul>
 </div>
 </div>
 </section>
@@ -2310,10 +2193,10 @@ Note
 <pre><code>array(['EWR', 'LGA', 'JFK'], dtype=object)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># finds all unique origin and destination pairs.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">"origin"</span>, <span class="st">"dest"</span>]].value_counts() <span class="co"># default: dropna=True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>origin  dest
 JFK     LAX     11262
 LGA     ATL     10263
@@ -2327,9 +2210,9 @@ Length: 224, dtype: int64</code></pre>
 </div>
 <div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">"origin"</span>, <span class="st">"dest"</span>]].value_counts().reset_index(name<span class="op">=</span><span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="50">
+<div class="cell quarto-layout-panel" data-execution_count="19">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="50" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="19" style="flex-basis: 33.3%;justify-content: center;">
 
 <div>
 
@@ -2393,9 +2276,9 @@ Length: 224, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="51">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">"origin"</span>, <span class="st">"dest"</span>]].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>origin  dest
 JFK     LAX     11262
 LGA     ATL     10263
@@ -2411,27 +2294,2782 @@ Length: 224, dtype: int64</code></pre>
 </section>
 <section id="columns" class="level2">
 <h2 class="anchored" data-anchor-id="columns">Columns</h2>
-<section id="assign" class="level3">
-<h3 class="anchored" data-anchor-id="assign"><code>assign</code></h3>
-</section>
 <section id="select" class="level3">
-<h3 class="anchored" data-anchor-id="select">select</h3>
+<h3 class="anchored" data-anchor-id="select">Select</h3>
+<p>기본적인 column selection 이전 섹션 참고: <a href="../contents/subsetting.html">subsetting</a></p>
+<div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select columns by name</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="21">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="21" style="flex-basis: 50.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns between year and day (inclusive)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>flights.loc[:, <span class="st">"year"</span>:<span class="st">"day"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="22">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="22" style="flex-basis: 50.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns except those from year to day (inclusive)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># .isin(): includes</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>flights.loc[:, <span class="op">~</span>flights.columns.isin([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dep_time</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_time</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>517.00</td>
+      <td>515</td>
+      <td>2.00</td>
+      <td>830.00</td>
+      <td>819</td>
+      <td>11.00</td>
+      <td>UA</td>
+      <td>1545</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1400</td>
+      <td>5</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>533.00</td>
+      <td>529</td>
+      <td>4.00</td>
+      <td>850.00</td>
+      <td>830</td>
+      <td>20.00</td>
+      <td>UA</td>
+      <td>1714</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1416</td>
+      <td>5</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>542.00</td>
+      <td>540</td>
+      <td>2.00</td>
+      <td>923.00</td>
+      <td>850</td>
+      <td>33.00</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.00</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>NaN</td>
+      <td>1210</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1330</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3461</td>
+      <td>N535MQ</td>
+      <td>LGA</td>
+      <td>BNA</td>
+      <td>NaN</td>
+      <td>764</td>
+      <td>12</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>NaN</td>
+      <td>1159</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1344</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3572</td>
+      <td>N511MQ</td>
+      <td>LGA</td>
+      <td>CLE</td>
+      <td>NaN</td>
+      <td>419</td>
+      <td>11</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>NaN</td>
+      <td>840</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1020</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3531</td>
+      <td>N839MQ</td>
+      <td>LGA</td>
+      <td>RDU</td>
+      <td>NaN</td>
+      <td>431</td>
+      <td>8</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 15 columns</p>
+</div>
+</div>
+</div>
+<p><br> Series/Index object의 str method와 함께<br>
+<code>str.contains()</code>, <code>str.startswith()</code>, <code>str.endswith()</code></p>
+<div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns that begin with “dep”.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>flights.loc[:, flights.columns.<span class="bu">str</span>.startswith(<span class="st">"dep"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="24">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="24" style="flex-basis: 50.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dep_time</th>
+      <th>dep_delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>517.00</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>533.00</td>
+      <td>4.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>542.00</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns that are characters</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>flights.select_dtypes(<span class="st">"object"</span>) <span class="co"># dtype: object, number, ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>carrier</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>UA</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UA</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AA</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>MQ</td>
+      <td>N535MQ</td>
+      <td>LGA</td>
+      <td>BNA</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>MQ</td>
+      <td>N511MQ</td>
+      <td>LGA</td>
+      <td>CLE</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>MQ</td>
+      <td>N839MQ</td>
+      <td>LGA</td>
+      <td>RDU</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 4 columns</p>
+</div>
+</div>
+</div>
 <p>index selection: reindex</p>
-</section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
 </section>
 <section id="rename" class="level3">
 <h3 class="anchored" data-anchor-id="rename"><code>rename()</code></h3>
-<p>• unique(): Returns the distinct values of the column.</p>
-<p>• value_counts(): Returns a frequency table of the number of times each unique value in a given column appears, or, alternatively, the percentage of times each unique value appears when passed normalize=True.</p>
-<p>• mode(): Returns the most common value of the column.</p>
-<p><code>isin()</code></p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>flights.rename(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">"dep_time"</span>: <span class="st">"dep_t"</span>, <span class="st">"arr_time"</span>: <span class="st">"arr_t"</span>},</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># inplace=True (dataframe is updated)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>dep_t</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_t</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>517.00</td>
+      <td>515</td>
+      <td>2.00</td>
+      <td>830.00</td>
+      <td>819</td>
+      <td>11.00</td>
+      <td>UA</td>
+      <td>1545</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1400</td>
+      <td>5</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>533.00</td>
+      <td>529</td>
+      <td>4.00</td>
+      <td>850.00</td>
+      <td>830</td>
+      <td>20.00</td>
+      <td>UA</td>
+      <td>1714</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1416</td>
+      <td>5</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>542.00</td>
+      <td>540</td>
+      <td>2.00</td>
+      <td>923.00</td>
+      <td>850</td>
+      <td>33.00</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.00</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1210</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1330</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3461</td>
+      <td>N535MQ</td>
+      <td>LGA</td>
+      <td>BNA</td>
+      <td>NaN</td>
+      <td>764</td>
+      <td>12</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>1159</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1344</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3572</td>
+      <td>N511MQ</td>
+      <td>LGA</td>
+      <td>CLE</td>
+      <td>NaN</td>
+      <td>419</td>
+      <td>11</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>NaN</td>
+      <td>840</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1020</td>
+      <td>NaN</td>
+      <td>MQ</td>
+      <td>3531</td>
+      <td>N839MQ</td>
+      <td>LGA</td>
+      <td>RDU</td>
+      <td>NaN</td>
+      <td>431</td>
+      <td>8</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 18 columns</p>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Series의 경우</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> flights.dep_delay.head(<span class="dv">3</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0   2.00</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1   4.00</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2   2.00</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: dep_delay, dtype: float64</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>s.rename(<span class="st">"what"</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 0   2.00</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1   4.00</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2   2.00</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: what, dtype: float64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>함수 <code>str.capitalize</code>, <code>str.lower</code>, <code>str.upper</code>과 함께</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>flights.rename(<span class="bu">str</span>.capitalize, axis<span class="op">=</span><span class="st">"columns"</span>).head(<span class="dv">3</span>) <span class="co"># axis=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Day</th>
+      <th>Dep_time</th>
+      <th>Sched_dep_time</th>
+      <th>Dep_delay</th>
+      <th>Arr_time</th>
+      <th>Sched_arr_time</th>
+      <th>Arr_delay</th>
+      <th>Carrier</th>
+      <th>Flight</th>
+      <th>Tailnum</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Air_time</th>
+      <th>Distance</th>
+      <th>Hour</th>
+      <th>Minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>517.00</td>
+      <td>515</td>
+      <td>2.00</td>
+      <td>830.00</td>
+      <td>819</td>
+      <td>11.00</td>
+      <td>UA</td>
+      <td>1545</td>
+      <td>N14228</td>
+      <td>EWR</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1400</td>
+      <td>5</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>533.00</td>
+      <td>529</td>
+      <td>4.00</td>
+      <td>850.00</td>
+      <td>830</td>
+      <td>20.00</td>
+      <td>UA</td>
+      <td>1714</td>
+      <td>N24211</td>
+      <td>LGA</td>
+      <td>IAH</td>
+      <td>227.00</td>
+      <td>1416</td>
+      <td>5</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>542.00</td>
+      <td>540</td>
+      <td>2.00</td>
+      <td>923.00</td>
+      <td>850</td>
+      <td>33.00</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.00</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>index를 rename할 수도 있음</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>flights.rename(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"a"</span>, <span class="dv">1</span>: <span class="st">"b"</span>},</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>).head(<span class="dv">3</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># year  month   day dep_time ...</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># a 2013    1   1   517.00   ...</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># b 2013    1   1   533.00   ...</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 2013    1   1   542.00   ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="assign" class="level3">
+<h3 class="anchored" data-anchor-id="assign"><code>assign()</code></h3>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'title'</span>, <span class="st">'time'</span>] <span class="op">+</span> [col <span class="cf">for</span> col <span class="kw">in</span> df.columns <span class="cf">if</span> col.startswith(<span class="st">'mag'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>['title', 'time']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"distance"</span>, <span class="st">"air_time"</span>] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        [col <span class="cf">for</span> col <span class="kw">in</span> flights.columns <span class="cf">if</span> col.endswith(<span class="st">"delay"</span>)]  <span class="co"># string method .endswith</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>flights_sml <span class="op">=</span> flights[cols].copy()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>flights_sml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1400</td>
+      <td>227.00</td>
+      <td>2.00</td>
+      <td>11.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1416</td>
+      <td>227.00</td>
+      <td>4.00</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1089</td>
+      <td>160.00</td>
+      <td>2.00</td>
+      <td>33.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>419</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>431</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로 만들어진 변수는 맨 뒤로</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>flights_sml.assign(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    gain<span class="op">=</span><span class="kw">lambda</span> x:x.dep_delay <span class="op">-</span> x.arr_delay,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    speed<span class="op">=</span><span class="kw">lambda</span> x:x.distance <span class="op">/</span> x.air_time <span class="op">*</span> <span class="dv">60</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+      <th>gain</th>
+      <th>speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1400</td>
+      <td>227.00</td>
+      <td>2.00</td>
+      <td>11.00</td>
+      <td>-9.00</td>
+      <td>370.04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1416</td>
+      <td>227.00</td>
+      <td>4.00</td>
+      <td>20.00</td>
+      <td>-16.00</td>
+      <td>374.27</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1089</td>
+      <td>160.00</td>
+      <td>2.00</td>
+      <td>33.00</td>
+      <td>-31.00</td>
+      <td>408.38</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>419</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>431</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 9 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 앞에서 만든 변수나 함수를 이용할 수 있음</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>flights_sml.assign(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    gain<span class="op">=</span><span class="kw">lambda</span> x:x.dep_delay <span class="op">-</span> x.arr_delay,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    hours<span class="op">=</span><span class="kw">lambda</span> x:x.air_time <span class="op">/</span> <span class="dv">60</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    gain_per_hour<span class="op">=</span><span class="kw">lambda</span> x:x.gain <span class="op">/</span> x.hours,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    rounded<span class="op">=</span><span class="kw">lambda</span> x: np.<span class="bu">round</span>(x.gain_per_hour, <span class="dv">1</span>)  <span class="co"># use a numpy function</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+      <th>gain</th>
+      <th>hours</th>
+      <th>gain_per_hour</th>
+      <th>rounded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1400</td>
+      <td>227.00</td>
+      <td>2.00</td>
+      <td>11.00</td>
+      <td>-9.00</td>
+      <td>3.78</td>
+      <td>-2.38</td>
+      <td>-2.40</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1416</td>
+      <td>227.00</td>
+      <td>4.00</td>
+      <td>20.00</td>
+      <td>-16.00</td>
+      <td>3.78</td>
+      <td>-4.23</td>
+      <td>-4.20</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1089</td>
+      <td>160.00</td>
+      <td>2.00</td>
+      <td>33.00</td>
+      <td>-31.00</td>
+      <td>2.67</td>
+      <td>-11.62</td>
+      <td>-11.60</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>419</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>431</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the fastest flights</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    flights_sml</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    .assign(speed<span class="op">=</span><span class="kw">lambda</span> x:x.distance <span class="op">/</span> x.air_time)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    .sort_values(by<span class="op">=</span><span class="st">"speed"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">5</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+      <th>speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>216447</th>
+      <td>2013</td>
+      <td>5</td>
+      <td>25</td>
+      <td>762</td>
+      <td>65.00</td>
+      <td>9.00</td>
+      <td>-14.00</td>
+      <td>11.72</td>
+    </tr>
+    <tr>
+      <th>251999</th>
+      <td>2013</td>
+      <td>7</td>
+      <td>2</td>
+      <td>1008</td>
+      <td>93.00</td>
+      <td>45.00</td>
+      <td>26.00</td>
+      <td>10.84</td>
+    </tr>
+    <tr>
+      <th>205388</th>
+      <td>2013</td>
+      <td>5</td>
+      <td>13</td>
+      <td>594</td>
+      <td>55.00</td>
+      <td>15.00</td>
+      <td>-1.00</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>157516</th>
+      <td>2013</td>
+      <td>3</td>
+      <td>23</td>
+      <td>748</td>
+      <td>70.00</td>
+      <td>4.00</td>
+      <td>2.00</td>
+      <td>10.69</td>
+    </tr>
+    <tr>
+      <th>10223</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>12</td>
+      <td>1035</td>
+      <td>105.00</td>
+      <td>-1.00</td>
+      <td>-28.00</td>
+      <td>9.86</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="groups" class="level2">
 <h2 class="anchored" data-anchor-id="groups">Groups</h2>
-<p><code>map</code>, <code>mapapply</code>, <code>apply</code></p>
+<section id="groupby" class="level3">
+<h3 class="anchored" data-anchor-id="groupby"><code>groupby()</code></h3>
+<ul>
+<li><code>groupby()</code>는 데이터를 의미있는 그룹으로 나누어 분석할 수 있도록 해줌</li>
+<li><code>.count()</code>, <code>.sum()</code>, <code>.mean()</code>, <code>.min()</code>, <code>.max()</code>과 같은 통계치를 구하는 methods와 함께 효과적으로, 자주 활용됨</li>
+</ul>
+<p><img src="images/group_agg.png" class="img-fluid" width="300"><br>
+Source: <em>Ch.10 in Python for Data Analysis (3e)</em> by Wes McKinney</p>
+<p>아래 표는<br>
+<img src="images/groupby.png" class="img-fluid" width="600"><br>
+Source: <em>Ch.10 in Python for Data Analysis (3e)</em> by Wes McKinney</p>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"month"</span>) <span class="co"># “GroupBy” object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x144733c50&gt;</code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights_sml.groupby(<span class="st">"month"</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="34">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="34" style="flex-basis: 100.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2013.00</td>
+      <td>15.99</td>
+      <td>1006.84</td>
+      <td>154.19</td>
+      <td>10.04</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013.00</td>
+      <td>14.74</td>
+      <td>1000.98</td>
+      <td>151.35</td>
+      <td>10.82</td>
+      <td>5.61</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013.00</td>
+      <td>16.00</td>
+      <td>1011.99</td>
+      <td>149.08</td>
+      <td>13.23</td>
+      <td>5.81</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2013.00</td>
+      <td>15.98</td>
+      <td>1038.88</td>
+      <td>148.89</td>
+      <td>6.24</td>
+      <td>-0.17</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2013.00</td>
+      <td>15.29</td>
+      <td>1050.31</td>
+      <td>155.47</td>
+      <td>5.44</td>
+      <td>0.46</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2013.00</td>
+      <td>15.72</td>
+      <td>1064.66</td>
+      <td>162.59</td>
+      <td>16.58</td>
+      <td>14.87</td>
+    </tr>
+  </tbody>
+</table>
+<p>12 rows × 6 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 보통은 다음과 같이 특정 columns을 선택</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"month"</span>)[<span class="st">"dep_delay"</span>]  <span class="co"># [["dep_delay"]] 처럼 list로 입력하면 DataFrameGroupBy object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14472be50&gt;</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"month"</span>)[<span class="st">"dep_delay"</span>].mean() <span class="co"># Series GroupBy object에 적용된 결과는 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>month
+1    10.04
+2    10.82
+3    13.23
+      ... 
+10    6.24
+11    5.44
+12   16.58
+Name: dep_delay, Length: 12, dtype: float64</code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"month"</span>)[[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>]].mean().head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="37">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="37" style="flex-basis: 33.3%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>10.04</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10.82</td>
+      <td>5.61</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13.23</td>
+      <td>5.81</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 levels의 grouping</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nsmallest: a Series method, not a DataFrame method</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>flights.groupby([<span class="st">"month"</span>, <span class="st">"day"</span>])[<span class="st">"arr_delay"</span>].nsmallest(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>month  day        
+1      1    696      -48.00
+       2    919      -59.00
+       3    2035     -65.00
+                      ...  
+12     29   108914   -60.00
+       30   110330   -45.00
+       31   111113   -44.00
+Name: arr_delay, Length: 365, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>flights.groupby([<span class="st">"origin"</span>, <span class="st">"dest"</span>])[<span class="st">"arr_delay"</span>].count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>origin  dest
+EWR     ALB      418
+        ANC        8
+        ATL     4876
+                ... 
+LGA     TVC       73
+        TYS      265
+        XNA      709
+Name: arr_delay, Length: 224, dtype: int64</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>as_index=False</code>: grouping 변수들을 index가 아닌 columns으로</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>flights.groupby([<span class="st">"month"</span>, <span class="st">"day"</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"arr_delay"</span>].mean().head(<span class="dv">3</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    month  day  arr_delay</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0      1    1      12.65</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1      1    2      12.69</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2      1    3       5.73</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>물론, 결과물에 <code>.reset_index()</code> method를 사용해도 됨</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>원칙적으로 grouping은 같은 DataFrame의 변수일 필요없이 match만 되면 됨<br>
+Source: Wes McKinney’s</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    key1  key2  data1  data2</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0     a     1   0.36  -0.42</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1     a     2  -1.51   0.04</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2  None     1   0.75  -0.28</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3     b     2   0.57   0.25</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4     b     1   1.30  -0.77</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 5     a  &lt;NA&gt;  -0.53  -0.73</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 6  None     1   2.04  -0.37</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> np.array([<span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>, <span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>])</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> [<span class="dv">2005</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>]</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"data1"</span>].groupby([states, years]).mean()</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a><span class="co"># CA  2005   -1.02</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     2006    0.75</span></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a><span class="co"># OH  2005    0.46</span></span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     2006    1.67</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: data1, dtype: float64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"dest"</span>).size() <span class="co"># .size(): a method for DataFrame, not Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>dest
+ABQ     254
+ACK     265
+ALB     439
+       ... 
+TVC     101
+TYS     631
+XNA    1036
+Length: 105, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"tailnum"</span>, dropna<span class="op">=</span><span class="va">False</span>).size() <span class="co"># groupby는 기본적으로 NA 무시</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>tailnum
+D942DN       4
+N0EGMQ     371
+N10156     153
+          ... 
+N999DN      61
+N9EAMQ     248
+NaN       2512
+Length: 4044, dtype: int64</code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>.size()</code>는 <code>.value_counts()</code>와 유사하게 사용될 수 있음</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>flights[<span class="st">"tailnum"</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NaN       2512</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># N725MQ     575</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># N722MQ     513</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co">#           ... </span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># N318AS       1</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="co"># N651UA       1</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co"># N557AS       1</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: tailnum, Length: 4044, dtype: int64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Index에 grouping하는 방식에 대해서는 Wes McKineey’s Chapter 10 참고</p>
+<ul>
+<li>Grouping with Dictionaries and Series</li>
+<li>Grouping with Functions</li>
+<li>Grouping by Index Levels</li>
+</ul>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Times series 데이터의 경우 다양한 grouping 방식이 존재<br>
+Stephanie Molin의 <em>ch.4 Working with time series data</em> 참고</p>
+<p>예를 들어, facebook stock에 대한 자료에서 2018년 4분기에 해당하는 날을 week단위로 그룹핑하여 volume을 다음과 같이 계산할 수 있음</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>fb.loc[<span class="st">'2018-Q4'</span>].groupby(pd.Grouper(freq<span class="op">=</span><span class="st">'W'</span>)).volume.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>groupby filtering</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>flights.groupby([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]).<span class="bu">filter</span>(<span class="kw">lambda</span> x: x[<span class="st">"arr_delay"</span>].mean() <span class="op">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="agg" class="level3">
+<h3 class="anchored" data-anchor-id="agg"><code>agg()</code></h3>
+<p>Aggregations: data transformation that produces <strong>scalar</strong> values from arrays</p>
+<p>앞서 GroupBy object에 직접 stats function을 적용하였는데, <code>agg()</code>를 이용하여 더 확장, 일반화할 수 있음</p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 모두 동일</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>flights_sml.groupby(<span class="st">"month"</span>).mean()</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>flights_sml.groupby(<span class="st">"month"</span>).agg(<span class="st">"mean"</span>)  <span class="co"># function names</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>flights_sml.groupby(<span class="st">"month"</span>).agg(np.mean)  <span class="co"># general functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="cell-output cell-output-stdout">
+<pre><code>         year   day  distance  air_time  dep_delay  arr_delay
+month                                                        
+1     2013.00 15.99   1006.84    154.19      10.04       6.13
+2     2013.00 14.74   1000.98    151.35      10.82       5.61
+3     2013.00 16.00   1011.99    149.08      13.23       5.81
+...       ...   ...       ...       ...        ...        ...
+10    2013.00 15.98   1038.88    148.89       6.24      -0.17
+11    2013.00 15.29   1050.31    155.47       5.44       0.46
+12    2013.00 15.72   1064.66    162.59      16.58      14.87
+
+[12 rows x 6 columns]</code></pre>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>flights.groupby(<span class="st">"month"</span>)[<span class="st">"dep_delay"</span>].agg([<span class="st">"mean"</span>, <span class="st">"count"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="45">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="45" style="flex-basis: 25.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>10.04</td>
+      <td>26483</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10.82</td>
+      <td>23690</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13.23</td>
+      <td>27973</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>6.24</td>
+      <td>28653</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>5.44</td>
+      <td>27035</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>16.58</td>
+      <td>27110</td>
+    </tr>
+  </tbody>
+</table>
+<p>12 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>flights_agg <span class="op">=</span> flights.groupby(<span class="st">"month"</span>).agg({</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"air_time"</span>: [<span class="st">"min"</span>, <span class="st">"max"</span>],</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dep_delay"</span>: <span class="st">"mean"</span>,</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"arr_delay"</span>: <span class="st">"median"</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>flights_agg.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="46">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="46" style="flex-basis: 50.0%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>min</th>
+      <th>max</th>
+      <th>mean</th>
+      <th>median</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>20.00</td>
+      <td>667.00</td>
+      <td>10.04</td>
+      <td>-3.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21.00</td>
+      <td>691.00</td>
+      <td>10.82</td>
+      <td>-3.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>21.00</td>
+      <td>695.00</td>
+      <td>13.23</td>
+      <td>-6.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>flights_agg.columns</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># MultiIndex([( 'air_time',    'min'),</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#             ( 'air_time',    'max'),</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co">#             ('dep_delay',   'mean'),</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#             ('arr_delay', 'median')],</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co">#            )</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>flights_agg.columns <span class="op">=</span> [<span class="st">'_'</span>.join(col_agg) <span class="cf">for</span> col_agg <span class="kw">in</span> flights_agg.columns]</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>flights_agg.head(<span class="dv">3</span>)</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co">#        air_time_min  air_time_max  dep_delay_mean  arr_delay_median</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="co"># month                                                              </span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1             20.00        667.00           10.04             -3.00</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2             21.00        691.00           10.82             -3.00</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3             21.00        695.00           13.23             -6.00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><code>agg()</code>에는 custom function을 pass할 수 있음<br>
+단, the optimized functions (Table 10-1)에 비해 일반적으로 훨씬 느림</p>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peak_to_peak(arr):</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> flights_sml.groupby([<span class="st">"month"</span>, <span class="st">"day"</span>])</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>grouped_dist <span class="op">=</span> flights_sml.groupby([<span class="st">"month"</span>, <span class="st">"day"</span>])[<span class="st">"distance"</span>]</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>grouped_dist.agg([<span class="st">"std"</span>, peak_to_peak]) <span class="co"># a list of functions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="48">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="48" style="flex-basis: 33.3%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>std</th>
+      <th>peak_to_peak</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th>day</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">1</th>
+      <th>1</th>
+      <td>727.73</td>
+      <td>4889</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>721.72</td>
+      <td>4889</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>714.95</td>
+      <td>4903</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">12</th>
+      <th>29</th>
+      <td>728.78</td>
+      <td>4887</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>723.88</td>
+      <td>4887</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>731.36</td>
+      <td>4887</td>
+    </tr>
+  </tbody>
+</table>
+<p>365 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naming a function as a tuple</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>grouped_dist.agg([(<span class="st">"sd"</span>, <span class="st">"std"</span>), (<span class="st">"range"</span>, peak_to_peak)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="49">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="49" style="flex-basis: 33.3%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>sd</th>
+      <th>range</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th>day</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">1</th>
+      <th>1</th>
+      <td>727.73</td>
+      <td>4889</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>721.72</td>
+      <td>4889</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>714.95</td>
+      <td>4903</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">12</th>
+      <th>29</th>
+      <td>728.78</td>
+      <td>4887</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>723.88</td>
+      <td>4887</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>731.36</td>
+      <td>4887</td>
+    </tr>
+  </tbody>
+</table>
+<p>365 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply different funtions to different columns</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"distance"</span> : np.std, <span class="st">"air_time"</span> : <span class="st">"sum"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="50">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="50" style="flex-basis: 33.3%;justify-content: center;">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>distance</th>
+      <th>air_time</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th>day</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">1</th>
+      <th>1</th>
+      <td>727.73</td>
+      <td>140981.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>721.72</td>
+      <td>150520.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>714.95</td>
+      <td>140934.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">12</th>
+      <th>29</th>
+      <td>728.78</td>
+      <td>144085.00</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>723.88</td>
+      <td>162526.00</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>731.36</td>
+      <td>131910.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>365 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>.describe()</code>는 aggregation은 아니나 grouped objects에 적용가능</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>grouped[[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>]].describe()</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co">#       dep_delay                                              arr_delay        \</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co">#           count  mean   std    min   25%   50%   75%     max     count  mean   </span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># month                                                                          </span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1      26483.00 10.04 36.39 -30.00 -5.00 -2.00  8.00 1301.00  26398.00  6.13   </span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2      23690.00 10.82 36.27 -33.00 -5.00 -2.00  9.00  853.00  23611.00  5.61   </span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3      27973.00 13.23 40.13 -25.00 -5.00 -1.00 12.00  911.00  27902.00  5.81   </span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...         ...   ...   ...    ...   ...   ...   ...     ...       ...   ...    </span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>                                               </span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         std    min    25%   50%   75%     max  </span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="co"># month                                          </span></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1     40.42 -70.00 -15.00 -3.00 13.00 1272.00  </span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2     39.53 -70.00 -15.00 -3.00 13.00  834.00  </span></span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3     44.12 -68.00 -18.00 -6.00 13.00  915.00  </span></span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ...     ...    ...    ...   ...   ...     ...  </span></span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co"># [12 rows x 16 columns]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="transform" class="level3">
+<h3 class="anchored" data-anchor-id="transform"><code>transform()</code></h3>
+<p>앞서 group별로 통계치가 summary되어 원래 reduced 데이터를 변형됐다면,<br>
+<code>transform()</code>은 group별로 얻은 통계치가 원래 데이터의 형태를 그대로 보존하면서 출력</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>flights_sml.groupby([<span class="st">"month"</span>])[<span class="st">"arr_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>month
+1     6.13
+2     5.61
+3     5.81
+      ... 
+10   -0.17
+11    0.46
+12   14.87
+Name: arr_delay, Length: 12, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>grouped_delay <span class="op">=</span> flights_sml.groupby([<span class="st">"month"</span>])[<span class="st">"arr_delay"</span>].transform(<span class="st">"mean"</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>grouped_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>0         6.13
+1         6.13
+2         6.13
+          ... 
+336773   -4.02
+336774   -4.02
+336775   -4.02
+Name: arr_delay, Length: 336776, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>flights_sml[<span class="st">"monthly_delay"</span>] <span class="op">=</span> grouped_delay</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>flights_sml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>distance</th>
+      <th>air_time</th>
+      <th>dep_delay</th>
+      <th>arr_delay</th>
+      <th>monthly_delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1400</td>
+      <td>227.00</td>
+      <td>2.00</td>
+      <td>11.00</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1416</td>
+      <td>227.00</td>
+      <td>4.00</td>
+      <td>20.00</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1089</td>
+      <td>160.00</td>
+      <td>2.00</td>
+      <td>33.00</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336773</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-4.02</td>
+    </tr>
+    <tr>
+      <th>336774</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>419</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-4.02</td>
+    </tr>
+    <tr>
+      <th>336775</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>431</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-4.02</td>
+    </tr>
+  </tbody>
+</table>
+<p>336776 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<p>Q: 1년에 10000편 이상 운항편이 있는 도착지에 대한 항공편들만 추리면,</p>
+<div class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>dest_size <span class="op">=</span>  flights.groupby(<span class="st">"dest"</span>).transform(<span class="st">"size"</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>dest_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="97">
+<pre><code>0          7198
+1          7198
+2         11728
+          ...  
+336773     6333
+336774     4573
+336775     8163
+Length: 336776, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1년에 10000편 이상 운항편이 있는 도착지에 대한 항공편</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>flights[dest_size <span class="op">&gt;</span> <span class="dv">10000</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>dep_time</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_time</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>542.00</td>
+      <td>540</td>
+      <td>2.00</td>
+      <td>923.00</td>
+      <td>850</td>
+      <td>33.00</td>
+      <td>AA</td>
+      <td>1141</td>
+      <td>N619AA</td>
+      <td>JFK</td>
+      <td>MIA</td>
+      <td>160.00</td>
+      <td>1089</td>
+      <td>5</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>554.00</td>
+      <td>600</td>
+      <td>-6.00</td>
+      <td>812.00</td>
+      <td>837</td>
+      <td>-25.00</td>
+      <td>DL</td>
+      <td>461</td>
+      <td>N668DN</td>
+      <td>LGA</td>
+      <td>ATL</td>
+      <td>116.00</td>
+      <td>762</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>554.00</td>
+      <td>558</td>
+      <td>-4.00</td>
+      <td>740.00</td>
+      <td>728</td>
+      <td>12.00</td>
+      <td>UA</td>
+      <td>1696</td>
+      <td>N39463</td>
+      <td>EWR</td>
+      <td>ORD</td>
+      <td>150.00</td>
+      <td>719</td>
+      <td>5</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>336762</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2233.00</td>
+      <td>2113</td>
+      <td>80.00</td>
+      <td>112.00</td>
+      <td>30</td>
+      <td>42.00</td>
+      <td>UA</td>
+      <td>471</td>
+      <td>N578UA</td>
+      <td>EWR</td>
+      <td>SFO</td>
+      <td>318.00</td>
+      <td>2565</td>
+      <td>21</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>336763</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2235.00</td>
+      <td>2001</td>
+      <td>154.00</td>
+      <td>59.00</td>
+      <td>2249</td>
+      <td>130.00</td>
+      <td>B6</td>
+      <td>1083</td>
+      <td>N804JB</td>
+      <td>JFK</td>
+      <td>MCO</td>
+      <td>123.00</td>
+      <td>944</td>
+      <td>20</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>336768</th>
+      <td>2013</td>
+      <td>9</td>
+      <td>30</td>
+      <td>2307.00</td>
+      <td>2255</td>
+      <td>12.00</td>
+      <td>2359.00</td>
+      <td>2358</td>
+      <td>1.00</td>
+      <td>B6</td>
+      <td>718</td>
+      <td>N565JB</td>
+      <td>JFK</td>
+      <td>BOS</td>
+      <td>33.00</td>
+      <td>187</td>
+      <td>22</td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+<p>131440 rows × 18 columns</p>
+</div>
+</div>
+</div>
+<p>Q: 하루 중 출발 지연이 가장 늦은 두 항공편들을 365일 각각 구하면,</p>
+<div class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ranks(group):</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.rank(ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>delay_rank <span class="op">=</span> flights.groupby([<span class="st">"month"</span>, <span class="st">"day"</span>])[<span class="st">"dep_delay"</span>].transform(get_ranks)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>delay_rank</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<pre><code>0        313.00
+1        276.00
+2        313.00
+          ...  
+336773      NaN
+336774      NaN
+336775      NaN
+Name: dep_delay, Length: 336776, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>flights[delay_rank <span class="op">&lt;</span> <span class="dv">3</span>].head(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="96">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>dep_time</th>
+      <th>sched_dep_time</th>
+      <th>dep_delay</th>
+      <th>arr_time</th>
+      <th>sched_arr_time</th>
+      <th>arr_delay</th>
+      <th>carrier</th>
+      <th>flight</th>
+      <th>tailnum</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>air_time</th>
+      <th>distance</th>
+      <th>hour</th>
+      <th>minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>151</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>848.00</td>
+      <td>1835</td>
+      <td>853.00</td>
+      <td>1001.00</td>
+      <td>1950</td>
+      <td>851.00</td>
+      <td>MQ</td>
+      <td>3944</td>
+      <td>N942MQ</td>
+      <td>JFK</td>
+      <td>BWI</td>
+      <td>41.00</td>
+      <td>184</td>
+      <td>18</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>834</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2343.00</td>
+      <td>1724</td>
+      <td>379.00</td>
+      <td>314.00</td>
+      <td>1938</td>
+      <td>456.00</td>
+      <td>EV</td>
+      <td>4321</td>
+      <td>N21197</td>
+      <td>EWR</td>
+      <td>MCI</td>
+      <td>222.00</td>
+      <td>1092</td>
+      <td>17</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>1440</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1607.00</td>
+      <td>1030</td>
+      <td>337.00</td>
+      <td>2003.00</td>
+      <td>1355</td>
+      <td>368.00</td>
+      <td>AA</td>
+      <td>179</td>
+      <td>N324AA</td>
+      <td>JFK</td>
+      <td>SFO</td>
+      <td>346.00</td>
+      <td>2586</td>
+      <td>10</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>1749</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2131.00</td>
+      <td>1512</td>
+      <td>379.00</td>
+      <td>2340.00</td>
+      <td>1741</td>
+      <td>359.00</td>
+      <td>UA</td>
+      <td>488</td>
+      <td>N593UA</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>228.00</td>
+      <td>1620</td>
+      <td>15</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2598</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2008.00</td>
+      <td>1540</td>
+      <td>268.00</td>
+      <td>2339.00</td>
+      <td>1909</td>
+      <td>270.00</td>
+      <td>DL</td>
+      <td>2027</td>
+      <td>N338NW</td>
+      <td>JFK</td>
+      <td>FLL</td>
+      <td>158.00</td>
+      <td>1069</td>
+      <td>15</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>2637</th>
+      <td>2013</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2056.00</td>
+      <td>1605</td>
+      <td>291.00</td>
+      <td>2239.00</td>
+      <td>1754</td>
+      <td>285.00</td>
+      <td>9E</td>
+      <td>3459</td>
+      <td>N928XJ</td>
+      <td>JFK</td>
+      <td>BNA</td>
+      <td>125.00</td>
+      <td>765</td>
+      <td>16</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Q: Normalize air time by destination</p>
+<div class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>dest_air <span class="op">=</span> flights.groupby(<span class="st">"dest"</span>)[<span class="st">"air_time"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Z = (x - mean) / std</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>(flights[<span class="st">'air_time'</span>] <span class="op">-</span> dest_air.transform(<span class="st">'mean'</span>)) <span class="op">/</span> dest_air.transform(<span class="st">'std'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>0        1.73
+1        1.73
+2        0.61
+         ... 
+336773    NaN
+336774    NaN
+336775    NaN
+Name: air_time, Length: 336776, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(x):</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.mean()) <span class="op">/</span> x.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>dest_air.transform(normalize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="104">
+<pre><code>0        1.73
+1        1.73
+2        0.61
+         ... 
+336773    NaN
+336774    NaN
+336775    NaN
+Name: air_time, Length: 336776, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="apply" class="level3">
+<h3 class="anchored" data-anchor-id="apply">apply()</h3>
+<p>Apply: General split-apply-combine McKineey’s Chapter 10.3 참고</p>
+<p>The most general-purpose GroupBy method is apply, which is the subject of this section.<br>
+apply splits the object being manipulated into pieces, invokes the passed function on each piece, and then attempts to concatenate the pieces.</p>
+<div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> tips.assign(tip_pct <span class="op">=</span> <span class="kw">lambda</span> x: x.tip <span class="op">/</span> x.total_bill)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>tips.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="439">
+
+</div>
+</div>
+<div class="cell" data-execution_count="440">
+<div class="cell-output cell-output-stdout">
+<pre><code>   total_bill  tip     sex smoker  day    time  size  tip_pct
+0       16.99 1.01  Female     No  Sun  Dinner     2     0.06
+1       10.34 1.66    Male     No  Sun  Dinner     3     0.16
+2       21.01 3.50    Male     No  Sun  Dinner     3     0.17</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="421">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top(df, n<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="st">"tip_pct"</span>):</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(column, ascending<span class="op">=</span><span class="va">False</span>)[:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>top(tips, n<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-execution_count="441">
+
+</div>
+</div>
+<div class="cell" data-execution_count="442">
+<div class="cell-output cell-output-stdout">
+<pre><code>     total_bill  tip     sex smoker  day    time  size  tip_pct
+172        7.25 5.15    Male    Yes  Sun  Dinner     2     0.71
+178        9.60 4.00  Female    Yes  Sun  Dinner     2     0.42
+67         3.07 1.00  Female    Yes  Sat  Dinner     1     0.33
+232       11.61 3.39    Male     No  Sat  Dinner     2     0.29</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="428">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"time"</span>).<span class="bu">apply</span>(top)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="443">
+<div class="cell-output cell-output-stdout">
+<pre><code>            total_bill  tip     sex smoker   day    time  size  tip_pct
+time                                                                   
+Lunch  149        7.51 2.00    Male     No  Thur   Lunch     2     0.27
+       221       13.42 3.48  Female    Yes   Fri   Lunch     2     0.26
+       194       16.58 4.00    Male    Yes  Thur   Lunch     2     0.24
+...                ...  ...     ...    ...   ...     ...   ...      ...
+Dinner 67         3.07 1.00  Female    Yes   Sat  Dinner     1     0.33
+       232       11.61 3.39    Male     No   Sat  Dinner     2     0.29
+       183       23.17 6.50    Male    Yes   Sun  Dinner     4     0.28
+
+[10 rows x 8 columns]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="444">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"time"</span>, <span class="st">"day"</span>]).<span class="bu">apply</span>(top, n<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="445">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 total_bill   tip     sex smoker   day    time  size  tip_pct
+time   day                                                                   
+Lunch  Thur 197       43.11  5.00  Female    Yes  Thur   Lunch     4     0.12
+       Fri  225       16.27  2.50  Female    Yes   Fri   Lunch     2     0.15
+Dinner Thur 243       18.78  3.00  Female     No  Thur  Dinner     2     0.16
+       Fri  95        40.17  4.73    Male    Yes   Fri  Dinner     4     0.12
+       Sat  170       50.81 10.00    Male    Yes   Sat  Dinner     3     0.20
+       Sun  156       48.17  5.00    Male     No   Sun  Dinner     6     0.10</code></pre>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What occurs inside the function passed is up to you;<br>
+it must either return a pandas object or a <strong>scalar value</strong>.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="434">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"sex"</span>)[<span class="st">"tip_pct"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="434">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Male</th>
+      <td>157.00</td>
+      <td>0.16</td>
+      <td>0.06</td>
+      <td>0.04</td>
+      <td>0.12</td>
+      <td>0.15</td>
+      <td>0.19</td>
+      <td>0.71</td>
+    </tr>
+    <tr>
+      <th>Female</th>
+      <td>87.00</td>
+      <td>0.17</td>
+      <td>0.05</td>
+      <td>0.06</td>
+      <td>0.14</td>
+      <td>0.16</td>
+      <td>0.19</td>
+      <td>0.42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Inside GroupBy, when you invoke a method like describe, it is actually just a shortcut for:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(group):</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppressing the Group Keys</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"time"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(top)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      total_bill  tip     sex smoker   day    time  size  tip_pct</span></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 149        7.51 2.00    Male     No  Thur   Lunch     2     0.27</span></span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 221       13.42 3.48  Female    Yes   Fri   Lunch     2     0.26</span></span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 194       16.58 4.00    Male    Yes  Thur   Lunch     2     0.24</span></span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 172        7.25 5.15    Male    Yes   Sun  Dinner     2     0.71</span></span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 178        9.60 4.00  Female    Yes   Sun  Dinner     2     0.42</span></span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 67         3.07 1.00  Female    Yes   Sat  Dinner     1     0.33</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="cut-qcut" class="level4">
+<h4 class="anchored" data-anchor-id="cut-qcut"><code>cut()</code>, <code>qcut()</code></h4>
+<p>Quantile and Bucket Analysis <code>pd.cut()</code>, <code>pd.qcut()</code></p>
+<p>cf. <code>map</code>, <code>mapapply</code>, <code>apply</code></p>
+<p>• unique(): Returns the distinct values of the column.</p>
+<p>• value_counts(): Returns a frequency table of the number of times each unique value in a given column appears, or, alternatively, the percentage of times each unique value appears when passed normalize=True.</p>
+<p>• mode(): Returns the most common value of the column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>flights[flights[<span class="st">"arr_delay"</span>] <span class="op">&gt;</span> <span class="dv">0</span>].groupby([<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>])[<span class="st">"arr_delay"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="missing" class="level2">
+<h2 class="anchored" data-anchor-id="missing">Missing</h2>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<p>다음 조건을 만족하는 비행편을 필터링</p>
+<ol type="1">
+<li><p>Had an arrival delay of two or more hours</p></li>
+<li><p>Flew to Houston (<code>IAH</code>&nbsp;or&nbsp;<code>HOU</code>)</p></li>
+<li><p>Departed in summer (July, August, and September)</p></li>
+<li><p>Arrived more than two hours late, but didn’t leave late</p></li>
+<li><p>Were delayed by at least an hour, but made up over 30 minutes in flight</p></li>
+<li><p>Departed between midnight and 6am (inclusive)</p></li>
+<li><p>Sort&nbsp;<code>flights</code>&nbsp;to find the most delayed flights. Find the flights that left earliest.</p></li>
+<li><p>Which flights travelled the farthest? Which travelled the shortest?</p></li>
+<li><p>각 도착지로 출항하는 항공편이 1년 중 몇 일 있는가에 대한 리스트</p></li>
+<li><p>1년 중 300일 이상 출항하는 도착지를 구하면</p></li>
+</ol>
 
 
 </section>
@@ -2591,8 +5229,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../contents/rtest.html" class="pagination-link">
-        <span class="nav-page-text">R Test</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../contents/case1.html" class="pagination-link">
+        <span class="nav-page-text">Case Study 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
