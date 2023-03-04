@@ -1,0 +1,102 @@
+---
+title: 데이터 분석 및 시각화
+subtitle: "2023 1학기"
+format: 
+    revealjs:
+        theme: [default, custom.scss]
+---
+
+## 미래 데이터의 중요성
+### 4차 산업혁명의 ‘원유': 머신러닝, AI
+
+- 다양한 소스들로부터 데이터 생성: 전지구적 개인과 환경에 대한 상세한 정보 발생
+- 인터넷 & 통신 (SNS, 사진, 위치, 장소, 유동인구, 상품거래)
+- 사물인터넷 (IoT), CCTV
+- 스마트 팩토리, 파밍
+- 게놈프로젝트, 생체정보: 인류, 실시간
+- 의료서비스, 보건
+- 자율주행차량: 내부, 외부
+- 금융정보 및 흐름
+- 사회 지표, 설문 조사: 고용, 물류, 직업, 연봉, 만족도 조사, 우울
+
+<br />
+
+### 유토피아 vs. 디스토피아?
+
+- 초연결성, 투명성
+- 완전한 감시와 통제
+
+### 개인정보의 가치
+
+- 정보의 주권, 매매, 웹3(Web3)
+
+
+## Data Science
+:::: {.columns}
+
+::: {.column width="50%"}
+### 소프트웨어 개발
+데이터에 기반한 분석 위해 작동하도록 프로그래밍을 하여 운영되도록 하는 일
+
+- 유튜브의 영상 추천
+- 페이스북의 친구 매칭
+- 스팸메일 필터링
+- 자율주행
+
+:::
+
+::: {.column width="50%"}
+### 데이터 분석
+DNA 질병의 예측 및 진단을 포함한 healthcare
+
+상권의 분석
+여러 정책의 결정에 필요한 분석
+
+
+
+:::
+
+::::
+
+
+
+## Getting up
+
+- 알람 끄기222d2222
+- Get out of bed
+
+## Breakfast
+
+- Eat eggs
+- Drink coffee
+
+# In the evening
+
+## Dinner
+
+::: {.incremental}
+
+{.nonincremental}
+
+- Eat spaghetti
+- Drink wine
+
+:::
+
+## Going to sleep
+
+- Get in bed
+- Count sheep
+
+## Multiple Columns
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
