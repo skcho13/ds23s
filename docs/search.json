@@ -438,7 +438,7 @@
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "Hands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\n\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund: 2nd edition in progress\n\n\n\n\n\n수업은 크게 3부분을 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n통계적 모델링 (statistical modelling)\n기술적 분석 (descriptive analysis)"
+    "text": "강사: 조성균, sk.cho@snu.ac.kr\n면담 시간: 수업 후\n조교: 정은정, gtsyej11@naver.com\n수업시간: 월, 수 1:00 ~ 2:50PM\nWebsite: dg.modellings.art\n과제: Notice\n질문: Communicate/Ask"
   },
   {
     "objectID": "contents/subsetting.html#subsetting-options",
@@ -663,5 +663,96 @@
     "title": "Case study 1",
     "section": "Q2",
     "text": "Q2\n항공기의 비행횟수와 연착시간의 관계를 살펴보고자 함.\n먼저, 평균적으로 가장 연착시간이 큰 항공기(tail number로 구분)를 살펴보고자 함.\n\nCount를 사용하여 샘플 수가 작은 케이스들 혹은 극단치들을 제거해서 살펴보기\n\nagg()와 같이 여러 값들을 aggregate할 시, “갯수”를 같이 살펴보는 것이 좋음 (count(), size())"
+  },
+  {
+    "objectID": "contents/intro.html#getting-up",
+    "href": "contents/intro.html#getting-up",
+    "title": "데이터 분석 및 시각화",
+    "section": "Getting up",
+    "text": "Getting up\n\n알람 끄기222d2222\nGet out of bed"
+  },
+  {
+    "objectID": "contents/intro.html#breakfast",
+    "href": "contents/intro.html#breakfast",
+    "title": "데이터 분석 및 시각화",
+    "section": "Breakfast",
+    "text": "Breakfast\n\nEat eggs\nDrink coffee"
+  },
+  {
+    "objectID": "contents/intro.html#dinner",
+    "href": "contents/intro.html#dinner",
+    "title": "데이터 분석 및 시각화",
+    "section": "Dinner",
+    "text": "Dinner\n\n{.nonincremental}\n\nEat spaghetti\nDrink wine"
+  },
+  {
+    "objectID": "contents/intro.html#going-to-sleep",
+    "href": "contents/intro.html#going-to-sleep",
+    "title": "데이터 분석 및 시각화",
+    "section": "Going to sleep",
+    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+  },
+  {
+    "objectID": "contents/intro.html#multiple-columns",
+    "href": "contents/intro.html#multiple-columns",
+    "title": "데이터 분석 및 시각화",
+    "section": "Multiple Columns",
+    "text": "Multiple Columns\n\n\ncontents…\n\ncontents…"
+  },
+  {
+    "objectID": "contents/notice.html#중간고사-4.20",
+    "href": "contents/notice.html#중간고사-4.20",
+    "title": "Notice",
+    "section": "중간고사 4.20",
+    "text": "중간고사 4.20"
+  },
+  {
+    "objectID": "contents/notice.html#기말고사-6.14",
+    "href": "contents/notice.html#기말고사-6.14",
+    "title": "Notice",
+    "section": "기말고사 6.14",
+    "text": "기말고사 6.14"
+  },
+  {
+    "objectID": "contents/notice.html#개별-프로젝트",
+    "href": "contents/notice.html#개별-프로젝트",
+    "title": "Notice",
+    "section": "개별 프로젝트",
+    "text": "개별 프로젝트"
+  },
+  {
+    "objectID": "index.html#강의-개요",
+    "href": "index.html#강의-개요",
+    "title": "Welcome",
+    "section": "강의 개요",
+    "text": "강의 개요\n본 강의에서는 인터넷과 기술의 발전으로 풍부한 데이터들이 양산됨에 따라 그 안에 숨겨진 패턴을 찾고 분석하여 실증적 사실과 원리를 파악하는데 요구되는 기술들을 계발하는데 도움을 주고자 합니다. 이를 위해서는 1) 데이터 분석 툴을 자유자재로 다룰 수 있는 기술, 2) 주어진 데이터에 적절한 툴을 선택할 수 있는 판단력, 3) 파악한 패턴으로부터 현상의 본질을 추론할 수 있는 인과관계 추론의 원리들이 함께 필요합니다.\n수업은 크게 3부분을 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n통계적 모델링 (statistical modelling)\n기술적 분석 (descriptive analysis)\n\n\n교재\n\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\nHands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund: 2nd edition in progress"
+  },
+  {
+    "objectID": "index.html#수업-활동",
+    "href": "index.html#수업-활동",
+    "title": "Welcome",
+    "section": "수업 활동",
+    "text": "수업 활동\n출석 (5%), 일반과제 (25%), 중간고사 (20%), 기말고사 (20%), 개별 프로젝트 (30%)"
+  },
+  {
+    "objectID": "contents/intro.html#python-vs.-r",
+    "href": "contents/intro.html#python-vs.-r",
+    "title": "데이터 분석 및 시각화",
+    "section": "Python vs. R",
+    "text": "Python vs. R\nR\n\n통계학자들의 커뮤니티에서 발전\n\n통계학의 정교한 이론이 잘 구현된 패키지들\n데이터 분석에 특화되어 있고, 간결한 코드로 분석의 흐름과 아이디어에 집중\n전통 통계학의 특성\n\n작은 샘플로부터 일반화하기 위한 노력\n하나의 데이터 포인터도 소중히…\n통계적 파워를 높이는데 포커스\n\n통계적 분석의 장점\n변수의 통제\n변수들 간의 상호작용\n메커니즘의 판별"
+  },
+  {
+    "objectID": "contents/intro.html#미래-데이터의-중요성",
+    "href": "contents/intro.html#미래-데이터의-중요성",
+    "title": "데이터 분석 및 시각화",
+    "section": "미래 데이터의 중요성",
+    "text": "미래 데이터의 중요성\n4차 산업혁명의 ‘원유’: 머신러닝, AI\n\n다양한 소스들로부터 데이터 생성: 전지구적 개인과 환경에 대한 상세한 정보 발생\n인터넷 & 통신 (SNS, 사진, 위치, 장소, 유동인구, 상품거래)\n사물인터넷 (IoT), CCTV\n스마트 팩토리, 파밍\n게놈프로젝트, 생체정보: 인류, 실시간\n의료서비스, 보건\n자율주행차량: 내부, 외부\n금융정보 및 흐름\n사회 지표, 설문 조사: 고용, 물류, 직업, 연봉, 만족도 조사, 우울\n\n\n유토피아 vs. 디스토피아?\n\n초연결성, 투명성\n완전한 감시와 통제\n\n개인정보의 가치\n\n정보의 주권, 매매, 웹3(Web3)"
+  },
+  {
+    "objectID": "contents/intro.html#data-science",
+    "href": "contents/intro.html#data-science",
+    "title": "데이터 분석 및 시각화",
+    "section": "Data Science",
+    "text": "Data Science\n\n\n소프트웨어 개발\n데이터에 기반한 분석 위해 작동하도록 프로그래밍을 하여 운영되도록 하는 일\n\n유튜브의 영상 추천\n페이스북의 친구 매칭\n스팸메일 필터링\n자율주행\n\n\n데이터 분석\nDNA 질병의 예측 및 진단을 포함한 healthcare\n상권의 분석 여러 정책의 결정에 필요한 분석"
   }
 ]
