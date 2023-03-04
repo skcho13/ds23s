@@ -6,9 +6,9 @@ author: Sungkyun Cho
 ---
 
 ## 강의 정보
-강사: 조성균, sk.cho@snu.ac.kr  
+강사: 조성균 / sk.cho@snu.ac.kr  
 면담 시간: 수업 후  
-조교: 정은정, gtsyej11@naver.com   
+조교: 정은정 / gtsyej11@naver.com   
 수업시간: 월, 수 1:00 ~ 2:50PM  
 Website: [dg.modellings.art](https://dg.modellings.art)
 
@@ -27,16 +27,16 @@ Website: [dg.modellings.art](https://dg.modellings.art)
 
 ### 교재
 
-- 번역서: *Pandas를 이용한 데이터 분석 실습 2/e*  
-  *Hands-On Data Analysis with Pandas (2e)* by Stefanie Molin: 
-    [code in GitHub](https://github.com/stefmolin/Hands-On-Data-Analysis-with-Pandas-2nd-edition)  
+- 번역서: Pandas를 이용한 데이터 분석 실습 2/e  
+  Hands-On Data Analysis with Pandas (2e) by Stefanie Molin: 
+    [code](https://github.com/stefmolin/Hands-On-Data-Analysis-with-Pandas-2nd-edition) in GitHub 
 
-- [*Python for Data Analysis (3e)*](https://wesmckinney.com/book/) by Wes McKinney: 
-    [code in GitHub](https://github.com/wesm/pydata-book/tree/3rd-edition)  
-    2판 번역서: *파이썬 라이브러리를 활용한 데이터 분석* 
+- [Python for Data Analysis (3e)](https://wesmckinney.com/book/) by Wes McKinney: 
+    [code](https://github.com/wesm/pydata-book/tree/3rd-edition) in GitHub  
+    2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석
 
-- [*R for Data Science*](https://r4ds.had.co.nz/index.html) by Wickham & Grolemund: 
-    [2nd edition in progress](https://r4ds.hadley.nz/ )
+- [R for Data Science](https://r4ds.had.co.nz/index.html) by Wickham & Grolemund; 
+    [2e in progress](https://r4ds.hadley.nz/ )
 
 
 ## 수업 활동
