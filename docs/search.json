@@ -746,13 +746,55 @@
     "href": "contents/intro.html#미래-데이터의-중요성",
     "title": "데이터 분석 및 시각화",
     "section": "미래 데이터의 중요성",
-    "text": "미래 데이터의 중요성\n4차 산업혁명의 ‘원유’: 머신러닝, AI\n\n다양한 소스들로부터 데이터 생성: 전지구적 개인과 환경에 대한 상세한 정보 발생\n인터넷 & 통신 (SNS, 사진, 위치, 장소, 유동인구, 상품거래)\n사물인터넷 (IoT), CCTV\n스마트 팩토리, 파밍\n게놈프로젝트, 생체정보: 인류, 실시간\n의료서비스, 보건\n자율주행차량: 내부, 외부\n금융정보 및 흐름\n사회 지표, 설문 조사: 고용, 물류, 직업, 연봉, 만족도 조사, 우울\n\n\n유토피아 vs. 디스토피아?\n\n초연결성, 투명성\n완전한 감시와 통제\n\n개인정보의 가치\n\n정보의 주권, 매매, 웹3(Web3)"
+    "text": "미래 데이터의 중요성\n4차 산업혁명의 ‘원유’: 머신러닝, AI\n\n다양한 소스들로부터 데이터 생성: 전지구적 개인과 환경에 대한 상세한 정보 발생\n인터넷 & 통신 (SNS, 사진, 위치, 장소, 유동인구, 상품거래)\n사물인터넷 (IoT), CCTV\n스마트 팩토리, 파밍\n게놈프로젝트, 생체정보: 인류, 실시간\n의료서비스, 보건\n자율주행차량: 내부, 외부\n금융정보 및 흐름\n사회 지표, 설문 조사: 고용, 물류, 직업, 연봉, 만족도 조사, 우울\n\n\n\n\n\n\n유토피아 vs. 디스토피아?\n\n초연결성, 투명성\n완전한 감시와 통제\n\n\n\n\n\n개인정보의 가치\n\n정보의 주권, 매매, 웹3(Web3)"
   },
   {
     "objectID": "contents/intro.html#data-science",
     "href": "contents/intro.html#data-science",
     "title": "데이터 분석 및 시각화",
     "section": "Data Science",
-    "text": "Data Science\n\n\n소프트웨어 개발\n데이터에 기반한 분석 위해 작동하도록 프로그래밍을 하여 운영되도록 하는 일\n\n유튜브의 영상 추천\n페이스북의 친구 매칭\n스팸메일 필터링\n자율주행\n\n\n데이터 분석\nDNA 질병의 예측 및 진단을 포함한 healthcare\n상권의 분석 여러 정책의 결정에 필요한 분석"
+    "text": "Data Science\n\n\n\n소프트웨어 개발\n\n데이터에 기반한 분석 위해 작동하도록 프로그래밍을 하여 운영되도록 하는 일\n주로 전통적인 컴퓨터 사이언스의 커리큘럼에 의해 트레이닝\n\n유튜브의 영상 추천\n페이스북의 친구 매칭\n스팸메일 필터링\n자율주행\n\n\n\n\n\n데이터 분석\n\n하나의 구체적인 질문에 답하고자 함\n다양한 소스의 정제되는 않은 데이터를 통합하거나 가공하는 기술이 요구\n\nDNA의 분석을 통해 특정 질병의 발병 인자를 탐색\n유동인구와 매출을 분석해 상권을 분석\n어떤 정책의 유효성을 분석에 정책결정에 공헌\n교통 흐름의 지연이 어떻게 발생하는지를 분석, 해결책 제시\n\n\n\n\n\n대부분의 경우 양쪽 모두에 걸쳐있음."
+  },
+  {
+    "objectID": "contents/intro.html#test",
+    "href": "contents/intro.html#test",
+    "title": "데이터 분석 및 시각화",
+    "section": "TEST",
+    "text": "TEST"
+  },
+  {
+    "objectID": "contents/intro.html#데이터를-분석한다는-것은",
+    "href": "contents/intro.html#데이터를-분석한다는-것은",
+    "title": "데이터 분석 및 시각화",
+    "section": "데이터를 분석한다는 것은?",
+    "text": "데이터를 분석한다는 것은?\n예측 모델 vs. 관계/원인 분석\n\n\n\n\n\n예측 모델\n예측의 신속성과 정확성\nMachine Learning 강점\n\n고양이인가 아닌가? 예측의 정확성\n개인화된 추천 목록: 유튜브, 넷플릭스\n시리의 답변\n비즈니스 분석\n\n\n\n\n\n관계/원인 분석\n현상 본질과 매커니즘 파악\nStatistical Models 강점\n\nQ: 닭의 울음이 태양을 솟게 하는가?\n돈과 행복: 패턴 vs. 예외\n\n\n\n\n\n가난, 인종, 범죄\n임금 차별\n\n\n\n\n\n출산율의 감소\n\n\n\n\n\n\n\n\n\n\n\n\n심리적 관성/편견 주의\n분석가의 책임의식\n두 가지는 서로 상보 관계!"
+  },
+  {
+    "objectID": "contents/intro.html#data-analysis",
+    "href": "contents/intro.html#data-analysis",
+    "title": "데이터 분석 및 시각화",
+    "section": "Data Analysis",
+    "text": "Data Analysis\n\n\n\n오랜동안 여러 분야에서 각자의 방식을 개발\n Computer Science\nStatistics\nBiostatistics Economics\nEpidemiology\nPolitical science\nEngineering\n\n\n\n서로 다른 용어를 쓰기도 하며, 그 분야에서 필요로하는 방식에 초점을 맞춤.\n\n서로 의사소통이 거의 없었음.\n\nData Science라는 이름하에 통합되어가는 과정 중\n\n\n\n컴퓨터 사이언스의 경우, 주로 분류나 예측을 위한 이론과 툴들이 개발되는 반면,\n사회과학자들은 예측에는 관심이 없으며, 변수들 간의 진정한 관계 혹은 인과관계를 탐구\n\n본 강의에서는 분석의 기초를 적절한 밸런스를 갖춰 제시한 R for Data Science by Wickham & Grolemund의 전개 방식을 따르고자 함."
+  },
+  {
+    "objectID": "contents/intro.html#데이터를-분석한다는-것은-1",
+    "href": "contents/intro.html#데이터를-분석한다는-것은-1",
+    "title": "데이터 분석 및 시각화",
+    "section": "데이터를 분석한다는 것은?",
+    "text": "데이터를 분석한다는 것은?\n전통적인 분류\n\n\n\n\n탐색적 분석 vs. 가설 검증\nexploratory vs. confirmatory\n\n탐색적 분석\n\n통찰 혹은 가설의 기초 제공\n끼워 맞추기? 오류에 빠지기 쉬움\n\n가설 검증\n\n진위의 확률을 높임\n탐색적 분석으로부터 온 가설은 재테스트\n\n\n\n\n\n관찰 vs. 실험 데이터\nobservational vs. experimental\n\n당근과 시력?\n커피의 효과?\n남녀의 임금 격차?\n\n\n  \n\n기술적 vs. 추론적 분석\ndescriptive vs. inferential\n\n연봉과 삶의 만족도와 관계\n두통약의 효능"
+  },
+  {
+    "objectID": "contents/intro.html#통계적-사고-i",
+    "href": "contents/intro.html#통계적-사고-i",
+    "title": "데이터 분석 및 시각화",
+    "section": "통계적 사고 I",
+    "text": "통계적 사고 I\n\n\n\n\n남녀 키의 차이\n\n\n\n\n\n\n\nConfounding\n\n\n머리가 길면 우울증도 높다?\n초등생이 발이 크면 독해력도 높다?\n\n\n\n\n\n\n\n\n\nSimpson’s paradox\n\n\n\n\n\n\nSource: The book of why by Judea Pearl"
+  },
+  {
+    "objectID": "contents/intro.html#통계적-사고-ii",
+    "href": "contents/intro.html#통계적-사고-ii",
+    "title": "데이터 분석 및 시각화",
+    "section": "통계적 사고 II",
+    "text": "통계적 사고 II\n\n\n\n\n오렌지와 괴혈병\n\n남녀 연봉 차이의 원인?\n\n직업 특성, 부서, 직급, 연령, 출산, 출세욕\n\n\n\n\n\n\n\n\n수집된 데이터의 성격\nSelection Bias\n\n\n노인에 관한 데이터: 누가 사망했는가?\n설문 데이터: 누가 참여했는가?\n회사 내에서의 만족도 조사: 샘플 속성의 변화\n코호트/특정세대의 특성: 그들의 특성인가?"
   }
 ]
