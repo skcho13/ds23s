@@ -139,7 +139,8 @@ Engineering
 ::: {.fragment}
 #### 예측 모델  
 예측의 신속성과 정확성  
-Machine Learning 강점
+Machine Learning 강점  
+Algorithmic  
 
 - 고양이인가 아닌가? 예측의 정확성
 - 개인화된 추천 목록: 유튜브, 넷플릭스
@@ -153,6 +154,7 @@ Machine Learning 강점
 #### 관계/원인 분석  
 현상 본질과 매커니즘 파악  
 Statistical Models 강점
+Parametric  
 
 - Q: 닭의 울음이 태양을 솟게 하는가?
 - 돈과 행복: 패턴 vs. 예외
@@ -301,6 +303,45 @@ Selection Bias
 :::::
 
 ::::::
+
+## 데이터 시각화
+Data Visualization
+<br>
+
+:::::: {.columns}
+::::: {.column width="45%"}
+### 분석도구: 현미경, 연장도구  
+강점이자 약점
+
+![](images/eda_vis.png){width=400}
+
+![](images/simpson.jpg){width=400}
+:::::
+
+::::: {.column width="5%"}
+:::::
+
+::::: {.column width="50%"}
+
+:::: {.fragment}
+### 효과적/미적인 정보 전달 수단
+
+효과적이고 임팩트있도록 infographics
+![](images/communication3-1.png){width=400}
+::::
+
+:::: {.fragment}
+Interactive
+::::
+
+:::: {.fragment .fade-in-then-out}
+<iframe src="https://ourworldindata.org/grapher/children-per-woman-fertility-rate-vs-level-of-prosperity" loading="lazy" style="position: absolute; bottom:120px; left:0px; width:100%; height:600px;"></iframe>
+::::
+
+:::::
+
+::::::
+
 
 ---
 <br>

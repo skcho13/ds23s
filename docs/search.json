@@ -186,7 +186,7 @@
     "href": "contents/intro.html#데이터를-분석한다는-것은",
     "title": "데이터 분석 및 시각화",
     "section": "데이터를 분석한다는 것은?",
-    "text": "데이터를 분석한다는 것은?\n예측 모델 vs. 관계/원인 분석\n\n\n\n\n\n예측 모델\n예측의 신속성과 정확성\nMachine Learning 강점\n\n고양이인가 아닌가? 예측의 정확성\n개인화된 추천 목록: 유튜브, 넷플릭스\n시리의 답변\n비즈니스 분석\n\n\n\n\n\n관계/원인 분석\n현상 본질과 매커니즘 파악\nStatistical Models 강점\n\nQ: 닭의 울음이 태양을 솟게 하는가?\n돈과 행복: 패턴 vs. 예외\n\n\n\n\n\n가난, 인종, 범죄\n임금 차별\n\n\n\n\n\n출산율의 감소\n\n\n\n\n\n\n\n\n\n\n\n\n심리적 관성/편견 주의\n분석가의 책임의식\n두 가지는 서로 상보 관계!"
+    "text": "데이터를 분석한다는 것은?\n예측 모델 vs. 관계/원인 분석\n\n\n\n\n\n예측 모델\n예측의 신속성과 정확성\nMachine Learning 강점\nAlgorithmic\n\n고양이인가 아닌가? 예측의 정확성\n개인화된 추천 목록: 유튜브, 넷플릭스\n시리의 답변\n비즈니스 분석\n\n\n\n\n\n관계/원인 분석\n현상 본질과 매커니즘 파악\nStatistical Models 강점 Parametric\n\nQ: 닭의 울음이 태양을 솟게 하는가?\n돈과 행복: 패턴 vs. 예외\n\n\n\n\n\n가난, 인종, 범죄\n임금 차별\n\n\n\n\n\n출산율의 감소\n\n\n\n\n\n\n\n\n\n\n\n\n심리적 관성/편견 주의\n분석가의 책임의식\n두 가지는 서로 상보 관계!"
   },
   {
     "objectID": "contents/intro.html#데이터를-분석한다는-것은-1",
@@ -509,5 +509,12 @@
     "title": "데이터 분석 및 시각화",
     "section": "끝",
     "text": "끝\nBack Home\n\n\nBack Home"
+  },
+  {
+    "objectID": "contents/intro.html#데이터-시각화",
+    "href": "contents/intro.html#데이터-시각화",
+    "title": "데이터 분석 및 시각화",
+    "section": "데이터 시각화",
+    "text": "데이터 시각화\nData Visualization \n\n\n분석도구: 현미경, 연장도구\n강점이자 약점\n\n\n\n\n\n\n\n효과적/미적인 정보 전달 수단\n효과적이고 임팩트있도록 infographics \n\n\nInteractive"
   }
 ]
