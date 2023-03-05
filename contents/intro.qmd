@@ -101,10 +101,10 @@ format:
 - 오랜동안 여러 분야에서 각자의 방식을 개발  
 Computer Science  
 Statistics  
-Biostatistics
+Biostatistics  
 Economics  
 Epidemiology  
-Political science  
+Political Science  
 Engineering  
 
 :::
@@ -212,7 +212,7 @@ Statistical Models 강점
 
     - 당근과 시력?
     - 커피의 효과?
-    - 남녀의 임금 격차?
+    - 남녀의 임금 차별?
 
 <br>
 <br>
@@ -223,6 +223,11 @@ Statistical Models 강점
 
     - 연봉과 삶의 만족도와 관계
     - 두통약의 효능
+
+::: {.fragment .fade-in-then-out}
+![](images/sampling.png){.absolute bottom="300" left="300" width="700"}
+:::
+
 :::
 ::::
 
@@ -231,7 +236,7 @@ Statistical Models 강점
 
 :::::: {.columns}
 ::::: {.column width="33%"}
-- 남녀 키의 차이  
+- 남녀 임금의 차이  
 ![](images/wage.png){width=300}
 :::::
 
@@ -268,7 +273,7 @@ Source: The book of why by Judea Pearl
 
 :::::: {.columns}
 ::::: {.column width="45%"}
-- 오렌지와 괴혈병  
+- 레몬과 괴혈병  
 ![](images/mediation.png){width=250}
 
 - 남녀 연봉 차이의 원인?  
@@ -296,3 +301,14 @@ Selection Bias
 :::::
 
 ::::::
+
+---
+<br>
+<br>
+<br>
+
+::: {style="text-align: center"}
+끝
+
+[Back Home](https://da.modellings.art)
+:::
