@@ -480,14 +480,14 @@
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "강사: 조성균 / sk.cho@snu.ac.kr\n면담 시간: 수업 후\n조교: 정은정 / gtsyej11@naver.com\n수업시간: 월, 수 1:00 ~ 2:50PM\nWebsite: dg.modellings.art\n과제: Notice\n질문: Communicate/Ask"
+    "text": "강사: 조성균 / sk.cho@snu.ac.kr\n면담 시간: 수업 후\n조교: 정은정 / gtsyej11@naver.com\n수업시간: 월, 수 1:00 ~ 2:50PM\nWebsite: da.modellings.art\n과제: Notice\n질문: Communicate/Ask"
   },
   {
     "objectID": "index.html#강의-개요",
     "href": "index.html#강의-개요",
     "title": "Welcome",
     "section": "강의 개요",
-    "text": "강의 개요\n본 강의에서는 인터넷과 기술의 발전으로 풍부한 데이터들이 양산됨에 따라 그 안에 숨겨진 패턴을 찾고 분석하여 실증적 사실과 원리를 파악하는데 요구되는 기술들을 계발하는데 도움을 주고자 합니다. 이를 위해서는 1) 데이터 분석 툴을 자유자재로 다룰 수 있는 기술, 2) 주어진 데이터에 적절한 툴을 선택할 수 있는 판단력, 3) 파악한 패턴으로부터 현상의 본질을 추론할 수 있는 인과관계 추론의 원리들이 함께 필요합니다.\n수업은 크게 3부분을 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n통계적 모델링 (statistical modelling)\n기술적 분석 (descriptive analysis)\n\n\n교재\n\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\nHands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund; 2e in progress"
+    "text": "강의 개요\n본 강의에서는 인터넷과 기술의 발전으로 풍부한 데이터들이 양산됨에 따라 그 안에 숨겨진 패턴을 찾고 분석하여 실증적 사실과 원리를 파악하는데 요구되는 기술들을 계발하는데 도움을 주고자 합니다. 이를 위해서는 1) 데이터 분석 툴을 자유자재로 다룰 수 있는 기술, 2) 주어진 데이터에 적절한 툴을 선택할 수 있는 판단력, 3) 파악한 패턴으로부터 현상의 본질을 추론할 수 있는 인과관계 추론의 원리들이 함께 필요합니다.\n수업은 크게 4부분을 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n모델링 (modelling)\n통계 (statistics)\n기술적 분석 (descriptive analysis)\n\n\n교재\n\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\nHands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund; 2e in progress"
   },
   {
     "objectID": "index.html#수업-활동",
