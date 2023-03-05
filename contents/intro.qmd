@@ -9,6 +9,7 @@ format:
         reference-location: document
         height: 768
         width: 1024
+        footer: "[Back Home](https://da.modellings.art)"
 ---
 
 ## 미래 데이터의 중요성
@@ -98,7 +99,6 @@ format:
 :::: {.columns}
 ::: {.column width="50%"}
 - 오랜동안 여러 분야에서 각자의 방식을 개발  
-<br />
 Computer Science  
 Statistics  
 Biostatistics
@@ -113,17 +113,20 @@ Engineering
 - 서로 의사소통이 거의 없었음.  
 - Data Science라는 이름하에 **통합**되어가는 과정 중
 :::
+::::
+
+:::: {style="font-size: .9em"}
+- 컴퓨터 사이언스의 경우, 주로 **분류**나 **예측**을 위한 이론과 툴들이 개발되는 반면,  
+- 사회과학자들은 예측에는 관심이 없으며, 변수들 간의 **진정한 관계** 혹은 **인과관계**를 탐구
+- 현재 이 둘은 소위 cross-fertilization을 지향하며 같이 발전, 통합되어가고 있음.  
 
 ::: {.fragment}
-<br>
 
-컴퓨터 사이언스의 경우, 주로 **분류**나 **예측**을 위한 이론과 툴들이 개발되는 반면,  
-사회과학자들은 예측에는 관심이 없으며, 변수들 간의 **진정한 관계** 혹은 **인과관계**를 탐구
+&emsp; Breiman, L. (2001). **Statistical modeling: The two cultures** (with comments and a rejoinder by the author). Statistical science, 16(3), 199-231.
+
 :::
 
-::: {.fragment}
-본 강의에서는 분석의 기초를 적절한 밸런스를 갖춰 제시한 R for Data Science by Wickham & Grolemund의 전개 방식을 따르고자 함.
-:::
+- 본 강의에서는 분석의 기초를 적절한 밸런스를 갖춰 제시한 R for Data Science by Wickham & Grolemund의 전개 방식을 따르고자 함.
 
 ::::
 

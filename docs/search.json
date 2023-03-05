@@ -179,7 +179,7 @@
     "href": "contents/intro.html#data-analysis",
     "title": "데이터 분석 및 시각화",
     "section": "Data Analysis",
-    "text": "Data Analysis\n\n\n\n오랜동안 여러 분야에서 각자의 방식을 개발\n Computer Science\nStatistics\nBiostatistics Economics\nEpidemiology\nPolitical science\nEngineering\n\n\n\n서로 다른 용어를 쓰기도 하며, 그 분야에서 필요로하는 방식에 초점을 맞춤.\n\n서로 의사소통이 거의 없었음.\n\nData Science라는 이름하에 통합되어가는 과정 중\n\n\n\n컴퓨터 사이언스의 경우, 주로 분류나 예측을 위한 이론과 툴들이 개발되는 반면,\n사회과학자들은 예측에는 관심이 없으며, 변수들 간의 진정한 관계 혹은 인과관계를 탐구\n\n본 강의에서는 분석의 기초를 적절한 밸런스를 갖춰 제시한 R for Data Science by Wickham & Grolemund의 전개 방식을 따르고자 함."
+    "text": "Data Analysis\n\n\n\n오랜동안 여러 분야에서 각자의 방식을 개발\nComputer Science\nStatistics\nBiostatistics Economics\nEpidemiology\nPolitical science\nEngineering\n\n\n\n서로 다른 용어를 쓰기도 하며, 그 분야에서 필요로하는 방식에 초점을 맞춤.\n\n서로 의사소통이 거의 없었음.\n\nData Science라는 이름하에 통합되어가는 과정 중\n\n\n\n\n\n컴퓨터 사이언스의 경우, 주로 분류나 예측을 위한 이론과 툴들이 개발되는 반면,\n\n사회과학자들은 예측에는 관심이 없으며, 변수들 간의 진정한 관계 혹은 인과관계를 탐구\n현재 이 둘은 소위 cross-fertilization을 지향하며 같이 발전, 통합되어가고 있음.\n\n\n  Breiman, L. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). Statistical science, 16(3), 199-231.\n\n\n본 강의에서는 분석의 기초를 적절한 밸런스를 갖춰 제시한 R for Data Science by Wickham & Grolemund의 전개 방식을 따르고자 함."
   },
   {
     "objectID": "contents/intro.html#데이터를-분석한다는-것은",
@@ -207,7 +207,7 @@
     "href": "contents/intro.html#통계적-사고-ii",
     "title": "데이터 분석 및 시각화",
     "section": "통계적 사고 II",
-    "text": "통계적 사고 II\n\n\n\n\n오렌지와 괴혈병\n\n남녀 연봉 차이의 원인?\n\n직업 특성, 부서, 직급, 연령, 출산, 출세욕\n\n\n\n\n\n\n\n\n수집된 데이터의 성격\nSelection Bias\n\n\n노인에 관한 데이터: 누가 사망했는가?\n설문 데이터: 누가 참여했는가?\n회사 내에서의 만족도 조사: 샘플 속성의 변화\n코호트/특정세대의 특성: 그들의 특성인가?"
+    "text": "통계적 사고 II\n\n\n\n\n오렌지와 괴혈병\n\n남녀 연봉 차이의 원인?\n\n직업 특성, 부서, 직급, 연령, 출산, 출세욕\n\n\n\n\n\n\n\n\n수집된 데이터의 성격\nSelection Bias\n\n\n노인에 관한 데이터: 누가 사망했는가?\n설문 데이터: 누가 참여했는가?\n회사 내에서의 만족도 조사: 샘플 속성의 변화\n코호트/특정세대의 특성: 그들의 특성인가?\n\n\n\n\n\nBack Home"
   },
   {
     "objectID": "contents/transform.html",
@@ -487,7 +487,7 @@
     "href": "index.html#강의-개요",
     "title": "Welcome",
     "section": "강의 개요",
-    "text": "강의 개요\n본 강의에서는 인터넷과 기술의 발전으로 풍부한 데이터들이 양산됨에 따라 그 안에 숨겨진 패턴을 찾고 분석하여 실증적 사실과 원리를 파악하는데 요구되는 기술들을 계발하는데 도움을 주고자 합니다. 이를 위해서는 1) 데이터 분석 툴을 자유자재로 다룰 수 있는 기술, 2) 주어진 데이터에 적절한 툴을 선택할 수 있는 판단력, 3) 파악한 패턴으로부터 현상의 본질을 추론할 수 있는 인과관계 추론의 원리들이 함께 필요합니다.\n수업은 크게 4부분을 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n모델링 (modelling)\n통계 (statistics)\n기술적 분석 (descriptive analysis)\n\n\n교재\n\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\nHands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund; 2e in progress"
+    "text": "강의 개요\n본 강의에서는 인터넷과 기술의 발전으로 풍부한 데이터들이 양산됨에 따라 그 안에 숨겨진 패턴을 찾고 분석하여 실증적 사실과 원리를 파악하는데 요구되는 기술들을 계발하는데 도움을 주고자 합니다. 이를 위해서는 1) 데이터 분석 툴을 자유자재로 다룰 수 있는 기술, 2) 주어진 데이터에 적절한 툴을 선택할 수 있는 판단력, 3) 파악한 패턴으로부터 현상의 본질을 추론할 수 있는 인과관계 추론의 원리들이 함께 필요합니다.\n수업은 크게 4부분으로 나뉨\n\n데이터 시각화와 탐색적 분석 (exploratory data analysis)\n모델링 (modelling)\n통계 (statistics)\n기술적 분석 (descriptive analysis)\n\n\n교재\n\n번역서: Pandas를 이용한 데이터 분석 실습 2/e\nHands-On Data Analysis with Pandas (2e) by Stefanie Molin: code in GitHub\nPython for Data Analysis (3e) by Wes McKinney: code in GitHub\n2판 번역서: 파이썬 라이브러리를 활용한 데이터 분석\nR for Data Science by Wickham & Grolemund; 2e in progress"
   },
   {
     "objectID": "index.html#수업-활동",

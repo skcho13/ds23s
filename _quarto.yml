@@ -35,14 +35,14 @@ website:
       - section: Introduction
         contents:
           - href: contents/intro.qmd
-            text: Data anlaysis intro
+            text: Data Anlaysis Intro
           - href: contents/setup.ipynb
             text: Setup
-          - section: contents/pandas.ipynb
-            contents: 
-            - href: contents/inspection.ipynb
-          - href: contents/vis.ipynb
-            text: Data visualization
+          # - section: contents/pandas.ipynb
+          #   contents: 
+          #   - href: contents/inspection.ipynb
+          # - href: contents/vis.ipynb
+          #   text: Data visualization
       - text: ---
       - section: Visualize
         # contents:
@@ -63,12 +63,16 @@ website:
       - text: ---
       - section: Exploratory Data Analysis
       - text: ---
+      - section: Modelling
+      - text: ---
+      - section: Statistics
+      - text: ---
       - section: Communicate
         contents:
           - href: https://docs.google.com/document/d/1cZ0JzhjjdMBYtlpgkKGJ9LSbuwcv5eRIOQ5CRahw5Js/edit?usp=sharing
             text: Ask
           - href: https://docs.google.com/document/d/1CFVAUGKB1h8z3vEAl5vjp5lvYiv-FLYtlRDFGSN2_aY/edit?usp=sharing
-            text: Personal project
+            text: Personal Project
 
   # navbar:
   #   left:
