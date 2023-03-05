@@ -4,7 +4,7 @@ project:
 
 website:
   page-navigation: true
-  title: "DG Data Analysis"
+  title: "DG Data Analysis & Vis"
   description: "동국대 융합교육원, 데이터분석 및 시각화"
 
   # site-url:
@@ -45,21 +45,21 @@ website:
             text: Data visualization
       - text: ---
       - section: Visualize
-        contents:
-          - href: contents/seaborn.ipynb
-            text: Seaborn.objects
-          - section: contents/plots.ipynb
-            contents: 
-              - href: contents/alt_plots.ipynb
-          - href: contents/customizing.ipynb
+        # contents:
+        #   - href: contents/seaborn.ipynb
+        #     text: Seaborn.objects
+        #   - section: contents/plots.ipynb
+        #     contents: 
+        #       - href: contents/alt_plots.ipynb
+        #   - href: contents/customizing.ipynb
       - text: ---
       - section: Transform
-        contents:
-          - href: contents/subsetting.ipynb
-          - section: contents/transform.ipynb
-            contents: 
-              - href: contents/case1.ipynb
-          - href: contents/rtest.ipynb
+        # contents:
+        #   - href: contents/subsetting.ipynb
+        #   - section: contents/transform.ipynb
+        #     contents: 
+        #       - href: contents/case1.ipynb
+        #   - href: contents/rtest.ipynb
       - text: ---
       - section: Exploratory Data Analysis
       - text: ---
