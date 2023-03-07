@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render: 
+    - "*.qmd"
+    - "*.ipynb"
+    - "!contents/ignore/"
 
 website:
   page-navigation: true
@@ -13,7 +17,7 @@ website:
 
   page-footer:
     # right: "This page is built with [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2023, Sungkyun Cho"
+    left: This work © 2023 by Sungkyun Cho is licensed under CC BY-NC-SA 4.0 
     # background: 
 
   sidebar:
@@ -56,10 +60,10 @@ website:
       - section: Transform
         # contents:
         #   - href: contents/subsetting.ipynb
+        #   - href: contents/views.ipynb
         #   - section: contents/transform.ipynb
         #     contents: 
         #       - href: contents/case1.ipynb
-        #   - href: contents/rtest.ipynb
       - text: ---
       - section: Exploratory Data Analysis
       - text: ---

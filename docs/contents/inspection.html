@@ -94,8 +94,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../contents/vis.html" rel="next">
-<link href="../contents/pandas.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -177,32 +175,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contents/intro.html" class="sidebar-item-text sidebar-link">Data anlaysis</a>
+  <a href="../contents/intro.html" class="sidebar-item-text sidebar-link">Data Anlaysis Intro</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../contents/setup.html" class="sidebar-item-text sidebar-link">Setup</a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../contents/pandas.html" class="sidebar-item-text sidebar-link">NumPy and pandas</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../contents/inspection.html" class="sidebar-item-text sidebar-link active">Inspecting data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../contents/vis.html" class="sidebar-item-text sidebar-link">Data visualization</a>
   </div>
 </li>
       </ul>
@@ -221,13 +199,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Modelling</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Statistics</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Communicate</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Communicate</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://docs.google.com/document/d/1cZ0JzhjjdMBYtlpgkKGJ9LSbuwcv5eRIOQ5CRahw5Js/edit?usp=sharing" class="sidebar-item-text sidebar-link">Ask</a>
@@ -235,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://docs.google.com/document/d/1CFVAUGKB1h8z3vEAl5vjp5lvYiv-FLYtlRDFGSN2_aY/edit?usp=sharing" class="sidebar-item-text sidebar-link">Personal project</a>
+  <a href="https://docs.google.com/document/d/1CFVAUGKB1h8z3vEAl5vjp5lvYiv-FLYtlRDFGSN2_aY/edit?usp=sharing" class="sidebar-item-text sidebar-link">Personal Project</a>
   </div>
 </li>
       </ul>
@@ -307,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Options</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas options</span></span>
@@ -328,10 +314,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="loading-a-dataset-tips" class="level3">
 <h3 class="anchored" data-anchor-id="loading-a-dataset-tips">Loading a Dataset: Tips</h3>
 <p>일정기간 한 웨이터가 얻은 팁에 대한 데이터</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tips</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>     total_bill  tip     sex smoker   day    time  size
 0         16.99 1.01  Female     No   Sun  Dinner     2
 1         10.34 1.66    Male     No   Sun  Dinner     3
@@ -344,10 +330,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [244 rows x 7 columns]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tips.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame의 값들: ndarray</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tips.values <span class="co"># or tips.to_numpy()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([[16.99, 1.01, 'Female', ..., 'Sun', 'Dinner', 2],
        [10.34, 1.66, 'Male', ..., 'Sun', 'Dinner', 3],
        [21.01, 3.5, 'Male', ..., 'Sun', 'Dinner', 3],
@@ -488,7 +474,7 @@ dtype: int64</code></pre>
 </figure>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: value_count() arguments</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: value_count()의 arguments</figcaption><p></p>
 </figure>
 </div>
 <hr>
@@ -759,22 +745,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../contents/pandas.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NumPy and pandas</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../contents/vis.html" class="pagination-link">
-        <span class="nav-page-text">Data visualization</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© Copyright 2023, Sungkyun Cho</div>   
+    <div class="nav-footer-left">This work © 2023 by Sungkyun Cho is licensed under CC BY-NC-SA 4.0</div>   
   </div>
 </footer>
 
