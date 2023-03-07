@@ -42,11 +42,11 @@ website:
             text: Data Anlaysis Intro
           - href: contents/setup.ipynb
             text: Setup
-          # - section: contents/pandas.ipynb
-          #   contents: 
-          #   - href: contents/inspection.ipynb
-          # - href: contents/vis.ipynb
-          #   text: Data visualization
+          - section: contents/pandas.ipynb
+            contents: 
+            - href: contents/inspection.ipynb
+          - href: contents/vis.ipynb
+            text: Data visualization
       - text: ---
       - section: Visualize
         # contents:

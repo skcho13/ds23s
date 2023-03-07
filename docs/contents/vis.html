@@ -31,6 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../contents/inspection.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,6 +146,26 @@ ul.task-list li input[type="checkbox"] {
   <a href="../contents/setup.html" class="sidebar-item-text sidebar-link">Setup</a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../contents/pandas.html" class="sidebar-item-text sidebar-link">NumPy and pandas</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/inspection.html" class="sidebar-item-text sidebar-link">Inspecting data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/vis.html" class="sidebar-item-text sidebar-link active">Data visualization</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -170,12 +191,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Communicate</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Communicate</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://docs.google.com/document/d/1cZ0JzhjjdMBYtlpgkKGJ9LSbuwcv5eRIOQ5CRahw5Js/edit?usp=sharing" class="sidebar-item-text sidebar-link">Ask</a>
@@ -204,7 +225,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#시각화-이론" id="toc-시각화-이론" class="nav-link" data-scroll-target="#시각화-이론">시각화 이론</a>
   <ul>
   <li><a href="#bertins-semiology-of-graphics-1967" id="toc-bertins-semiology-of-graphics-1967" class="nav-link" data-scroll-target="#bertins-semiology-of-graphics-1967">Bertin’s Semiology of Graphics (1967)</a></li>
-  <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The Grammer of Graphics</a></li>
+  <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The Grammer of Graphics</a>
+  <ul class="collapse">
+  <li><a href="#case-1" id="toc-case-1" class="nav-link" data-scroll-target="#case-1">Case 1</a></li>
+  <li><a href="#case-2" id="toc-case-2" class="nav-link" data-scroll-target="#case-2">Case 2</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#시각화의-활용" id="toc-시각화의-활용" class="nav-link" data-scroll-target="#시각화의-활용">시각화의 활용</a>
   <ul>
@@ -292,11 +317,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-grammer-of-graphics" class="level2">
 <h2 class="anchored" data-anchor-id="the-grammer-of-graphics">The Grammer of Graphics</h2>
-<p>a coherent system for describing and building graphs</p>
-<p><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization by Claus O. Wilke</a></p>
+<p>A coherent system for describing and building graphs</p>
+<p>Source: <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization by Claus O. Wilke</a></p>
 <p>Aesthetics and types of data</p>
 <p><img src="images/aesthetics.png" class="img-fluid" width="500"></p>
-<p>같은 정보를 품고 있으나 더 적절한 representation이 존재…</p>
+<p>같은 정보를 품고 있으나 더 적절한 representation이 존재</p>
+<section id="case-1" class="level3">
+<h3 class="anchored" data-anchor-id="case-1">Case 1</h3>
+<p>예를 들어, 다음과 같이 1) <strong>지역</strong>별로 2) <strong>날짜</strong>에 따른 3) <strong>온도</strong>의 변화를 나타낸다면,<br>
+즉, <strong>x축의 위치</strong>에 날짜 정보를, <strong>y축의 위치</strong>에 온도 정보를, <strong>색깔</strong>에 지역 정보를 할당했음.</p>
+<p><img src="images/mapping1.png" class="img-fluid" width="800"></p>
+<p>한편, 아래는 <strong>x축의 위치</strong>에 압축된 날짜 정보를, <strong>y축의 위치</strong>에 위치 정보를, <strong>색깔</strong>에 압축된 온도 정보를 할당했음.</p>
+<p><img src="images/mapping2.png" class="img-fluid" width="800"></p>
+</section>
+<section id="case-2" class="level3">
+<h3 class="anchored" data-anchor-id="case-2">Case 2</h3>
+<p>다음은 GDP, mortality, population, region의 네 정보를 다른 방식으로 mapping한 결과임.</p>
+<p><img src="images/pop1.png" class="img-fluid" width="840"></p>
+<p><img src="images/pop2.png" class="img-fluid" width="840"></p>
+</section>
 </section>
 </section>
 <section id="시각화의-활용" class="level1">
@@ -437,7 +476,7 @@ if (outputEl) {{
 <section id="참조할-만한-websites" class="level1">
 <h1>참조할 만한 Websites</h1>
 <ul>
-<li><a href="https://datavizcatalogue.com/">The Data Visualisation Catalgue</a></li>
+<li><a href="https://datavizcatalogue.com/">The Data Visualisation Catalogue</a></li>
 <li><a href="https://www.python-graph-gallery.com/">The Python Graph Gallery</a></li>
 </ul>
 
@@ -592,6 +631,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../contents/inspection.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Inspecting data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

@@ -94,6 +94,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../contents/inspection.html" rel="next">
+<link href="../contents/setup.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -184,6 +186,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../contents/setup.html" class="sidebar-item-text sidebar-link">Setup</a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../contents/pandas.html" class="sidebar-item-text sidebar-link active">NumPy and pandas</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/inspection.html" class="sidebar-item-text sidebar-link">Inspecting data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/vis.html" class="sidebar-item-text sidebar-link">Data visualization</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -209,12 +231,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Communicate</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Communicate</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://docs.google.com/document/d/1cZ0JzhjjdMBYtlpgkKGJ9LSbuwcv5eRIOQ5CRahw5Js/edit?usp=sharing" class="sidebar-item-text sidebar-link">Ask</a>
@@ -779,120 +801,121 @@ dtype: int64</code></pre>
 </section>
 <section id="missing" class="level2">
 <h2 class="anchored" data-anchor-id="missing">Missing</h2>
-<p>NULL, NaN, NA inf, -inf</p>
-<p><a href="https://pandas.pydata.org/docs/user_guide/missing_data.html">Working with missing data</a></p>
-<p>McKinney, p.233</p>
+<p><code>NaN</code>, <code>NA</code>, <code>None</code></p>
+<p>pandas에서는 missing을 명명하는데 R의 컨벤션을 따라 NA (not available)라 부름.<br>
+대부분의 경우에서 NumPy object <code>NaN</code>(<code>np.nan</code>)을 NA을 나타내는데 사용됨.<br>
+<code>np.nan</code>은 실제로 <strong>floating-point</strong>의 특정 값으로 float64 데이터 타입임. Integer 또는 string type에서 약간 이상하게 작동될 수 있음.<br>
+Python object인 <code>None</code>은 pandas에서 NA로 인식함.<br>
+현재 <code>NA</code>라는 새로운 pandas object 실험중임</p>
+<p>NA의 handling에 대해서는 교재 참고<br>
+<code>.dropna()</code>, <code>.fillna()</code>, <code>.isna()</code>, <code>.notna()</code></p>
+<ul>
+<li>Mckinney’s: 7.1 Handling Missing Data,<br>
+</li>
+<li>Mollin’s: 3.5 Handling duplicate, missing, or invalid data<br>
+</li>
+<li><a href="https://pandas.pydata.org/docs/user_guide/missing_data.html">Working with missing data</a></li>
+</ul>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, np.nan])</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<pre><code>0   1.00
+1   2.00
+2    NaN
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>s.astype(<span class="st">"Int64"</span>) <span class="co"># &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<pre><code>0       1
+1       2
+2    &lt;NA&gt;
+dtype: Int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">"a"</span>, <span class="st">"b"</span>, np.nan])</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>0      a
+1      b
+2    NaN
+dtype: object</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>s.astype(<span class="st">"string"</span>) <span class="co"># &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>0       a
+1       b
+2    &lt;NA&gt;
+dtype: string</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, np.nan, <span class="va">None</span>])</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>0   1.00
+1   2.00
+2    NaN
+3    NaN
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>s.isna() <span class="co"># or s.isnull()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>0    False
+1    False
+2     True
+3     True
+dtype: bool</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>s.notna() <span class="co"># or s.notnull()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>0     True
+1     True
+2    False
+3    False
+dtype: bool</code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python object인 None의 경우</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="va">None</span> <span class="op">==</span> <span class="va">None</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>NumPy object인 np.nan의 경우</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>np.nan <span class="op">==</span> np.nan</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
 <section id="attributes" class="level2">
 <h2 class="anchored" data-anchor-id="attributes">Attributes</h2>
-<p>Here are some commonly used attributes with <code>Series</code> objects:</p>
-<table class="table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Attribute</th>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>name</code></td>
-<td>The name of the <code>Series</code> object</td>
-</tr>
-<tr class="even">
-<td><code>dtype</code></td>
-<td>The data type of the <code>Series</code> object</td>
-</tr>
-<tr class="odd">
-<td><code>shape</code></td>
-<td>Dimensions of the <code>Series</code> object in a tuple of the form <code>(number of rows,)</code></td>
-</tr>
-<tr class="even">
-<td><code>index</code></td>
-<td>The <code>Index</code> object that is part of the <code>Series</code> object</td>
-</tr>
-<tr class="odd">
-<td><code>values</code></td>
-<td>The data in the <code>Series</code> object</td>
-</tr>
-</tbody>
-</table>
-<p>Here are some commonly used attributes with <code>Index</code> objects:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Attribute</th>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>name</code></td>
-<td>The name of the <code>Index</code> object</td>
-</tr>
-<tr class="even">
-<td><code>dtype</code></td>
-<td>The data type of the <code>Index</code> object</td>
-</tr>
-<tr class="odd">
-<td><code>shape</code></td>
-<td>Dimensions of the <code>Index</code> object</td>
-</tr>
-<tr class="even">
-<td><code>values</code></td>
-<td>The data in the <code>Index</code> object</td>
-</tr>
-<tr class="odd">
-<td><code>is_unique</code></td>
-<td>Check if the <code>Index</code> object has all unique values</td>
-</tr>
-</tbody>
-</table>
-<p>Here are some commonly used attributes:</p>
-<table class="table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Attribute</th>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>dtypes</code></td>
-<td>The data types of each column</td>
-</tr>
-<tr class="even">
-<td><code>shape</code></td>
-<td>Dimensions of the <code>DataFrame</code> object in a tuple of the form <code>(number of rows, number of columns)</code></td>
-</tr>
-<tr class="odd">
-<td><code>index</code></td>
-<td>The <code>Index</code> object along the rows of the <code>DataFrame</code> object</td>
-</tr>
-<tr class="even">
-<td><code>columns</code></td>
-<td>The name of the columns (as an <code>Index</code> object)</td>
-</tr>
-<tr class="odd">
-<td><code>values</code></td>
-<td>The data in the <code>DataFrame</code> object</td>
-</tr>
-<tr class="even">
-<td><code>empty</code></td>
-<td>Check if the <code>DataFrame</code> object is empty</td>
-</tr>
-</tbody>
-</table>
+<p>자주 사용되는 attributes;</p>
+<p>Series objects: <code>name</code>, <code>dtype</code>, <code>shape</code>, <code>index</code>, <code>values</code><br>
+Index objects: <code>name</code>, <code>dtype</code>, <code>shape</code>, <code>values</code>, <code>is_unique</code><br>
+DataFrame objects: <code>dtype</code>, <code>shape</code>, <code>index</code>, <code>columns</code>, <code>values</code></p>
 </section>
 <section id="creating-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="creating-dataframes">Creating DataFrames</h2>
+<p>DataFrame을 만드는 방식에 대해서는<br>
+Mckinney’s: <a href="https://wesmckinney.com/book/pandas-basics.html#pandas_dataframe">5.1 Introduction to pandas Data Structures</a><br>
+<img src="images/dataframe.png" class="img-fluid" width="800"></p>
 
 
 </section>
@@ -1045,6 +1068,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../contents/setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setup</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../contents/inspection.html" class="pagination-link">
+        <span class="nav-page-text">Inspecting data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
