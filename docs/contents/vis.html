@@ -224,7 +224,6 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#시각화-이론" id="toc-시각화-이론" class="nav-link" data-scroll-target="#시각화-이론">시각화 이론</a>
   <ul>
-  <li><a href="#bertins-semiology-of-graphics-1967" id="toc-bertins-semiology-of-graphics-1967" class="nav-link" data-scroll-target="#bertins-semiology-of-graphics-1967">Bertin’s Semiology of Graphics (1967)</a></li>
   <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The Grammer of Graphics</a>
   <ul class="collapse">
   <li><a href="#case-1" id="toc-case-1" class="nav-link" data-scroll-target="#case-1">Case 1</a></li>
@@ -312,16 +311,29 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="시각화-이론" class="level1">
 <h1>시각화 이론</h1>
-<section id="bertins-semiology-of-graphics-1967" class="level2">
-<h2 class="anchored" data-anchor-id="bertins-semiology-of-graphics-1967">Bertin’s Semiology of Graphics (1967)</h2>
-</section>
 <section id="the-grammer-of-graphics" class="level2">
 <h2 class="anchored" data-anchor-id="the-grammer-of-graphics">The Grammer of Graphics</h2>
 <p>A coherent system for describing and building graphs</p>
 <p>Source: <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization by Claus O. Wilke</a></p>
 <p>Aesthetics and types of data</p>
 <p><img src="images/aesthetics.png" class="img-fluid" width="500"></p>
-<p>같은 정보를 품고 있으나 더 적절한 representation이 존재</p>
+<p>데이터의 값을 특정 aesthetics에 mapping</p>
+<p><img src="images/aes_mapping.png" class="img-fluid" width="500"></p>
+<p>데이터의 타입은 다음과 같이 나누어짐</p>
+<ul>
+<li>continuous / discrete</li>
+<li>categorical unordered (nominal) / categorical ordered (ordinal)
+<ul>
+<li>성별, 지역 / 등급, 랭킹</li>
+<li>ordinal: 퀄리티 good, fair, poor는 등간격이라고 봐야하는가? 랭킹은? 선호도 1, 2, …, 8? 임금 구간?</li>
+</ul></li>
+</ul>
+<p>데이터 타입에 따라 좀 더 적절한 aesthetic mapping이 있으며,<br>
+같은 정보를 품고 있는 시각화라도 더 적절한 representation이 존재</p>
+<p>Bertin’s Semiology of Graphics (1967)<br>
+<strong>Levels of organization</strong><br>
+<img src="images/Bertin.png" class="img-fluid" width="300"><br>
+Source: Jake VanderPlas’ presentation at PyCon 2018</p>
 <section id="case-1" class="level3">
 <h3 class="anchored" data-anchor-id="case-1">Case 1</h3>
 <p>예를 들어, 다음과 같이 1) <strong>지역</strong>별로 2) <strong>날짜</strong>에 따른 3) <strong>온도</strong>의 변화를 나타낸다면,<br>
