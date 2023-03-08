@@ -348,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pakcage가 있는 채널들</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; conda search scipy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Python update</p>
+<p>conda base에 있는 Python을 update하려면, 가령 3.10으로 업데이트하려면</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; conda install python=3.10  # python update</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="conda-environment" class="level2">
 <h2 class="anchored" data-anchor-id="conda-environment">Conda Environment</h2>
 <p><a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands">conda/user guide</a></p>
-<p>환경 생성: miniconda에서 자체 제공하는 가상환경으로 다른 가상환경 툴인 <code>pyenv</code>나 <code>venv</code> 사용하지 않음</p>
+<p>환경 생성: miniconda에서 자체 제공하는 가상환경으로 수업에서는 다른 가상환경 툴인 <code>pyenv</code>나 <code>venv</code> 사용하지 않음</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#$ conda create --name myenv</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -396,11 +396,11 @@ Jupyter notebook을 쓰는 경우
 <div class="callout-body-container callout-body">
 <p>새로 만든 가상환경을 등록해줘야 함.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ipython kernel install --user --name=myenv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>가상환경을 삭제해도 kernel 리스트는 삭제되지 않으니 직접 삭제.</p>
+<p>가상환경을 삭제해도 등록시킨 kernel 이름은 삭제되지 않으니 직접 삭제.</p>
 <p>등록된 커널 리스트를 확인</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; jupyter kernelspec list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>커널 삭제</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>jupyter kernelspec remove myenv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; jupyter kernelspec remove myenv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -477,11 +477,12 @@ Jupyter notebook을 쓰는 경우
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
 <ul>
 <li>Python</li>
-<li>Python Extension Pack
+<li>Python Extension Pack 중
 <ul>
-<li>Docs View</li>
+<li>IntelliCode</li>
 <li>Python Environment Manager</li>
 </ul></li>
+<li>Docs View</li>
 </ul>
 </section>
 <section id="preferences" class="level2">
