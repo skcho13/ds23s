@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="first-steps" class="level2">
 <h2 class="anchored" data-anchor-id="first-steps">First steps</h2>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="7">
 <details>
 <summary>Load packages</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numerical calculation &amp; data frames</span></span>
@@ -410,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <p>Data: <em>Fuel economy data from 1999 to 2008 for 38 popular models of cars</em></p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mpg_data <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mpg"</span>, <span class="st">"ggplot2"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="op">=</span> mpg_data.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -752,35 +752,18 @@ Tip
 <p><img src="plots_files/figure-html/cell-16-output-1.png" width="743" height="445"></p>
 </div>
 </div>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Important
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>어떤 속성을 어떤 변수에 할당하는 것이 적절한지를 선택하는 것이 기술</em><br>
-예를 들어, 아래 두 플랏은 동일한 정보를 품고 있으나, 시각적 인식에 큰 차이를 만듦</p>
+<p>아래 그림에서처럼 연속 vs.&nbsp;카테고리 변수 여부에 따라 다르게 작동</p>
 </div>
-</div>
-<div class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
-<p><img src="plots_files/figure-html/cell-17-output-1.png" width="801" height="465"></p>
-</div>
-</div>
-<div class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="12">
-<p><img src="plots_files/figure-html/cell-18-output-1.png" width="801" height="465"></p>
-</div>
-</div>
-<p>연속 vs.&nbsp;카테고리 변수 여부에 따라 다르게 작동</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"class"</span>).add(so.Dot()).layout(engine<span class="op">=</span><span class="st">"constrained"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"cty"</span>).add(so.Dot()).layout(engine<span class="op">=</span><span class="st">"constrained"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts" class="cell quarto-layout-panel" data-execution_count="21">
 <figure class="figure">
@@ -805,14 +788,28 @@ Important
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Categorical vs.&nbsp;Continuous</figcaption><p></p>
 </figure>
 </div>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"cty"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .scale(color<span class="op">=</span>so.Continuous(<span class="st">"crest"</span>, norm<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">50</span>), trans<span class="op">=</span><span class="st">"sqrt"</span>))</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<p><img src="plots_files/figure-html/cell-21-output-1.png" width="681" height="445"></p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>어떤 속성을 어떤 변수에 할당하는 것이 적절한지를 선택하는 것이 기술</em><br>
+예를 들어, 아래 두 플랏은 동일한 정보를 품고 있으나, 시각적 인식에 큰 차이를 만듦</p>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
+<p><img src="plots_files/figure-html/cell-19-output-1.png" width="801" height="465"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<p><img src="plots_files/figure-html/cell-20-output-1.png" width="801" height="465"></p>
 </div>
 </div>
 </section>
@@ -846,30 +843,30 @@ Tip
 </div>
 </div>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>)) <span class="co"># Mark object 안에 지정!</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>)) <span class="co"># Mark object 안에 지정!</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
-<p><img src="plots_files/figure-html/cell-22-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-21-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>, edgewidth<span class="op">=</span><span class="dv">1</span>)) <span class="co"># Mark object 안에 지정!</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"deepskyblue"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, edgecolor<span class="op">=</span><span class="st">"white"</span>, edgewidth<span class="op">=</span><span class="dv">1</span>)) <span class="co"># Mark object 안에 지정!</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
-<p><img src="plots_files/figure-html/cell-23-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-22-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"orange"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, marker<span class="op">=</span><span class="st">"&gt;"</span>, alpha<span class="op">=</span><span class="fl">.4</span>)) <span class="co"># Mark object 안에 지정!</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">"orange"</span>, pointsize<span class="op">=</span><span class="dv">12</span>, marker<span class="op">=</span><span class="st">"&gt;"</span>, alpha<span class="op">=</span><span class="fl">.4</span>)) <span class="co"># Mark object 안에 지정!</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
-<p><img src="plots_files/figure-html/cell-24-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-23-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 </section>
@@ -888,8 +885,8 @@ Tip
 </div>
 </div>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>) <span class="co"># load a dataset: penguins</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>) <span class="co"># load a dataset: penguins</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -964,23 +961,23 @@ Tip
 </div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"sex"</span>) <span class="co"># 기본적으로 columns으로 나누어져 그림</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"sex"</span>) <span class="co"># 기본적으로 columns으로 나누어져 그림</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
-<p><img src="plots_files/figure-html/cell-26-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-25-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>, row<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>, row<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<p><img src="plots_files/figure-html/cell-27-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-26-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 <div class="callout-important callout callout-style-default callout-captioned">
@@ -997,15 +994,15 @@ Important
 </div>
 </div>
 <div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .facet(col<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts2" class="cell quarto-layout-panel" data-execution_count="30">
 <figure class="figure">
@@ -1035,25 +1032,25 @@ Important
 <p>Faceting이 변수 내에 <strong>다른 레벨</strong>에 따라 그려지는데 반해,<br>
 paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
 <div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>) <span class="co"># y축은 공유</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>]) <span class="co"># x축에 다른 변수를 mapping</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots()) <span class="co"># .Dots()! overploting에 유리. .Dot(alpha=.)로도 비슷</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>) <span class="co"># y축은 공유</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>]) <span class="co"># x축에 다른 변수를 mapping</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots()) <span class="co"># .Dots()! overploting에 유리. .Dot(alpha=.)로도 비슷</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
-<p><img src="plots_files/figure-html/cell-30-output-1.png" width="727" height="445"></p>
+<p><img src="plots_files/figure-html/cell-29-output-1.png" width="727" height="445"></p>
 </div>
 </div>
 <p>Facet &amp; pair 동시</p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>])</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    .facet(row<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    .pair(x<span class="op">=</span>[<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    .facet(row<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
-<p><img src="plots_files/figure-html/cell-31-output-1.png" width="713" height="445"></p>
+<p><img src="plots_files/figure-html/cell-30-output-1.png" width="713" height="445"></p>
 </div>
 </div>
 </section>
@@ -1061,25 +1058,25 @@ paring은 x, y축에 <strong>다른 변수</strong>를 지정하여 그림</p>
 <h3 class="anchored" data-anchor-id="multiple-plots">Multiple plots</h3>
 <p>개발 중…? Matplotlib을 이용</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> mpl.figure.Figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>sf1, sf2 <span class="op">=</span> f.subfigures(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    .on(sf1)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    .plot()</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    .facet(row<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    .on(sf2)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    .plot()</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> mpl.figure.Figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sf1, sf2 <span class="op">=</span> f.subfigures(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    .on(sf1)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    .plot()</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"flipper_length_mm"</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    .facet(row<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots())</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    .on(sf2)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    .plot()</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
-<p><img src="plots_files/figure-html/cell-32-output-1.png" width="758" height="381"></p>
+<p><img src="plots_files/figure-html/cell-31-output-1.png" width="758" height="381"></p>
 </div>
 </div>
 <p>Save plots</p>
@@ -1160,16 +1157,16 @@ Note
 <h3 class="anchored" data-anchor-id="fitted-lines">Fitted lines</h3>
 <p>seaborn.objects</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>)) <span class="co"># PolyFit(n): n차 다항식으로 fit</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts3" class="cell quarto-layout-panel" data-execution_count="35">
 <figure class="figure">
@@ -1195,17 +1192,17 @@ Note
 </figure>
 </div>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이후 모든 layer에 적용</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이 layer에만 적용</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>, color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이후 모든 layer에 적용</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color mapping이 이 layer에만 적용</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts4" class="cell quarto-layout-panel" data-execution_count="37">
 <figure class="figure">
@@ -1231,26 +1228,26 @@ Note
 </figure>
 </div>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>), group<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color가 아닌 group으로 grouping</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(), color<span class="op">=</span><span class="st">"drv"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>), group<span class="op">=</span><span class="st">"drv"</span>) <span class="co"># color가 아닌 group으로 grouping</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
-<p><img src="plots_files/figure-html/cell-37-output-1.png" width="672" height="445"></p>
+<p><img src="plots_files/figure-html/cell-36-output-1.png" width="672" height="445"></p>
 </div>
 </div>
 <p>Linear fit vs.&nbsp;smoothing fit:<br>
 선형적인 트렌드에서 얼마나 벗어나는가?</p>
 <div class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">".6"</span>))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">1</span>))</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(mpg, x<span class="op">=</span><span class="st">"displ"</span>, y<span class="op">=</span><span class="st">"hwy"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(color<span class="op">=</span><span class="st">".6"</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">5</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.PolyFit(<span class="dv">1</span>))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="68">
-<p><img src="plots_files/figure-html/cell-38-output-1.png" width="599" height="445"></p>
+<p><img src="plots_files/figure-html/cell-37-output-1.png" width="599" height="445"></p>
 </div>
 </div>
 <p>다른 대안으로는 <code>plotly</code>, <code>seaborn</code>: alternative plots 섹션 참고</p>
@@ -1265,8 +1262,8 @@ Note
 <section id="a-categorical-variable" class="level3">
 <h3 class="anchored" data-anchor-id="a-categorical-variable">A categorical variable</h3>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tips.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tips.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 244 entries, 0 to 243
@@ -1285,30 +1282,30 @@ memory usage: 7.4 KB</code></pre>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(tips, x<span class="op">=</span><span class="st">"day"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count()) <span class="co"># category type의 변수는 순서가 존재. 그렇지 않은 경우 알바벳 순서로 </span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(tips, x<span class="op">=</span><span class="st">"day"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count()) <span class="co"># category type의 변수는 순서가 존재. 그렇지 않은 경우 알바벳 순서로 </span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="113">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="113" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-40-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-39-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>) <span class="co"># load a dataset: penguins</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Species에 inherent order가 없음; 알파벳 순으로 정렬</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count())</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>) <span class="co"># load a dataset: penguins</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Species에 inherent order가 없음; 알파벳 순으로 정렬</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count())</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="6">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="6" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-41-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-40-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -1328,18 +1325,18 @@ Important
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> penguins[<span class="st">"species"</span>].value_counts().index.values</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; array(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count())</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    .scale(x<span class="op">=</span>so.Nominal(order<span class="op">=</span>cl)) <span class="co"># x축의 카테고리 순서를 변경</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> penguins[<span class="st">"species"</span>].value_counts().index.values</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; array(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    .add(so.Bar(), so.Count())</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    .scale(x<span class="op">=</span>so.Nominal(order<span class="op">=</span>cl)) <span class="co"># x축의 카테고리 순서를 변경</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="78">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="78" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-42-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-41-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -1348,28 +1345,28 @@ Important
 <section id="a-numerical-variable" class="level3">
 <h3 class="anchored" data-anchor-id="a-numerical-variable">A numerical variable</h3>
 <div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist()) <span class="co"># Histogram</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># .Bars()는 .Bar()에 비해 연속변수에 더 적합: 얇은 경계선으로 나란히 붙혀서 그려짐</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist()) <span class="co"># Histogram</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># .Bars()는 .Bar()에 비해 연속변수에 더 적합: 얇은 경계선으로 나란히 붙혀서 그려짐</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="81">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="81" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-43-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-42-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist(binwidth<span class="op">=</span><span class="dv">100</span>)) <span class="co"># binwidth vs. bins</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist(bins<span class="op">=</span><span class="dv">10</span>)) <span class="co"># binwidth vs. bins</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> (</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist(binwidth<span class="op">=</span><span class="dv">100</span>)) <span class="co"># binwidth vs. bins</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> (</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(), so.Hist(bins<span class="op">=</span><span class="dv">10</span>)) <span class="co"># binwidth vs. bins</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts5" class="cell quarto-layout-panel" data-execution_count="85">
 <figure class="figure">
@@ -1395,29 +1392,29 @@ Important
 </figure>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Area(), so.KDE()) <span class="co"># Density plot</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Area(), so.KDE()) <span class="co"># Density plot</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="86">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="86" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-46-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-45-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot: 넓이가 1이 되도록</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.KDE(bw_adjust<span class="op">=</span><span class="fl">.2</span>)) <span class="co"># Density bandwidth: binwidth에 대응</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(alpha<span class="op">=</span><span class="fl">.3</span>), so.Hist(<span class="st">"density"</span>)) <span class="co"># y축이 count가 아니 density</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot: 넓이가 1이 되도록</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(), so.KDE(bw_adjust<span class="op">=</span><span class="fl">.2</span>)) <span class="co"># Density bandwidth: binwidth에 대응</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Bars(alpha<span class="op">=</span><span class="fl">.3</span>), so.Hist(<span class="st">"density"</span>)) <span class="co"># y축이 count가 아니 density</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="90">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="90" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-47-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-46-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -1433,78 +1430,78 @@ Important
 <img src="images/boxplot.png" class="img-fluid"><br>
 source: R for Data Science</p>
 <div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># 생략해도 무방</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># 생략해도 무방</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="4">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
+<p><img src="plots_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots(color<span class="op">=</span><span class="st">".5"</span>), so.Jitter()) <span class="co"># .Jitter(): 흐트려뜨려 그리기</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(pointsize<span class="op">=</span><span class="dv">8</span>), so.Agg(<span class="st">"median"</span>)) <span class="co"># .Agg(): aggregation, default는 mean</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Range(), so.Est(<span class="st">"median"</span>, errorbar<span class="op">=</span>(<span class="st">"pi"</span>, <span class="dv">50</span>))) <span class="co"># .Range(): 기본 min/max range, .Est(): estimator</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots(color<span class="op">=</span><span class="st">".5"</span>), so.Jitter()) <span class="co"># .Jitter(): 흐트려뜨려 그리기</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(pointsize<span class="op">=</span><span class="dv">8</span>), so.Agg(<span class="st">"median"</span>)) <span class="co"># .Agg(): aggregation, default는 mean</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Range(), so.Est(<span class="st">"median"</span>, errorbar<span class="op">=</span>(<span class="st">"pi"</span>, <span class="dv">50</span>))) <span class="co"># .Range(): 기본 min/max range, .Est(): estimator</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="33">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="33" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-49-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-48-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
 </div>
 <p>Error bars에 대해서는 <a href="https://seaborn.pydata.org/tutorial/error_bars.html">seaborn website</a></p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots(), so.Jitter(), so.Dodge())</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(pointsize<span class="op">=</span><span class="dv">5</span>), so.Agg(<span class="st">"median"</span>), so.Dodge())</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Range(), so.Est(<span class="st">"median"</span>, errorbar<span class="op">=</span>(<span class="st">"pi"</span>, <span class="dv">50</span>)), so.Dodge())</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dots(), so.Jitter(), so.Dodge())</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(pointsize<span class="op">=</span><span class="dv">5</span>), so.Agg(<span class="st">"median"</span>), so.Dodge())</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Range(), so.Est(<span class="st">"median"</span>, errorbar<span class="op">=</span>(<span class="st">"pi"</span>, <span class="dv">50</span>)), so.Dodge())</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
-<p><img src="plots_files/figure-html/cell-50-output-1.png" width="713" height="445"></p>
+<p><img src="plots_files/figure-html/cell-49-output-1.png" width="713" height="445"></p>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, hue<span class="op">=</span><span class="st">"sex"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># 생략해도 무방</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(penguins, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, hue<span class="op">=</span><span class="st">"sex"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># 생략해도 무방</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="34">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-51-output-1.png" class="img-fluid"></p>
+<p><img src="plots_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 </div>
 <p>Frequency polygon</p>
 <div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(marker<span class="op">=</span><span class="st">"."</span>), so.Hist(binwidth<span class="op">=</span><span class="dv">200</span>)) <span class="co"># Line에 maker "."을 표시</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(marker<span class="op">=</span><span class="st">"."</span>), so.Hist(binwidth<span class="op">=</span><span class="dv">200</span>)) <span class="co"># Line에 maker "."을 표시</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="105">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="105" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-52-output-1.png" class="img-fluid" width="727"></p>
+<p><img src="plots_files/figure-html/cell-51-output-1.png" class="img-fluid" width="727"></p>
 </div>
 </div>
 </div>
 </div>
 <p>Grouped density plot</p>
 <div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Area(), so.KDE(common_norm<span class="op">=</span>[<span class="st">"color"</span>])) <span class="co"># Density plot, species별로 넓이가 1이 되도록</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"body_mass_g"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Area(), so.KDE(common_norm<span class="op">=</span>[<span class="st">"color"</span>])) <span class="co"># Density plot, species별로 넓이가 1이 되도록</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="107">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="107" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-53-output-1.png" class="img-fluid" width="727"></p>
+<p><img src="plots_files/figure-html/cell-52-output-1.png" class="img-fluid" width="727"></p>
 </div>
 </div>
 </div>
@@ -1513,19 +1510,19 @@ source: R for Data Science</p>
 <section id="two-categorical-variables" class="level3">
 <h3 class="anchored" data-anchor-id="two-categorical-variables">Two categorical variables</h3>
 <div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> so.Plot(penguins, x<span class="op">=</span><span class="st">"island"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>p.add(so.Bar(), so.Count()) <span class="co"># Bar() mark + Count() transformation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> so.Plot(penguins, x<span class="op">=</span><span class="st">"island"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>p.add(so.Bar(), so.Count()) <span class="co"># Bar() mark + Count() transformation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="108">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="108" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-54-output-1.png" class="img-fluid" width="727"></p>
+<p><img src="plots_files/figure-html/cell-53-output-1.png" class="img-fluid" width="727"></p>
 </div>
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> p.add(so.Bar(), so.Count(), so.Dodge()) <span class="co"># 나란히 표시</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> p.add(so.Bar(), so.Count(), so.Stack()) <span class="co"># stacking</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> p.add(so.Bar(), so.Count(), so.Dodge()) <span class="co"># 나란히 표시</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> p.add(so.Bar(), so.Count(), so.Stack()) <span class="co"># stacking</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-charts6" class="cell quarto-layout-panel" data-execution_count="112">
 <figure class="figure">
@@ -1552,10 +1549,10 @@ source: R for Data Science</p>
 </div>
 <p>Count 대신 proportion을 표시하는 경우</p>
 <div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>p.add(</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    so.Bar(width<span class="op">=</span><span class="fl">.5</span>), so.Hist(stat<span class="op">=</span><span class="st">"proportion"</span>, common_norm<span class="op">=</span>[<span class="st">"x"</span>]), <span class="co"># proportion</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    so.Stack() <span class="co"># stacking</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>p.add(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    so.Bar(width<span class="op">=</span><span class="fl">.5</span>), so.Hist(stat<span class="op">=</span><span class="st">"proportion"</span>, common_norm<span class="op">=</span>[<span class="st">"x"</span>]), <span class="co"># proportion</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    so.Stack() <span class="co"># stacking</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/georgeair/miniconda3/envs/envconda/lib/python3.11/site-packages/seaborn/_stats/counting.py:228: UserWarning: Undefined variable(s) passed for Hist.common_norm: 'x'.
   self._check_grouping_vars("common_norm", grouping_vars)</code></pre>
@@ -1563,22 +1560,22 @@ source: R for Data Science</p>
 <div class="cell quarto-layout-panel" data-execution_count="123">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="123" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-57-output-2.png" class="img-fluid" width="727"></p>
+<p><img src="plots_files/figure-html/cell-56-output-2.png" class="img-fluid" width="727"></p>
 </div>
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>p.add(</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    so.Bar(width<span class="op">=</span><span class="fl">.8</span>), so.Hist(stat<span class="op">=</span><span class="st">"proportion"</span>, common_norm<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"col"</span>]), <span class="co"># proportion</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    so.Stack(), <span class="co"># stacking</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>).facet(col<span class="op">=</span><span class="st">"sex"</span>) <span class="co"># faceting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>p.add(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    so.Bar(width<span class="op">=</span><span class="fl">.8</span>), so.Hist(stat<span class="op">=</span><span class="st">"proportion"</span>, common_norm<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"col"</span>]), <span class="co"># proportion</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    so.Stack(), <span class="co"># stacking</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>).facet(col<span class="op">=</span><span class="st">"sex"</span>) <span class="co"># faceting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/georgeair/miniconda3/envs/envconda/lib/python3.11/site-packages/seaborn/_stats/counting.py:228: UserWarning: Undefined variable(s) passed for Hist.common_norm: 'x'.
   self._check_grouping_vars("common_norm", grouping_vars)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="125">
-<p><img src="plots_files/figure-html/cell-58-output-2.png" width="727" height="445"></p>
+<p><img src="plots_files/figure-html/cell-57-output-2.png" width="727" height="445"></p>
 </div>
 </div>
 </section>
@@ -1586,14 +1583,14 @@ source: R for Data Science</p>
 <h3 class="anchored" data-anchor-id="two-numerical-variables">Two numerical variables</h3>
 <p>Scatterplot</p>
 <div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="116">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="116" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-59-output-1.png" class="img-fluid" width="599"></p>
+<p><img src="plots_files/figure-html/cell-58-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -1602,66 +1599,66 @@ source: R for Data Science</p>
 <section id="three-or-more-variables" class="level3">
 <h3 class="anchored" data-anchor-id="three-or-more-variables">Three or more variables</h3>
 <div class="cell" data-execution_count="128">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>,</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"species"</span>, marker<span class="op">=</span><span class="st">"island"</span>)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    .layout(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"species"</span>, marker<span class="op">=</span><span class="st">"island"</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot())</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    .layout(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
-<p><img src="plots_files/figure-html/cell-60-output-1.png" width="692" height="369"></p>
+<p><img src="plots_files/figure-html/cell-59-output-1.png" width="692" height="369"></p>
 </div>
 </div>
 <p>Facet의 활용</p>
 <div class="cell" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"island"</span>)</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    .layout(size<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(penguins, x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Dot(alpha<span class="op">=</span><span class="fl">.5</span>))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"island"</span>)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    .layout(size<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
-<p><img src="plots_files/figure-html/cell-61-output-1.png" width="878" height="369"></p>
+<p><img src="plots_files/figure-html/cell-60-output-1.png" width="878" height="369"></p>
 </div>
 </div>
 </section>
 <section id="time-series" class="level3">
 <h3 class="anchored" data-anchor-id="time-series">Time series</h3>
 <div class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>healthexp <span class="op">=</span> sns.load_dataset(<span class="st">"healthexp"</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Spending_USD"</span>, color<span class="op">=</span><span class="st">"Country"</span>)</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Lines())</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>healthexp <span class="op">=</span> sns.load_dataset(<span class="st">"healthexp"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Spending_USD"</span>, color<span class="op">=</span><span class="st">"Country"</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    .add(so.Lines())</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="129">
-<p><img src="plots_files/figure-html/cell-62-output-1.png" width="747" height="445"></p>
+<p><img src="plots_files/figure-html/cell-61-output-1.png" width="747" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Life_Expectancy"</span>)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(alpha<span class="op">=</span><span class="fl">.3</span>), group<span class="op">=</span><span class="st">"Country"</span>, col<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(linewidth<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"Country"</span>, wrap<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    so.Plot(healthexp, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Life_Expectancy"</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(alpha<span class="op">=</span><span class="fl">.3</span>), group<span class="op">=</span><span class="st">"Country"</span>, col<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    .add(so.Line(linewidth<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    .facet(<span class="st">"Country"</span>, wrap<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="130">
-<p><img src="plots_files/figure-html/cell-63-output-1.png" width="598" height="445"></p>
+<p><img src="plots_files/figure-html/cell-62-output-1.png" width="598" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fmri <span class="op">=</span> sns.load_dataset(<span class="st">"fmri"</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> so.Plot(fmri, <span class="st">"timepoint"</span>, <span class="st">"signal"</span>, color<span class="op">=</span><span class="st">"region"</span>, linestyle<span class="op">=</span><span class="st">"event"</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>p.add(so.Line(), so.Agg())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fmri <span class="op">=</span> sns.load_dataset(<span class="st">"fmri"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> so.Plot(fmri, <span class="st">"timepoint"</span>, <span class="st">"signal"</span>, color<span class="op">=</span><span class="st">"region"</span>, linestyle<span class="op">=</span><span class="st">"event"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>p.add(so.Line(), so.Agg())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="131">
-<p><img src="plots_files/figure-html/cell-64-output-1.png" width="712" height="445"></p>
+<p><img src="plots_files/figure-html/cell-63-output-1.png" width="712" height="445"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>p.add(so.Line(marker<span class="op">=</span><span class="st">"o"</span>, edgecolor<span class="op">=</span><span class="st">"w"</span>), so.Agg(), linestyle<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>p.add(so.Line(marker<span class="op">=</span><span class="st">"o"</span>, edgecolor<span class="op">=</span><span class="st">"w"</span>), so.Agg(), linestyle<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
-<p><img src="plots_files/figure-html/cell-65-output-1.png" width="712" height="445"></p>
+<p><img src="plots_files/figure-html/cell-64-output-1.png" width="712" height="445"></p>
 </div>
 </div>
 </section>
@@ -1674,23 +1671,23 @@ source: R for Data Science</p>
 <code>.facet()</code> facet: 다른 면에 그리기</p>
 <p>특별히 overplotting에 특화된 plots도 있음. 예를 들어,</p>
 <div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, kind<span class="op">=</span><span class="st">"swarm"</span>,</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, hue<span class="op">=</span><span class="st">"sex"</span>, col<span class="op">=</span><span class="st">"island"</span>,</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="fl">.6</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, kind<span class="op">=</span><span class="st">"swarm"</span>,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, hue<span class="op">=</span><span class="st">"sex"</span>, col<span class="op">=</span><span class="st">"island"</span>,</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="fl">.6</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plots_files/figure-html/cell-66-output-1.png" class="img-fluid"></p>
+<p><img src="plots_files/figure-html/cell-65-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(penguins, x<span class="op">=</span><span class="st">"bill_depth_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(penguins, x<span class="op">=</span><span class="st">"bill_depth_mm"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-execution_count="149">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="plots_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
+<p><img src="plots_files/figure-html/cell-66-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
