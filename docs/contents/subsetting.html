@@ -207,7 +207,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Visualize</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Visualize</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/seaborn.html" class="sidebar-item-text sidebar-link">Seaborn.objects</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../contents/plots.html" class="sidebar-item-text sidebar-link">Plots</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/alt_plots.html" class="sidebar-item-text sidebar-link">Alternative plots</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contents/customizing.html" class="sidebar-item-text sidebar-link">Customizing</a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,12 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Communicate</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Communicate</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://docs.google.com/document/d/1cZ0JzhjjdMBYtlpgkKGJ9LSbuwcv5eRIOQ5CRahw5Js/edit?usp=sharing" class="sidebar-item-text sidebar-link">Ask</a>
@@ -257,10 +289,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#bracket" id="toc-bracket" class="nav-link active" data-scroll-target="#bracket">Bracket [ ]</a></li>
   <li><a href="#dot-notation-." id="toc-dot-notation-." class="nav-link" data-scroll-target="#dot-notation-.">Dot notation .</a></li>
-  <li><a href="#loc-iloc" id="toc-loc-iloc" class="nav-link" data-scroll-target="#loc-iloc">loc &amp; iloc</a>
+  <li><a href="#loc-.iloc" id="toc-loc-.iloc" class="nav-link" data-scroll-target="#loc-.iloc">.loc &amp; .iloc</a>
   <ul>
-  <li><a href="#loc-label-based-indexing" id="toc-loc-label-based-indexing" class="nav-link" data-scroll-target="#loc-label-based-indexing">loc: label-based indexing</a></li>
-  <li><a href="#iloc-position-based-indexing" id="toc-iloc-position-based-indexing" class="nav-link" data-scroll-target="#iloc-position-based-indexing">iloc: position-based indexing</a></li>
+  <li><a href="#loc-label-based-indexing" id="toc-loc-label-based-indexing" class="nav-link" data-scroll-target="#loc-label-based-indexing">.loc: label-based indexing</a></li>
+  <li><a href="#iloc-position-based-indexing" id="toc-iloc-position-based-indexing" class="nav-link" data-scroll-target="#iloc-position-based-indexing">.iloc: position-based indexing</a></li>
   </ul></li>
   <li><a href="#series의-indexing" id="toc-series의-indexing" class="nav-link" data-scroll-target="#series의-indexing">Series의 indexing</a></li>
   <li><a href="#boolean-indexing" id="toc-boolean-indexing" class="nav-link" data-scroll-target="#boolean-indexing">Boolean indexing</a>
@@ -306,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="9">
 <details>
 <summary>Load Packages</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numerical calculation &amp; data frames</span></span>
@@ -323,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="11">
 <details>
 <summary>Options</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas options</span></span>
@@ -336,19 +368,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <p>Data: <em>On-time data for all flights that departed NYC (i.e.&nbsp;JFK, LGA or EWR) in 2013</em></p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>flights_data <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"flights"</span>, <span class="st">"nycflights13"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>flights <span class="op">=</span> flights_data.data</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>flights <span class="op">=</span> flights.drop(columns<span class="op">=</span><span class="st">"time_hour"</span>) <span class="co"># drop the "time_hour" column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Description</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flights_data.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>        year  month  day  dep_time  sched_dep_time  dep_delay  arr_time  \
 0       2013      1    1    517.00             515       2.00    830.00   
 1       2013      1    1    533.00             529       4.00    850.00   
@@ -396,9 +428,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>A list of strings</li>
 </ul>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flights[<span class="st">'dest'</span>] <span class="co"># return as a Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>0         IAH
 1         IAH
 2         MIA
@@ -409,11 +441,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Name: dest, Length: 336776, dtype: object</code></pre>
 </div>
 </div>
-<div>
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">'dest'</span>]] <span class="co"># return as a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="8">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="8" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>       dest
 0       IAH
 1       IAH
@@ -426,13 +456,9 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 [336776 rows x 1 columns]</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div>
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">'origin'</span>, <span class="st">'dest'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="9">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="9" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>       origin dest
 0         EWR  IAH
 1         LGA  IAH
@@ -445,17 +471,15 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 [336776 rows x 2 columns]</code></pre>
 </div>
 </div>
-</div>
-</div>
 <p><em>Bracket안에 <strong>numbers</strong>가 있는 경우 <strong>rows</strong>를 select - position-based</em></p>
 <ul>
 <li>Slicing만 허용</li>
 <li>First index는 포함, last index는 제외</li>
 <li>[1, 5, 8]과 같이 특정 rows를 선택하는 것은 허용안됨</li>
 </ul>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>flights[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>   year  month  day  dep_time  sched_dep_time  dep_delay  arr_time  \
 2  2013      1    1    542.00             540       2.00    923.00   
 3  2013      1    1    544.00             545      -1.00   1004.00   
@@ -473,12 +497,8 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 </div>
 </div>
 <p><br> 만약, 아래와 같이 index가 number일 때 out of order가 된 경우에도 row position으로 적용됨</p>
-<div id="tbl-df" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="[&quot;df_outoforder&quot;,&quot;.&quot;,&quot;.&quot;]" data-execution_count="11">
-<div class="panel-caption table-caption">
-<p><strong>?(caption)</strong></p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="11" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>   origin dest  arr_delay
 42    LGA  DFW      48.00
 2     JFK  MIA      33.00
@@ -487,32 +507,23 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 33    EWR  MSP      29.00</code></pre>
 </div>
 </div>
-</div>
-<div>
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_outoforder[<span class="dv">2</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="12">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="12" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>   origin dest  arr_delay
 25    EWR  ORD      32.00
 14    LGA  DFW      31.00</code></pre>
 </div>
 </div>
-</div>
-</div>
 <p><br> <em>Chaining with brackets</em></p>
-<div>
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>flights[[<span class="st">'origin'</span>, <span class="st">'dest'</span>]][<span class="dv">2</span>:<span class="dv">5</span>]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 순서 바꿔어도 동일: flights[2:5][['origin', 'dest']]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="13">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="13" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>  origin dest
 2    JFK  MIA
 3    JFK  BQN
 4    LGA  ATL</code></pre>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -541,9 +552,9 @@ Note
 </ul>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights.dest <span class="co"># flihgts["dest"]와 동일</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>0         IAH
 1         IAH
 2         MIA
@@ -555,21 +566,19 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="loc-iloc" class="level2">
-<h2 class="anchored" data-anchor-id="loc-iloc">loc &amp; iloc</h2>
+<section id="loc-.iloc" class="level2">
+<h2 class="anchored" data-anchor-id="loc-.iloc">.loc &amp; .iloc</h2>
 <p>각각 location, integer location의 약자<br>
 <code>df.(i)loc[row_indexer, column_indexer]</code></p>
 <section id="loc-label-based-indexing" class="level3">
-<h3 class="anchored" data-anchor-id="loc-label-based-indexing">loc: label-based indexing</h3>
+<h3 class="anchored" data-anchor-id="loc-label-based-indexing">.loc: label-based indexing</h3>
 <ul>
 <li>Index가 number인 경우도 label로 처리</li>
 <li>Slicing의 경우 first, last index 모두 inclusive</li>
 </ul>
-<div>
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, [<span class="st">'origin'</span>, <span class="st">'dest'</span>]] <span class="co"># 2:5는 index의 label, not position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="15">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="15" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>  origin dest
 2    JFK  MIA
 3    JFK  BQN
@@ -577,12 +586,9 @@ Name: dest, Length: 336776, dtype: object</code></pre>
 5    EWR  ORD</code></pre>
 </div>
 </div>
-</div>
-</div>
 <p>다음과 같이 index가 labels인 경우는 혼동의 염려 없음</p>
-<div class="cell quarto-layout-panel" data-execution_count="16">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="16" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>       origin dest
 red       JFK  MIA
 blue      JFK  BQN
@@ -590,27 +596,18 @@ green     LGA  ATL
 yellow    EWR  ORD</code></pre>
 </div>
 </div>
-</div>
-<div>
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_labels.loc[<span class="st">"blue"</span>:<span class="st">"green"</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="17">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="17" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>      origin dest
 blue     JFK  BQN
 green    LGA  ATL</code></pre>
 </div>
 </div>
-</div>
-</div>
 <p>하지만, index가 number인 경우는 혼동이 있음<br>
 앞서 본 예에서처럼 index가 out of order인 경우 loc은 다르게 작동</p>
-<div id="tbl-df2" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="[&quot;df_outoforder&quot;,&quot;.&quot;,&quot;.&quot;]" data-execution_count="18">
-<div class="panel-caption table-caption">
-<p><strong>?(caption)</strong></p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="18" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>   origin dest  arr_delay
 42    LGA  DFW      48.00
 2     JFK  MIA      33.00
@@ -619,35 +616,26 @@ green    LGA  ATL</code></pre>
 33    EWR  MSP      29.00</code></pre>
 </div>
 </div>
-</div>
-<div>
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_outoforder.loc[<span class="dv">2</span>:<span class="dv">14</span>, :] <span class="co"># position 아님</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="19">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="19" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>   origin dest  arr_delay
 2     JFK  MIA      33.00
 25    EWR  ORD      32.00
 14    LGA  DFW      31.00</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div>
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_outoforder.loc[[<span class="dv">25</span>, <span class="dv">33</span>], :] <span class="co"># slicing이 아닌 특정 index 선택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="20">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="20" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>   origin dest  arr_delay
 25    EWR  ORD      32.00
 33    EWR  MSP      29.00</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, <span class="st">'dest'</span>] <span class="co"># returns as a Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>2    MIA
 3    BQN
 4    ATL
@@ -655,11 +643,9 @@ green    LGA  ATL</code></pre>
 Name: dest, dtype: object</code></pre>
 </div>
 </div>
-<div>
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, [<span class="st">'dest'</span>]] <span class="co"># return as a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="22">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="22" style="flex-basis: 20.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>  dest
 2  MIA
 3  BQN
@@ -667,37 +653,26 @@ Name: dest, dtype: object</code></pre>
 5  ORD</code></pre>
 </div>
 </div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
 </div>
 </div>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, :] <span class="co"># ':' means all</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 다음 모두 가능</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.loc[2:5]</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.loc[2:5, ]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>   year  month  day  dep_time  sched_dep_time  dep_delay  arr_time  \
-2  2013      1    1    542.00             540       2.00    923.00   
-3  2013      1    1    544.00             545      -1.00   1004.00   
-4  2013      1    1    554.00             600      -6.00    812.00   
-5  2013      1    1    554.00             558      -4.00    740.00   
-
-   sched_arr_time  arr_delay carrier  flight tailnum origin dest  air_time  \
-2             850      33.00      AA    1141  N619AA    JFK  MIA    160.00   
-3            1022     -18.00      B6     725  N804JB    JFK  BQN    183.00   
-4             837     -25.00      DL     461  N668DN    LGA  ATL    116.00   
-5             728      12.00      UA    1696  N39463    EWR  ORD    150.00   
-
-   distance  hour  minute  
-2      1089     5      40  
-3      1576     5      45  
-4       762     6       0  
-5       719     5      58  </code></pre>
+<div class="callout-body-container callout-body">
+<p>생략</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, :] <span class="co"># ':' means all</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>:<span class="dv">5</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select a single row</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>, :] <span class="co"># returns as a Series, column names as its index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select a single row</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>flights.loc[<span class="dv">2</span>, :] <span class="co"># returns as a Series, column names as its index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>year        2013
 month          1
 day            1
@@ -711,38 +686,34 @@ Name: 2, Length: 18, dtype: object</code></pre>
 <p><br></p>
 </section>
 <section id="iloc-position-based-indexing" class="level3">
-<h3 class="anchored" data-anchor-id="iloc-position-based-indexing">iloc: position-based indexing</h3>
+<h3 class="anchored" data-anchor-id="iloc-position-based-indexing">.iloc: position-based indexing</h3>
 <ul>
 <li>Slicing의 경우 as usual: first index는 inclusive, last index는 exclusive</li>
 </ul>
-<div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, <span class="dv">12</span>:<span class="dv">14</span>] <span class="co"># 2:5는 index의 position, last index는 미포함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="25">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="25" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, <span class="dv">12</span>:<span class="dv">14</span>] <span class="co"># 2:5는 index의 position, last index는 미포함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>  origin dest
 2    JFK  MIA
 3    JFK  BQN
 4    LGA  ATL</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, <span class="dv">12</span>] <span class="co"># return as a Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, <span class="dv">12</span>] <span class="co"># return as a Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>2    JFK
 3    JFK
 4    LGA
 Name: origin, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, :]</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 다음 모두 가능</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.iloc[2:5]</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.iloc[2:5, ]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, :]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 다음 모두 가능</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.iloc[2:5]</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># flights.iloc[2:5, ]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>   year  month  day  dep_time  sched_dep_time  dep_delay  arr_time  \
 2  2013      1    1    542.00             540       2.00    923.00   
 3  2013      1    1    544.00             545      -1.00   1004.00   
@@ -759,30 +730,22 @@ Name: origin, dtype: object</code></pre>
 4       762     6       0  </code></pre>
 </div>
 </div>
-<div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, [<span class="dv">12</span>]] <span class="co"># return as a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="28">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="28" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[<span class="dv">2</span>:<span class="dv">5</span>, [<span class="dv">12</span>]] <span class="co"># return as a DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>  origin
 2    JFK
 3    JFK
 4    LGA</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[[<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">12</span>:<span class="dv">14</span>] <span class="co"># 특정 위치의 rows 선택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="29">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="29" style="flex-basis: 25.0%;justify-content: center;">
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flights.iloc[[<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">7</span>], <span class="dv">12</span>:<span class="dv">14</span>] <span class="co"># 특정 위치의 rows 선택</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>  origin dest
 2    JFK  MIA
 5    EWR  ORD
 7    LGA  IAD</code></pre>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -791,8 +754,8 @@ Name: origin, dtype: object</code></pre>
 <h2 class="anchored" data-anchor-id="series의-indexing">Series의 indexing</h2>
 <p>DataFrame과 같은 방식으로 이해</p>
 <p><em>Index가 numbers인 경우</em></p>
-<div class="cell" data-execution_count="30">
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>42    DFW
 2     MIA
 25    ORD
@@ -801,25 +764,25 @@ Name: origin, dtype: object</code></pre>
 Name: dest, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="dv">25</span>:<span class="dv">14</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="dv">25</span>:<span class="dv">14</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>25    ORD
 14    DFW
 Name: dest, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>s.iloc[<span class="dv">2</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>s.iloc[<span class="dv">2</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>25    ORD
 14    DFW
 Name: dest, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>s[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>s[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>42    DFW
 2     MIA
 25    ORD
@@ -837,13 +800,13 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>다음과 같은 경우 혼동스러움</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>s[<span class="dv">3</span>] <span class="co"># 3번째? label 3?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>s[<span class="dv">3</span>] <span class="co"># 3번째? label 3?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>#&gt; errors occur</p>
 </div>
 </div>
 <p><br> <em>Index가 lables인 경우</em></p>
-<div class="cell" data-execution_count="34">
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>red       MIA
 blue      BQN
 green     ATL
@@ -851,9 +814,9 @@ yellow    ORD
 Name: dest, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>s[[<span class="st">"red"</span>, <span class="st">"green"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>s[[<span class="st">"red"</span>, <span class="st">"green"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>red      MIA
 green    ATL
 Name: dest, dtype: object</code></pre>
@@ -868,13 +831,11 @@ Name: dest, dtype: object</code></pre>
 </ul>
 <section id="bracket-1" class="level3">
 <h3 class="anchored" data-anchor-id="bracket-1">Bracket [ ]</h3>
-<div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>flights_6 <span class="op">=</span> flights[:<span class="dv">100</span>][[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"origin"</span>, <span class="st">"dest"</span>]].sample(<span class="dv">6</span>)</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>flights_6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="36">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="36" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>flights_6 <span class="op">=</span> flights[:<span class="dv">100</span>][[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"origin"</span>, <span class="st">"dest"</span>]].sample(<span class="dv">6</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>flights_6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>    dep_delay  arr_delay origin dest
 8       -3.00      -8.00    JFK  MCO
 70       9.00      20.00    LGA  ORD
@@ -884,25 +845,19 @@ Name: dest, dtype: object</code></pre>
 0        2.00      11.00    EWR  IAH</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>flights_6[flights_6[<span class="st">"dep_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="37">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="37" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>flights_6[flights_6[<span class="st">"dep_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>    dep_delay  arr_delay origin dest
 8       -3.00      -8.00    JFK  MCO
 82      -1.00     -26.00    JFK  SFO
 63      -2.00       2.00    JFK  LAX</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> flights_6[<span class="st">"dep_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>idx <span class="co"># bool type의 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> flights_6[<span class="st">"dep_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>idx <span class="co"># bool type의 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>8      True
 70    False
 82     True
@@ -912,10 +867,10 @@ Name: dest, dtype: object</code></pre>
 Name: dep_delay, dtype: bool</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a column with the boolean indexing</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>flights_6[idx][<span class="st">"dest"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a column with the boolean indexing</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>flights_6[idx][<span class="st">"dest"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>8     MCO
 82    SFO
 63    LAX
@@ -934,34 +889,32 @@ Note
 <div class="callout-body-container callout-body">
 <p>사실, boolean indexing을 할때, DataFrame/Series의 index와 match함<br>
 대부분 염려하지 않아도 되나 다음과 같은 결과 참고</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset index</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>idx_reset <span class="op">=</span> idx.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0     True</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    False</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2     True</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3    False</span></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4     True</span></span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 5    False</span></span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: dep_delay, dtype: bool</span></span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>flights_6[idx_reset][<span class="st">"dest"</span>]</span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; IndexingError: Unalignable boolean Series provided as indexer </span></span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (index of the boolean Series and of the indexed object do not match)</span></span>
-<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Index가 없는 numpy array로 boolean indexing을 하는 경우 문제없음</span></span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>flights_6[idx_reset.to_numpy()][<span class="st">"dest"</span>]</span>
-<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 8     MCO</span></span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 82    SFO</span></span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 63    LAX</span></span>
-<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: dest, dtype: object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset index</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>idx_reset <span class="op">=</span> idx.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0     True</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1    False</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2     True</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3    False</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4     True</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 5    False</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: dep_delay, dtype: bool</span></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>flights_6[idx_reset][<span class="st">"dest"</span>]</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; IndexingError: Unalignable boolean Series provided as indexer </span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (index of the boolean Series and of the indexed object do not match)</span></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Index가 없는 numpy array로 boolean indexing을 하는 경우 문제없음</span></span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>flights_6[idx_reset.to_numpy()][<span class="st">"dest"</span>]</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 8     MCO</span></span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 82    SFO</span></span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 63    LAX</span></span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: dest, dtype: object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>bool_idx <span class="op">=</span> flights_6[[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>]] <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>bool_idx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-execution_count="40">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-display quarto-layout-cell" data-execution_count="40" style="flex-basis: 33.3%;justify-content: center;">
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>bool_idx <span class="op">=</span> flights_6[[<span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>]] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>bool_idx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>    dep_delay  arr_delay
 8       False      False
 70       True       True
@@ -971,12 +924,10 @@ Note
 0        True       True</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>idx_any <span class="op">=</span> bool_idx.<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>idx_any</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>idx_any <span class="op">=</span> bool_idx.<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>idx_any</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>8     False
 70     True
 82    False
@@ -990,10 +941,10 @@ dtype: bool</code></pre>
 <section id="np.where-활용" class="level3">
 <h3 class="anchored" data-anchor-id="np.where-활용"><code>np.where()</code> 활용</h3>
 <p><code>np.where(</code><em>boolean condition, value if True, value if False</em><code>)</code></p>
-<div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>flights_6[<span class="st">"delayed"</span>] <span class="op">=</span> np.where(idx, <span class="st">"delayed"</span>, <span class="st">"on-time"</span>)</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>flights_6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>flights_6[<span class="st">"delayed"</span>] <span class="op">=</span> np.where(idx, <span class="st">"delayed"</span>, <span class="st">"on-time"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>flights_6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
 <pre><code>    dep_delay  arr_delay origin dest  delayed
 8       -3.00      -8.00    JFK  MCO  delayed
 70       9.00      20.00    LGA  ORD  on-time
@@ -1003,15 +954,15 @@ dtype: bool</code></pre>
 0        2.00      11.00    EWR  IAH  on-time</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>np.where(flights_6[<span class="st">"dest"</span>].<span class="bu">str</span>.startswith(<span class="st">"S"</span>), <span class="st">"S"</span>, <span class="st">"T"</span>) <span class="co"># str method: "S"로 시작하는지 여부</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>np.where(flights_6[<span class="st">"dest"</span>].<span class="bu">str</span>.startswith(<span class="st">"S"</span>), <span class="st">"S"</span>, <span class="st">"T"</span>) <span class="co"># str method: "S"로 시작하는지 여부</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>array(['T', 'T', 'S', 'S', 'T', 'T'], dtype='&lt;U1')</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>bool_idx.<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>bool_idx.<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>8     False
 70     True
 82    False
@@ -1024,9 +975,9 @@ dtype: bool</code></pre>
 </section>
 <section id="loc" class="level3">
 <h3 class="anchored" data-anchor-id="loc">loc</h3>
-<div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>flights_6.loc[idx, <span class="st">"dest"</span>] <span class="co"># flights_6[idx]["dest"]과 동일</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>flights_6.loc[idx, <span class="st">"dest"</span>] <span class="co"># flights_6[idx]["dest"]과 동일</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
 <pre><code>8     MCO
 82    SFO
 63    LAX
@@ -1039,18 +990,18 @@ Name: dest, dtype: object</code></pre>
 <code>str.contains()</code>, <code>str.startswith()</code>, <code>str.endswith()</code></p>
 <p>자세한 사항은 <a href="https://wesmckinney.com/book/data-cleaning.html#text_string_manip_vectorized">7.4 String Manipulation/String Functions in pandas</a> by Wes McKinney</p>
 </blockquote>
-<div class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> flights.columns.<span class="bu">str</span>.contains(<span class="st">"time"</span>) <span class="co"># str method: "time"을 포함하는지 여부</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>cols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> flights.columns.<span class="bu">str</span>.contains(<span class="st">"time"</span>) <span class="co"># str method: "time"을 포함하는지 여부</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>cols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>array([False, False, False,  True,  True, False,  True,  True, False,
        False, False, False, False, False,  True, False, False, False])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columns 쪽으로 boolean indexing</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>flights.loc[:, cols]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columns 쪽으로 boolean indexing</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>flights.loc[:, cols]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>        dep_time  sched_dep_time  arr_time  sched_arr_time  air_time
 0         517.00             515    830.00             819    227.00
 1         533.00             529    850.00             830    227.00
@@ -1074,12 +1025,12 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>Chained indexing으로 값을 assign하는 경우 copy vs.&nbsp;view 경고 메세지</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>flights[flights[<span class="st">"arr_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>][<span class="st">"arr_delay"</span>] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>flights[flights[<span class="st">"arr_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>][<span class="st">"arr_delay"</span>] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>/var/folders/mp/vcywncl97ml2q4c_5k2r573m0000gn/T/ipykernel_96692/3780864177.py:1</code>: SettingWithCopyWarning: A value is trying to be set on a copy of a slice from a DataFrame.<br>
 Try using .loc[row_indexer,col_indexer] = value instead</p>
 <p>See the caveats in the documentation: <code>https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy</code></p>
 <p><br> 경고가 제시하는데로 .loc을 이용하여 assign</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>flights.loc[flights[<span class="st">"arr_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>, <span class="st">"arr_delay"</span>] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>flights.loc[flights[<span class="st">"arr_delay"</span>] <span class="op">&lt;</span> <span class="dv">0</span>, <span class="st">"arr_delay"</span>] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
